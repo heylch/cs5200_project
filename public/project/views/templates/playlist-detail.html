@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <h2>Songs</h2>
+    <ul class="list-group list-div active">
+        <li ng-repeat="song in model.songs" class="list-group-item col-xs-12 col-sm-6">
+            <div class="row" ng-show="song">
+                <div class="song-info-div">
+                    <div ng-show="song._creator">
+                        <label class="explore-label">Name:</label>
+                        <span></span>
+                        <a class="song-name" href="/projectapi/music?id={{song._id}}">{{song.name}}</a>
+                    </div>
+                    <div ng-hide="song._creator">
+                        <label class="explore-label">Name:</label>
+                        <span></span>
+                        <a class="song-name" href="{{song.url}}">{{song.name}}</a>
+                    </div>
+                </div>
+                <div class="song-artist-photo-div">
+                    <img class="song-artist-photo" ng-src="{{song.cover}}">
+                </div>
+                <a ng-click="model.removeSongFromPlaylist(song._id)" href=""><span class="glyphicon glyphicon-remove"></span></a>
+            </div>
+        </li>
+    </ul>
+</div>

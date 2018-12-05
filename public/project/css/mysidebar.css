@@ -1,0 +1,50 @@
+.mysidebar {
+    background-color: rgba(0,0,0,0.5);
+    width: 30%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding-top: 45px;
+    padding-bottom: 45px;
+}
+
+.mysidebar h1 {
+    color: white;
+}
+
+.portfolio {
+    padding-top: 45px;
+    padding-bottom: 45px;
+    background: transparent url("./nightsky.jpg");
+    position: absolute;
+    top: 0;
+    left: 30%;
+    right: 0;
+    bottom: 0;
+    -moz-transition: left 0.5s ease;
+    transition: left 0.5s ease;
+}
+
+
+input[type=checkbox] {
+    display: none !important;
+}
+
+input:checked ~ .portfolio {
+    left: 0;
+}
+
+input:checked ~ label {
+    left: 0;
+}
+
+label.myslide-label {
+    z-index: 2;
+    position: absolute;
+    top: 50px;
+    left: 30%;
+
+    -moz-transition: left 0.5s ease;
+    transition: left 0.5s ease;
+}

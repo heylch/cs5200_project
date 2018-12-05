@@ -1,0 +1,11 @@
+<div class="container-fluid">
+    <form class="form-titled form-horizontal">
+        <h5>Song name</h5>
+        <input type="text"
+               class="form-control input-block"
+               placeholder="{{model.song.name}}"
+               ng-model="model.song.newName">
+        <button class="btn-primary btn btn-block" ng-click="model.updateSong(model.song.newName)">Update</button>
+        <button class="btn-danger btn btn-block" ng-click="model.deleteSong(model.song)">Delete</button>
+    </form>
+</div>

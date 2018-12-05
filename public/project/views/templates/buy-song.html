@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <div class="alert" ng-show="model.errorPurchaseMessage != '1'">
+        <span class="closebtn" ng-click="model.defaultMessage()">&times;</span>
+        {{model.errorPurchaseMessage}}
+    </div>
+    <form class="form-titled form-horizontal">
+        <h4>Price:</h4>
+        <input type="text"
+               class="form-control input-block"
+               placeholder="0"
+               ng-model="model.price">
+
+        <button class="btn-success btn btn-block" ng-click="model.purchaseSong(model.price)">Offer</button>
+        <button class="btn-primary btn btn-block" ng-click="model.cancelPurchase()">Cancel</button>
+    </form>
+</div>

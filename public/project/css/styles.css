@@ -1,0 +1,428 @@
+html{
+    width: 100%;
+    height: 100%;
+}
+head {
+    text-align: center;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background: transparent url("./nightsky.jpg");
+    /*background: white;*/
+    background-size: cover
+}
+
+h2 {
+    text-align: center;
+    margin-top: 60px;
+}
+.view{
+    height: 100%;
+}
+
+.container-fluid{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.user-home{
+    height: -moz-calc(100% - 100px); /* Firefox */
+    height: -webkit-calc(100% - 100px); /* Chrome, Safari */
+    height: calc(100% - 100px); /* IE9+ and future browsers */
+}
+
+.user-home .container-fluid{
+
+}
+
+.search{
+    text-align: center;
+    padding: 10%;
+}
+
+.search input, .search button{
+    margin-bottom: 20px;
+}
+
+
+.content-list{
+    background:transparent;
+　color:#FFFFFF;
+　background-color:rgba(255,255,255,0.15)
+}
+.content-list a{
+    color: #FFFFFF;
+    font-size: 30px;
+}
+
+.list-group-item{
+    background: transparent;
+    border-collapse: collapse;
+    border-color: transparent;
+}
+
+.left-menu{
+     /*background: transparent url("./background-18.jpg") no-repeat;*/
+    background-color:#2e323b;
+    height: 100%;
+
+ }
+
+.list-menu {
+    margin-top: 10px;
+}
+
+.content{
+    overflow: auto;
+    position: relative;
+    /*padding: 20px;*/
+    /*background: #333;*/
+    /*margin: 10px;*/
+    /*width: 740px;*/
+    max-width: 100%;
+    height: -moz-calc(100% - 250px); /* Firefox */
+    height: -webkit-calc(100% - 250px); /* Chrome, Safari */
+    height: calc(100% - 250px); /* IE9+ and future browsers */
+    -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;
+}
+
+.user.navbar{
+    margin-bottom: 0px;
+}
+
+.navbar-nav.play-btn{
+    /*float: right;*/
+    margin-left: 40%;
+}
+
+.foorter-mobile .play-btn{
+    margin-left: 0;
+}
+
+.black-btn{
+    background-color: black;
+    color: white;
+}
+.mysidebar .list-menu .my-playlist{
+    max-height: 400px;
+    overflow: auto;
+}
+
+.newPlaylist{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top:10%;
+}
+
+.new-reviews{
+    margin-bottom: 10%;
+}
+
+.review-name{
+    padding-right: 20px;
+}
+
+/*.adim-edit-review{*/
+    /*padding-top:40px;*/
+/*}*/
+/* The only rule that matters */
+#video-background {
+    /*  making the video fullscreen  */
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+}
+
+#video-background source{
+
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    width: auto;
+}
+
+/* These just style the content */
+article {
+    /*  just a fancy border  */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 10px solid rgba(255, 255, 255, 0.5);
+    margin: 10px;
+}
+
+.welcome-header {
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    font-size: 36px;
+    letter-spacing: 3px;
+    color: #fff;
+    font-family: Oswald, sans-serif;
+    text-align: center;
+}
+
+.welcome-header-span {
+    font-family: sans-serif;
+    letter-spacing: 0;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.list-div {
+    margin: 5px;
+}
+
+.row {
+    display: flex;
+}
+
+li:hover {
+    color: aquamarine;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.song-artist-photo {
+    width: 60px;
+    height: 60px;
+    float: right;
+    margin-right: 2px;
+    margin-top: 2px;
+}
+
+.song-artist-photo-div {
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    flex: auto;
+}
+
+.song-info-div {
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 18px;
+}
+
+label.explore-label {
+    font-weight: 100;
+}
+
+label.song-detail-label {
+    font-weight: 100;
+}
+
+span.separator {
+    border-top: 1px solid #333;
+    width: 100%;
+    height: 1px;
+    display: block;
+}
+
+.song-name {
+    cursor: pointer;
+    font-weight: 500;
+    color: mediumaquamarine;
+}
+
+a.song-name:hover {
+    color: aquamarine;
+    font-size: x-large;
+}
+
+
+
+.song-artist-photo.btn-default{
+    background: transparent;
+ }
+
+.song-detail-div {
+    margin: 50px 15px 15px 15px;
+}
+
+.song-detail-header-div {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.song-artist-photo-large {
+    width: 200px;
+    height: 200px;
+    float: left;
+}
+
+.song-artist-photo-large{
+    background: transparent;
+}
+
+.song-detail-header-description-div {
+    margin-left: 20px
+}
+
+.musician-detail-div {
+    margin: 20px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.musician-detail-header-div {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+label.musician-detail-label {
+    font-weight: 100;
+}
+
+.musician-photo-large {
+    width: 200px;
+    height: 200px;
+    float: left;
+}
+
+.detail-operator {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.detail-operator:hover {
+    font-size: 30px;
+    color: white;
+}
+
+.user-photo-large {
+    width: 250px;
+    height: 250px;
+    float: left;
+}
+
+.user-detail-div {
+    margin: 5px;
+}
+
+.user-detail-header-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn.btn-primary.btn-block {
+    margin-top: 5px;
+}
+
+.row {
+    margin: 5px;
+}
+
+
+.review-item h2{
+    font-size: 20px;
+    color: white;
+    display: inline-block;
+}
+
+.reivew-content{
+    font-size: 20px !important;
+    color: mediumaquamarine !important;
+    display:inline-block;
+    word-break: break-all;
+}
+
+.transaction-operator-combination {
+    position: absolute;
+    right: 10px;
+    padding: 10px;
+}
+
+.transaction-operator {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.transaction-operator:hover {
+    font-size: 30px;
+}
+
+.transaction-operator-buyer-combination {
+    position: absolute;
+    right: 10px;
+    padding: 10px;
+    font-size: 24px;
+}
+
+.transaction-operator-buyer {
+    margin-top: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.transaction-operator-buyer:hover {
+    font-size: 35px;
+}
+
+.glyphicon.glyphicon-ok {
+    color: #2ecc71;
+}
+
+.glyphicon.glyphicon-remove {
+    color: #e74c3c;
+}
+
+.delete-follow {
+    position: absolute;
+    right: 10px;
+    margin-top: 30px;
+}
+
+a.tag-icon {
+    color: #efefef;
+    cursor: pointer;
+}
+
+a.tag-icon:hover {
+    font-size: 30px;
+    color: #efefef;
+}
+
+a.api-song-name {
+    color: lightgoldenrodyellow;
+    cursor: pointer;
+}
+
+a.api-song-name:hover {
+    font-size: 20px;
+    color: lightgoldenrodyellow;
+}
+
+.footer-explore{
+    height: 10px;
+}
+
+#edit-review-container{
+    padding-bottom: 40px;
+}
+
+#explore-back{
+    position: fixed;
+    top: 80px;
+    left: 5px;
+}
+

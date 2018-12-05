@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div ng-switch="model.user.type">
+        <div ng-switch-when="GENERAL">
+            <ng-include src="'views/templates/user-home.html'">
+        </div>
+        <div ng-switch-when="MUSICIAN">
+            <ng-include src="'views/templates/musician-home.html'">
+        </div>
+        <div ng-switch-when="CRITIC">
+            <ng-include src="'views/templates/critic-home.html'">
+        </div>
+        <div ng-switch-when="PUBLISHER">
+            <ng-include src="'views/templates/publisher-home.html'">
+        </div>
+        <div ng-switch-when="ADMIN">
+            <ng-include src="'views/templates/admin-home.html'">
+        </div>
+    </div>
+</div>

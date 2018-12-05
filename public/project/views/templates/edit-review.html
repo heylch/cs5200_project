@@ -1,0 +1,28 @@
+<div class="container-fluid" id="edit-review-container">
+    <div class="alert " ng-show="model.errorReviewMessage !== '1'">
+        <span class="closebtn" ng-click="model.defaultMessage()">&times;</span>
+        {{model.errorReviewMessage}}
+    </div>
+    <form class="form-titled form-horizontal">
+        <h2>Review Title</h2>
+        <input type="text"
+               class="form-control input-block"
+               placeholder="Title"
+               ng-model="model.newreview.title">
+        <h2>Review </h2>
+        <textarea type="text"
+                  rows="3"
+               class="form-control input-block"
+               placeholder="Review"
+                  ng-model="model.newreview.comment"></textarea>
+        <h2>Rating</h2>
+        <input type="number"
+               class="form-control input-block"
+               placeholder="Rating"
+               ng-model="model.newreview.rating">
+        <a class="btn-primary btn btn-block" ng-click="model.addReviewToSong(model.newreview.title, model.newreview.comment
+        ,model.newreview.rating)">Review</a>
+        <a class="btn-danger btn btn-block"  href="#!/home">Cancel</a>
+        <a class="btn-danger btn btn-block"  ng-click="model.deleteReview()">Delete</a>
+    </form>
+</div>

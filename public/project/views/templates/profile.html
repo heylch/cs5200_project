@@ -1,0 +1,82 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#!/home">Musiker</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+
+                <li><a href="#!/home">Home</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#!/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="alert " ng-show="model.errorMessage !== '1'">
+    <span class="closebtn" ng-click="model.defaultMessage()">&times;</span>
+    {{model.errorMessage}}
+</div>
+<div class="user-detail-div container-fluid">
+    <div class="user-detail-header-div">
+        <div class="user-detail-header-img-div">
+            <img class="user-photo-large" ng-src="{{model.user.avatar}}">
+        </div>
+    </div>
+</div>
+<div class="container full-height">
+    <form class="form-titled form-horizontal">
+        <h5>Username</h5>
+        <input type="text"
+               class="form-control input-block"
+               placeholder="username"
+               ng-model="model.user.username">
+        <h5>Password</h5>
+        <input type="Password"
+               class="form-control input-block"
+               placeholder="password"
+               ng-model="model.user.password"
+               id="pass"
+        >
+        <h5>First Name</h5>
+        <input type="text"
+               class="form-control input-block"
+               placeholder="first name"
+               ng-model="model.user.firstName"
+        >
+        <h5>Last Name</h5>
+        <input type="text"
+               class="form-control input-block"
+               placeholder="last name"
+               ng-model="model.user.lastName">
+    </form>
+    <div class="upload">
+        <h5>Upload Avatar</h5>
+        <form action="/projectapi/avatar" id = "upload" method="post" enctype="multipart/form-data">
+            <input  name="avatar" type="file" class="form-control"/>
+            <input  name="userId" value="{{model.user._id}}"   style="display: none"/>
+            <button type="submit" class="btn btn-block btn-success">Upload</button>
+        </form>
+    </div>
+    <a class="btn btn-primary btn-block"
+       role="button"
+       id="passbtn"
+       href=""
+       ng-click="model.showPassword()">Show Password</a>
+    <a class="btn btn-primary btn-block"
+       role="button"
+       ng-click="model.updateUser(model.user, model.user.username, model.user.password,model.user.firstName
+        , model.user.lastName)">Update Profile</a>
+    <a class="btn btn-danger btn-block"
+       role="button"
+       ng-click="model.unregister()">Unregister</a>
+    <a class="btn btn-danger btn-block" ng-click="model.logout()" role="button">Log Out</a>
+</div>

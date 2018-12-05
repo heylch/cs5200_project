@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <h2>Songs</h2>
+    <div class="musician-detail-conntent-div">
+        <ul class="list-group list-div active">
+            <li ng-repeat="song in model.musicianSongs" class="list-group-item col-xs-12 col-sm-6">
+                <div class="row">
+                    <div class="song-info-div">
+                        <div>
+                            <label class="explore-label">Name:</label><span></span>
+                            <a href="#!/song/{{song._id}}"
+                               class="song-name">{{song.name}}</a>
+                        </div>
+                    </div>
+                    <div class="song-artist-photo-div">
+                        <img class="song-artist-photo" ng-src="{{model.user.avatar}}">
+                    </div>
+                    <a ng-click="model.deleteSong(song._id)" href=""><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

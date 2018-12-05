@@ -1,0 +1,47 @@
+<!--<div ng-include="'views/templates/header.html'"></div>-->
+<div class="search">
+        <h1 class="visible-sm visible-md visible-lg">MUSIKER</h1>
+        <h2 class="visible-xs">MUSIKER</h2>
+        <p>Incubator for futrue music star</p>
+        <div class="searchbar">
+            <input placeholder="Shape of You"
+                   ng-model = "model.searchContent"
+                   class="form-control"/>
+            <button ng-click="model.searchTrack(model.searchContent)" class="btn btn-primary">
+                Search Song
+            </button>
+        </div>
+
+        <div class = "search-table container-fluid">
+            <table ng-show = "model.search" class="col-sm-4">
+                <tr class="search-table" ng-repeat="song in model.search">
+                    <td>
+                        <a class="tag-icon" ng-click="model.addSongToLocal(song)"><span class="glyphicon glyphicon-save"></span></a>
+                        <a class="api-song-name"
+                           ng-click="model.showDetails(song)">
+                            {{song.name}}
+                        </a>
+                    </td>
+                    <td>
+                        {{song.artists[0].name}}
+                    </td>
+                </tr>
+            </table>
+
+            <div ng-show="model.song" class="col-sm-8 hidden-xs">
+                <ul class="list-group lch-list" style="text-align: center">
+                    <li class="ng-binding list-group-item">
+                        Artist:   {{model.song.artists[0].name}}
+                    </li >
+                    <li class="ng-binding list-group-item">
+                        Album:    {{model.song.album.name}}
+                    </li>
+                    <li class="ng-binding list-group-item">
+                        <img ng-src="{{model.song.album.cover}}"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+

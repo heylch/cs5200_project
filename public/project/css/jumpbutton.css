@@ -1,0 +1,43 @@
+
+/*jumpbutton*/
+#button-exp {
+    float: right;
+    inline-height: 20px;
+    color: white;
+    background-color: #4cae4c;
+    display: inline-block;
+    font-size: 1.2em;
+    padding: 1.2em 1.5em;
+    font-family: Gill Sans, "Gill Sans", sans-serif;
+    font-weight: 700;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin: 5px;
+    border-radius: 0.4em;
+    border-color: #4cae4c;
+    transition: all 0.3s linear;
+    animation-iteration-count: infinite;
+    animation-duration: 0.75s;
+    animation-name: jump;
+}
+#button-exp:hover {
+    color: #ffffff;
+    background: mediumaquamarine;
+    animation: none;
+}
+
+@keyframes jump {
+    0% {
+        transform: scale(1, 1) translate(0px, 0px);
+    }
+    30% {
+        transform: scale(1, 0.8) translate(0px, 10px);
+    }
+    75% {
+        transform: scale(1, 1.1) translate(0px, -25px);
+    }
+    100% {
+        transform: scale(1, 1) translate(0px, 0px);
+    }
+}

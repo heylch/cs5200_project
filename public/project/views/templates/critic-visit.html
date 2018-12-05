@@ -1,0 +1,54 @@
+<div  ng-include="'views/templates/footer-explore.html'"></div>
+<div ng-include="'views/templates/header.html'"></div>
+
+<div class="musician-detail-div container-fluid">
+    <div class="musician-detail-header-div">
+        <div class="musician-detail-header-img-div">
+            <img class="musician-photo-large" ng-src="{{model.critic.avatar}}">
+        </div>
+    </div>
+    <div class="musician-detail-header-div">
+        <div class="musician-detail-header-description-div">
+            <div>
+                <label class="musician-detail-label">Musician Name:</label><span></span>
+                <span>{{model.critic.username}}</span>
+            </div>
+        </div>
+        <div class="musician-detail-header-control-div">
+            <div>
+                <a ng-click="model.followCritic()" class="detail-operator">
+                    <span class="glyphicon glyphicon-heart"></span></a>
+            </div>
+        </div>
+    </div>
+
+    <div>
+    <ul  class="list-group list-div active">
+        <li ng-repeat="review in model.reviews" class="list-group-item">
+            <div class="row">
+
+                <div>
+                    <div class="review-item">
+                        <h2>Review Title:</h2>
+                        <h3 class="reivew-content">{{review.title}}</h3>
+                    </div>
+                    <div class="review-item">
+                        <h2>for Song:</h2>
+                        <h3 class="reivew-content song-name">{{review._song.name}}</h3>
+                    </div>
+                    <div class="review-item">
+                        <h2>comment:</h2>
+                        <h3 class="reivew-content">{{review.comment}}</h3>
+                    </div>
+                    <div class="review-item">
+                        <h2>Rating:</h2>
+                        <h3 class="reivew-content">{{review.rating}}</h3>
+                    </div>
+
+
+                </div>
+            </div>
+        </li>
+    </ul>
+    </div>
+</div>

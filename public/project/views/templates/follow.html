@@ -1,0 +1,43 @@
+<div  ng-include="'views/templates/footer-explore.html'"></div>
+<div ng-include="'views/templates/header.html'"></div>
+<div class="container-fluid">
+    <h1>Followings</h1>
+    <ul class="list-group item-row">
+        Following username:
+        <li ng-repeat="following in model.followings" class="list-group-item content-list">
+             <a href="">{{following.username}}</h5></a>
+            <!--<a href="">-->
+                <!--<span class="glyphicon glyphicon-cog icon-right"></span>-->
+            <!--</a>-->
+        </li>
+    </ul>
+
+    <h1>Followers</h1>
+    <ul class="list-group item-row">
+        Follower username:
+        <li ng-repeat="follower in model.followers" class="list-group-item content-list">
+            <a href="">{{follower.username}}</h5></a>
+            <!--<a href="">-->
+                <!--<span class="glyphicon glyphicon-cog icon-right"></span>-->
+            <!--</a>-->
+        </li>
+    </ul>
+    <div class="searchbar">
+        <input placeholder="type username"
+               ng-model = "model.searchContent"
+               class="form-control"/>
+        <button ng-click="model.searchUser(model.searchContent)" class="btn btn-primary btn-block">
+            Search User
+        </button>
+    </div>
+    <div ng-show="model.searchresult">
+        <h2>username: </h2>{{model.searchresult.username}}
+        <h2>first name: </h2>{{model.searchresult.firstName}}
+        <h2>last name: </h2>{{model.searchresult.lastName}}
+        <button ng-click="model.followUser()" class="btn btn-info btn-block">
+            Follow
+        </button>
+    </div>
+
+
+</div>

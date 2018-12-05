@@ -1,0 +1,51 @@
+<div  ng-include="'views/templates/footer-explore.html'"></div>
+<div ng-include="'views/templates/header.html'"></div>
+
+<div class="main-wrap">
+    <input id="slide-sidebar" type="checkbox" role="button" />
+    <label class="myslide-label" for="slide-sidebar"><span class="glyphicon glyphicon-align-justify"></span></label>
+    <div class="mysidebar">
+        <div class="list-menu">
+            <ul class="list-group">
+                <a ng-click="model.changeRightPanel('musicians')" href="">
+                    <li class="list-group-item">Following Musicians</li >
+                </a>
+                <a ng-click="model.changeRightPanel('critics')" href="">
+                    <li class="list-group-item">Following Critics</li >
+                </a>
+                <a ng-click="model.findReviewsByCritic()" href="">
+                    <li class="list-group-item">My Reviews</li >
+                </a>
+                <a ng-click="model.findFollowers()" href="">
+                    <li class="ng-binding list-group-item">Followers</li>
+                </a>
+                <li class="list-group-item"><a ng-click="model.changeRightPanel('create-playlist')" href="">
+                    <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>Playlists</li >
+                <div class = "my-playlist" >
+                    <div ng-show= "model.playlists" ng-repeat="playlist in model.playlists" class="list-group">
+                        <li class="list-group-item">
+                            <a ng-click="model.getAllSongsFromPlaylist(playlist._id)" href="">{{playlist.name}}</a>
+                        </li>
+                    </div>
+                </div>
+
+            </ul>
+        </div>
+
+    </div>
+    <div class="portfolio">
+        <div ng-show="model.rightPanel==='search'" ng-include src="'views/templates/search.html'"></div>
+        <div ng-show="model.rightPanel === 'followers'" ng-include src="'views/templates/follower-users.html'"></div>
+        <div ng-show="model.rightPanel === 'create-playlist'" ng-include src="'views/templates/playlist-new.html'"></div>
+        <div ng-show="model.rightPanel === 'songlist'" ng-include src="'views/templates/playlist-detail.html'"></div>
+        <div ng-show="model.rightPanel === 'musicians'" ng-include src="'views/templates/following-musicians.html'"></div>
+        <div ng-show="model.rightPanel === 'critics'" ng-include src="'views/templates/following-critics.html'"></div>
+        <div ng-show="model.rightPanel === 'my-reviews'" ng-include src="'views/templates/reviews-critic.html'"></div>
+        <div ng-show="model.rightPanel === 'edit-review'" ng-include src="'views/templates/edit-review.html'"></div>
+    </div>
+</div>
+
+
+</div>
+

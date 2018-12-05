@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <h2>Songs</h2>
+    <ul class="list-group list-div active">
+        <li ng-repeat="song in model.songs" class="list-group-item">
+            <div class="row">
+                <div class="song-info-div">
+                    <div>
+                        <label class="explore-label">Name:</label><span></span>
+                        <a href="#!/song/{{song._id}}"
+                           class="song-name">{{song.name}}</a>
+                    </div>
+                    <div ng-show="song._creator">
+                        <label class="explore-label">Artist:</label>
+                        <a href="#!/musician/{{song._creator._id}}"
+                           class="song-name">{{song._creator.username}}</a>
+                    </div>
+                    <div ng-hide="song._creator">
+                        <label class="explore-label">Artist:</label>
+                        {{song.artist}}
+                    </div>
+                </div>
+                <div class="song-artist-photo-div">
+                    <img class="song-artist-photo" ng-src="{{song.cover}}">
+                </div>
+            </div>
+        </li>
+    </ul>
+
+</div>

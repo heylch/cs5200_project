@@ -1,0 +1,46 @@
+<div class="new-reviews container-fluid">
+    <h2>Reviews</h2>
+    <ul  class="list-group list-div active">
+        <li ng-repeat="review in model.reviews" class="list-group-item">
+            <div class="row">
+                <div class="song-info-div">
+                    <!--<div class="review-item">-->
+                        <!--<h2>Critic Name:</h2>-->
+                        <!--<a class="reivew-content" href="#!/critic/{{review._critic._id}}">{{review._critic.username}}</a>-->
+                    <!--</div>-->
+                    <div ng-show="review._critic.username">
+                        <label class="explore-label">Critic Name:</label><span></span>
+                        <a href="#!/critic/{{review._critic._id}}"
+                           class="song-name">{{review._critic.username}}</a>
+                    </div>
+
+                    <div ng-show="review._critic.username">
+                        <label class="explore-label">Song:</label><span></span>
+                        <a href="#!/song/{{review._song._id}}"
+                           class="song-name">{{review._song.name}}</a>
+                    </div>
+
+
+                    <div class="review-item">
+                        <label class="explore-label">Review Title:</label>
+                        <a class="reivew-content">{{review.title}}</a>
+                    </div>
+                    <div class="review-item">
+                        <label class="explore-label">Comment:</label>
+                        <a class="reivew-content">{{review.comment}}</a>
+                    </div>
+                    <div class="review-item">
+                        <label class="explore-label">Rating:</label>
+                        <h3 class="reivew-content">{{review.rating}}</h3>
+                    </div>
+
+
+                </div>
+                <div class="song-artist-photo-div" ng-show="review._critic.username">
+                    <img class="song-artist-photo"
+                         ng-src={{review._critic.avatar}}>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

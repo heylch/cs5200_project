@@ -1,0 +1,33 @@
+<div  ng-include="'views/templates/footer-explore.html'"></div>
+<div ng-include="'views/templates/header.html'"></div>
+<div class="main-wrap">
+    <input id="slide-sidebar" type="checkbox" role="button" />
+    <label class="myslide-label" for="slide-sidebar"><span class="glyphicon glyphicon-align-justify"></span></label>
+    <div class="mysidebar">
+        <div class="list-menu">
+            <ul class="list-group">
+                <a ng-click="model.findTransactionsByPublisher()" href="">
+                    <li class="list-group-item">My Transactions</li >
+                </a>
+                <a ng-click="model.changeRightPanel('search')" href="">
+                    <li class="list-group-item">Search</li >
+                </a>
+                <a ng-click="model.changeRightPanel('critics')" href="">
+                    <li class="list-group-item">Following Critics</li >
+                </a>
+                <a ng-click="model.changeRightPanel('musicians')"href="">
+                    <li class="ng-binding list-group-item">Following Musicians</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    <div class="portfolio">
+        <div ng-show="model.rightPanel==='search'" ng-include src="'views/templates/search.html'"></div>
+        <div ng-show="model.rightPanel==='transactions'" ng-include="'views/templates/transactions-buyer.html'"></div>
+        <div ng-show="model.rightPanel === 'my-critics'" ng-include src="'views/templates/reviews-critic.html'"></div>
+        <div ng-show="model.rightPanel === 'musicians'" ng-include src="'views/templates/following-musicians.html'"></div>
+        <div ng-show="model.rightPanel === 'critics'" ng-include src="'views/templates/following-critics.html'"></div>
+    </div>
+
+</div>
+

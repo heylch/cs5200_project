@@ -1,0 +1,36 @@
+<div  ng-include="'views/templates/footer-explore.html'"></div>
+<div ng-include="'views/templates/header.html'"></div>
+
+
+<div class="main-wrap">
+    <input id="slide-sidebar" type="checkbox" role="button" />
+    <label class="myslide-label" for="slide-sidebar"><span class="glyphicon glyphicon-align-justify"></span></label>
+    <div class="mysidebar">
+        <div class="list-menu">
+            <ul class="list-group">
+                <a ng-click="model.findSongsByMusician()" href="">
+                    <li class="list-group-item">My Songs</li >
+                </a>
+                <a ng-click="model.changeRightPanel('upload')" href="">
+                    <li class="list-group-item">Upload</li >
+                </a>
+                <a ng-click="model.findTransactionsByMusician()" href="">
+                        <li class="list-group-item">My Transactions</li >
+                    </a>
+                <a ng-click="model.findFollowers()" href="">
+                    <li class="ng-binding list-group-item">Followers</li>
+                </a>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="portfolio">
+        <div ng-show="model.rightPanel==='upload'" ng-include="'views/templates/upload-song.html'"></div>
+        <div ng-show="model.rightPanel === 'followers'" ng-include src="'views/templates/follower-users.html'"></div>
+        <div ng-show="model.rightPanel === 'my-songs'" ng-include src="'views/templates/songs-musician.html'"></div>
+        <div ng-show="model.rightPanel==='transactions'" ng-include="'views/templates/transactions-seller.html'"></div>
+    </div>
+
+</div>
+

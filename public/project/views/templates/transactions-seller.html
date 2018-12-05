@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <h2>Transactions</h2>
+    <ul class="list-group list-div active">
+        <li ng-repeat="transaction in model.transactions" class="list-group-item col-sm-6">
+            <div class="row" ng-show="transaction">
+                <div class="song-info-div">
+                    <div>
+                        <label class="explore-label">Seller:</label>
+                        <span></span>{{transaction._buyer.username}}
+                    </div>
+                    <div>
+                        <label class="explore-label">Status:</label>
+                        <span></span>{{transaction.status}}
+                    </div>
+                    <div>
+                        <label class="explore-label">Price:</label>
+                        <span></span>{{transaction.price}}
+                    </div>
+                </div>
+                <div class="transaction-operator-combination" ng-show="transaction.status === 'PENDING'">
+                    <div class="transaction-operator">
+                        <a ng-click="model.accecptTransaction(transaction)"><span class="glyphicon glyphicon-ok"></span></a>
+                    </div>
+                    <div class="transaction-operator">
+                        <a ng-click="model.rejectTransaction(transaction)"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
