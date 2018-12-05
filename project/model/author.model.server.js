@@ -51,7 +51,7 @@ function addBookToAuthor(authorId,bookId) {
         .then(function (list) {
             var flag = '0';
             for(var i = 0; i < list._books.length; i ++) {
-                if(list._books[i] == bookId) {
+                if(list._books[i] === bookId) {
                     flag = '1';
                     break;
                 }
