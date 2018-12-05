@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const readerSchema = mongoose.Schema({
-    balance: Number,
     firstName: String,
     lastName: String,
-    dob: Date
-}, {collection: 'reader'});
+    dob:Date,
+    reviews: [{type: mongoose.Schema.Types.ObjectId, ref:"ReviewModel"}],
+    following: [{type: mongoose.Schema.Types.ObjectId, ref:"UserModel"}]
+});
 module.exports = readerSchema;

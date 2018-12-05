@@ -6,10 +6,7 @@ var userSchema = mongoose.Schema({
     username: String,
     password: String,
     emali: String,
-    // google: {
-    //     id:    String,
-    //     token: String
-    // },
+    balance: Number,
     avatar: {
         type: String,
         default: "/avatar/default-avatar.png",
@@ -18,12 +15,7 @@ var userSchema = mongoose.Schema({
     reader: readerSchema,
     publish : publisherSchema,
     bookstore: bookstoreSchema,
-    books: [{type: mongoose.Schema.Types.ObjectId, ref:"Bookodel"}],
-    booklist: [{type: mongoose.Schema.Types.ObjectId, ref:"BooklistModel"}],
-    following: [{type: mongoose.Schema.Types.ObjectId, ref:"ProjectUserModel"}],
-    followers: [{type: mongoose.Schema.Types.ObjectId, ref:"ProjectUserModel"}],
-    reviews: [{type: mongoose.Schema.Types.ObjectId, ref:"ReviewModel"}],
-    transactions: [{type: mongoose.Schema.Types.ObjectId, ref:"TransactionModel"}],
-    // isAdmin: Boolean
+    booklists: [{type: mongoose.Schema.Types.ObjectId, ref:"BooklistModel"}],
+    transactions: [{type: mongoose.Schema.Types.ObjectId, ref:"TransactionModel"}]
 }, {collection: "user"});
 module.exports = userSchema;

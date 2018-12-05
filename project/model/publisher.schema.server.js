@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const publishSchema = mongoose.Schema({
-    profit: Number,
+const publisherSchema = mongoose.Schema({
     name: String,
-}, {collection: 'reader'});
-module.exports = publishSchema;
+    books:[{type:mongoose.Schema.Types.ObjectId, ref:"BookModel"}]
+});
+module.exports = publisherSchema;

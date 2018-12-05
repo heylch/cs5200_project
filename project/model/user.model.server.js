@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var userSchema = require("./user.schema.server");
-var userModel = mongoose.model("ProjectUserModel", userSchema);
+var userModel = mongoose.model("UserModel", userSchema);
 var playlistModel = require('./playlist.model.server');
 var songModel = require("./song.model.server");
 
