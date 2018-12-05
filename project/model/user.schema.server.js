@@ -12,10 +12,12 @@ var userSchema = mongoose.Schema({
         default: "/avatar/default-avatar.png",
     },
     type: {type: String, enum: ['READER', 'PUBLISHER', 'BOOKSTORE']},
-    reader: readerSchema,
-    publisher : publisherSchema,
-    bookstore: bookstoreSchema,
-    booklists: [{type: mongoose.Schema.Types.ObjectId, ref:"BooklistModel"}],
-    transactions: [{type: mongoose.Schema.Types.ObjectId, ref:"TransactionModel"}]
+    _reader: readerSchema,
+    _publisher : publisherSchema,
+    _bookstore: bookstoreSchema,
+    _booklists: [{type: mongoose.Schema.Types.ObjectId, ref:"BooklistModel"}],
+    _transactions: [{type: mongoose.Schema.Types.ObjectId, ref:"TransactionModel"}],
+    // _followings: [{type: mongoose.Schema.Types.ObjectId, ref:"UserModel"}],
+    // _reviews: [{type: mongoose.Schema.Types.ObjectId, ref:"ReviewModel"}]
 }, {collection: "user"});
 module.exports = userSchema;

@@ -47,17 +47,23 @@
                id="pass"
         >
         <div ng-show="model.user.type === 'READER'" >
-        <h5>First Name</h5>
-        <input type="text"
-               class="form-control input-block"
-               placeholder="first name"
-               ng-model="model.user.reader.firstName"
-        >
-        <h5>Last Name</h5>
-        <input type="text"
-               class="form-control input-block"
-               placeholder="last name"
-               ng-model="model.user.reader.lastName">
+            <h5>Balance</h5>
+            <input type="text"
+                   class="form-control input-block"
+                   placeholder="0"
+                   ng-model="model.user.balance"
+            >
+            <h5>First Name</h5>
+            <input type="text"
+                   class="form-control input-block"
+                   placeholder="first name"
+                   ng-model="model.user.reader.firstName"
+            >
+            <h5>Last Name</h5>
+            <input type="text"
+                   class="form-control input-block"
+                   placeholder="last name"
+                   ng-model="model.user.reader.lastName">
         </div>
     </form>
     <div class="upload">

@@ -40,15 +40,15 @@ app.get("/projectapi/user/:userId/follower", findFollowersByUser);
 app.get("/projectapi/users", findAllUsers);
 app.get("/projectapi/checkLogin", checkLogin);
 app.put("/projectapi/user/:userId", updateUser);
-app.put("/projectapi/user/:userId/playlist/:playlistId", addPlaylistToUser);
-app.put("/projectapi/user/:userId/song/:songId", addSong);
+app.put("/projectapi/user/:userId/booklist/:booklistId", addBooklistToUser);
+app.put("/projectapi/user/:userId/book/:bookId", addBook);
 app.put("/projectapi/user/:userId/following/:followingId", addFollowingByUser);
 app.put("/projectapi/user/:userId/follower/:followerId", addFollowerByUser);
 app.put("/projectapi/user/:userId/unfollowuser/:followingId", unFollowUser);
 app.delete("/projectapi/user/:userId", deleteUser);
 app.post("/projectapi/avatar", upload.single('avatar'), uploadAvatar);
-app.delete("/projectapi/user/:userId/playlist/:playlistId", removePlaylist);
-app.delete("/projectapi/user/song/:songId", removeSong);
+app.delete("/projectapi/user/:userId/booklist/:booklistId", removeBooklist);
+app.delete("/projectapi/user/book/:bookId", removeBook);
 
 function findAllUsers(req,res) {
     var publicUsers = [];
@@ -150,12 +150,11 @@ function deleteUser(req,res) {
             res.sendStatus(500).send(err);
         })
 }
-
-function removeSong(req,res) {
+function removeBook(req,res) {
     var userId = req.params.userId;
-    var songId = req.params.songId;
+    var bookId = req.params.bookId;
     userModel
-        .removeSong(userId,songId)
+        .removeBook(userId,bookId)
         .then(function (status) {
             res.send("1");
         }, function (err) {
@@ -163,11 +162,11 @@ function removeSong(req,res) {
         });
 }
 
-function addPlaylistToUser(req,res) {
+function addBooklistToUser(req,res) {
     var userId = req.params.userId;
-    var playlistId = req.params.playlistId;
+    var booklistId = req.params.booklistId;
     userModel
-        .addPlaylist(userId, playlistId)
+        .addBooklist(userId, booklistId)
         .then(function (res) {
             res.json(user)
         }, function (err) {
@@ -175,11 +174,11 @@ function addPlaylistToUser(req,res) {
         })
 }
 
-function removePlaylist(req, res) {
+function removeBooklist(req, res) {
     var userId = req.params.userId;
-    var playlistId = req.params.playlistId;
+    var booklistId = req.params.booklistId;
     userModel
-        .removePlaylist(userId, playlistId)
+        .removeBooklist(userId, booklistId)
         .then(function (res) {
             res.json(user)
         }, function (err) {
@@ -187,11 +186,11 @@ function removePlaylist(req, res) {
         })
 }
 
-function addSong(req,res) {
+function addBook(req,res) {
     var userId = req.params.userId;
-    var songId = req.params.songId;
+    var bookId = req.params.bookId;
     userModel
-        .addSong(userId,songId)
+        .addBook(userId,bookId)
         .then(function (user) {
             res.send("1");
         }, function (err) {
