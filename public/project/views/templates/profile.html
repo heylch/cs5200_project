@@ -46,17 +46,19 @@
                ng-model="model.user.password"
                id="pass"
         >
+        <div ng-show="model.user.type === 'READER'" >
         <h5>First Name</h5>
         <input type="text"
                class="form-control input-block"
                placeholder="first name"
-               ng-model="model.user.firstName"
+               ng-model="model.user.reader.firstName"
         >
         <h5>Last Name</h5>
         <input type="text"
                class="form-control input-block"
                placeholder="last name"
-               ng-model="model.user.lastName">
+               ng-model="model.user.reader.lastName">
+        </div>
     </form>
     <div class="upload">
         <h5>Upload Avatar</h5>

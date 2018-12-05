@@ -6,14 +6,14 @@ var userSchema = mongoose.Schema({
     username: String,
     password: String,
     emali: String,
-    balance: Number,
+    balance: {type:Number,default:0},
     avatar: {
         type: String,
         default: "/avatar/default-avatar.png",
     },
     type: {type: String, enum: ['READER', 'PUBLISHER', 'BOOKSTORE']},
     reader: readerSchema,
-    publish : publisherSchema,
+    publisher : publisherSchema,
     bookstore: bookstoreSchema,
     booklists: [{type: mongoose.Schema.Types.ObjectId, ref:"BooklistModel"}],
     transactions: [{type: mongoose.Schema.Types.ObjectId, ref:"TransactionModel"}]

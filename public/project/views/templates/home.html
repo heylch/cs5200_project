@@ -1,15 +1,15 @@
 <div class="container-fluid">
     <div ng-switch="model.user.type">
-        <div ng-switch-when="GENERAL">
-            <ng-include src="'views/templates/user-home.html'">
+        <div ng-switch-when="READER">
+            <ng-include src="'views/templates/reader-home.html'">
         </div>
-        <div ng-switch-when="MUSICIAN">
+        <div ng-switch-when="PUBLISHER">
             <ng-include src="'views/templates/musician-home.html'">
         </div>
         <div ng-switch-when="CRITIC">
             <ng-include src="'views/templates/critic-home.html'">
         </div>
-        <div ng-switch-when="PUBLISHER">
+        <div ng-switch-when="BOOKSTORE">
             <ng-include src="'views/templates/publisher-home.html'">
         </div>
         <div ng-switch-when="ADMIN">
