@@ -1,13 +1,12 @@
 var mongoose = require("mongoose");
 var reviewSchema = mongoose.Schema({
-    _critic: {type: mongoose.Schema.Types.ObjectId, ref: "ProjectUserModel"},
-    _song: {type: mongoose.Schema.Types.ObjectId, ref: "SongModel"},
-    _playlist: {type: mongoose.Schema.Types.ObjectId, ref: "PlaylistModel"},
-    _musician: {type: mongoose.Schema.Types.ObjectId, ref: "ProjectUserModel"},
-    type: {type: String, enum: ['FORSONG', 'FORPLAYLIST', 'FORMUSICIAN']},
+    _reader: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
+    _book: {type: mongoose.Schema.Types.ObjectId, ref: "BookModel"},
+    _booklist: {type: mongoose.Schema.Types.ObjectId, ref: "BooklistModel"},
+    _author: {type: mongoose.Schema.Types.ObjectId, ref: "AuthorModel"},
+    type: {type: String, enum: ['BOOK', 'BOOKLIST', 'AUTHOR']},
     title: String,
-    comment: String,
-    rating: Number,
+    text: String,
     dateCreated: {type: Date, default: Date.now}
 
 }, {collection: "review"});

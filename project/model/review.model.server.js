@@ -1,18 +1,20 @@
+var authorModel =requir("./author.model.server");
+
 var mongoose = require("mongoose");
 var reviewSchema = require("./review.schema.server");
 var reviewModel = mongoose.model("ReviewModel", reviewSchema);
-var songModel = require("./song.model.server");
+var bookModel = require("./book.model.server");
 var userModel = require("./user.model.server");
-var playlistModel = require("./playlist.model.server");
+var booklistModel = require("./booklist.model.server");
 var db = require("./database");
 
-reviewModel.createReviewForSong = createReviewForSong;
-reviewModel.createReviewForPlaylist = createReviewForPlaylist;
-reviewModel.createReviewForMusician = createReviewForMusician;
+reviewModel.createReviewForBook = createReviewForBook;
+reviewModel.createReviewForBooklist = createReviewForBooklist;
+reviewModel.createReviewForAuthor = createReviewForAuthor;
 reviewModel.findReviewById = findReviewById;
-reviewModel.findReviewBySongId = findReviewBySongId;
-reviewModel.findReviewByPlaylistId = findReviewByPlaylistId;
-reviewModel.findReviewByMusicianId = findReviewByMusicianId;
+reviewModel.findReviewByBookId = findReviewByBookId;
+reviewModel.findReviewByBooklistId = findReviewByBooklistId;
+reviewModel.findReviewByAuthorId = findReviewByAuthorId;
 reviewModel.findAllReviewsByUser = findAllReviewsByUser;
 reviewModel.deleteReview = deleteReview;
 reviewModel.updateReview = updateReview;
@@ -20,9 +22,9 @@ reviewModel.findAllReviews= findAllReviews;
 
 module.exports = reviewModel;
 
-function createReviewForSong(userId, songId, review) {
-    review._critic = userId;
-    review._song = songId;
+function createReviewForBook(userId, bookId, review) {
+    review._reader = userId;
+    review._book = bookId;
     var reviewId = null;
     var reviewTemp = null;
     return reviewModel
@@ -30,7 +32,7 @@ function createReviewForSong(userId, songId, review) {
         .then(function (newreview) {
             reviewTemp = newreview;
             reviewId = newreview._id;
-            songModel.addReview(songId, newreview._id)
+            bookModel.addReview(bookId, newreview._id)
         })
         .then(function (r) {
             return userModel.addReview(userId, reviewId);
@@ -40,30 +42,30 @@ function createReviewForSong(userId, songId, review) {
         })
 }
 
-function createReviewForPlaylist(userId, playlistId, review) {
-    review._critic = userId;
-    review._song = playlistId;
+function createReviewForBooklist(userId, booklistId, review) {
+    review._reader = userId;
+    review._booklist = booklistId;
     var reviewTemp = null;
     return reviewModel
         .create(review)
         .then(function (newreview) {
             reviewTemp = newreview;
-            return playlistModel.addReview(playlistId, newreview._id)
+            return booklistModel.addReview(booklistId, newreview._id)
         })
         .then(function (res) {
             return reviewTemp;
         })
 }
 
-function createReviewForMusician(userId, musicianId, review) {
-    review._critic = userId;
-    review._musician = musicianId;
+function createReviewForAuthor(userId, authorId, review) {
+    review._reader = userId;
+    review._author = authorId;
     var reviewTemp = null;
     return reviewModel
         .create(review)
         .then(function (newreview) {
             reviewTemp = newreview;
-            return userModel.addReview(musicianId, newreview._id)
+            return authorId.addReview(authorId, newreview._id)
         })
         .then(function (res) {
             return reviewTemp;
@@ -75,23 +77,25 @@ function findReviewById(reviewId) {
 }
 
 
-function findReviewBySongId(songId) {
-    return reviewModel.find({_song: songId});
+function findReviewByBookId(bookId) {
+    return reviewModel.find({_book: bookId});
 }
 
-function findReviewByPlaylistId(playlistId) {
-    return reviewModel.find({_playlist: playlistId});
+function findReviewByBooklistId(booklistId) {
+    return reviewModel.find({_booklist: booklistId});
 }
 
-function findReviewByMusicianId(musicianId) {
-    return reviewModel.find({_musician: musicianId});
+function findReviewByAuthorId(authorId) {
+    return reviewModel.find({_author: authorId});
 }
 
 
 function findAllReviewsByUser(userId) {
     return reviewModel
-        .find({_critic: userId})
-        .populate('_song')
+        .find({_reader: userId})
+        .populate('_book')
+        .populate('_booklist')
+        .populate('_author')
         .exec()
 }
 
@@ -101,12 +105,12 @@ function deleteReview(reviewId, targetId) {
         .remove({_id: reviewId})
         .then(function (review) {
             reviewTemp = review;
-            if(review.type === "FORSONG"){
-                return songModel.removeReview(targetId, reviewId);
-            } else if(review.type === "FORMUSICIAN"){
-                return userModel.removeReview(targetId, reviewId);
-            } else if(review.type === "FORPLAYLIST"){
-                return playlistModel.removeReview(targetId, reviewId);
+            if(review.type === "BOOK"){
+                return bookModel.removeReview(targetId, reviewId);
+            } else if(review.type === "AUTHOR"){
+                return authorModel.removeReview(targetId, reviewId);
+            } else if(review.type === "BOOKLIST"){
+                return booklistModel.removeReview(targetId, reviewId);
             }
 
         })
@@ -124,7 +128,9 @@ function updateReview(reviewId, review) {
 function findAllReviews() {
     return reviewModel
         .find()
-        .populate('_critic')
-        .populate('_song')
+        .populate('_reader')
+        .populate('_book')
+        .populate('_booklist')
+        .populate('_author')
         .exec();
 }
