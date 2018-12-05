@@ -17,7 +17,7 @@ app.use(passport.session());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(app.express.static(__dirname + '/public'));
+app.use(app.express.static(__dirname + '/public/project'));
 
 var port = process.env.PORT || 3000;
 
