@@ -116,7 +116,7 @@
             else {
                 var transaction = {};
                 transaction._buyer = model.user._id;
-                transaction._seller = model.book._creator._id;
+                transaction._seller = model.book._publisher._id;
                 transaction._book = model.book._id;
                 transaction.price = price;
                 transaction.status = "PENDING";
@@ -164,7 +164,7 @@
         }
 
         function updateBook(bookname) {
-            model.book.name = bookname;
+            model.book.title = bookname;
             bookService.updateBook(model.book._id, model.book)
                 .then(function (response) {
                     model.edit = 'no';

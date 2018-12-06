@@ -38,6 +38,8 @@ function uploadBook(req, res) {
     var userId = req.body.userId;
     var imageUrl = req.body.cover;
     var bookName = req.body.bookName;
+    var isbn = req.body.isbn;
+    var price = req.body.price;
     var originalname = myFile.originalname; // file name on user's computer
     var index = originalname.indexOf(".");
     originalname = originalname.substring(0, index);
@@ -51,9 +53,11 @@ function uploadBook(req, res) {
     var mimetype = myFile.mimetype;
     // console.log("uploadbook1");
     var book= { "url":'/public/uploads/' + filename,
-        "name": bookName,
+        "title": bookName,
         "_publisher" : userId,
         "imageUrl" : imageUrl,
+        "isbn13": isbn,
+        "price":price,
     };
 
     userModel.createBookForUser(userId,book)

@@ -1,0 +1,66 @@
+<div  ng-include="'views/templates/footer-explore.html'"></div>
+<div ng-include="'views/templates/header.html'"></div>
+<div id="explore-back"><a href="#!/explore"><span class="glyphicon glyphicon-arrow-left"></span></a></div>
+<div class="song-detail-div container-fluid">
+    <div ng-show="model.favourite === 'no'" class="song-detail-header-div">
+        <div class="song-detail-header-img-div">
+            <img class="song-artist-photo-large"  ng-src="{{model.book.imageUrl}}">
+        </div>
+        <div class="song-detail-header-description-div">
+            <div>
+                <label class="song-detail-label">Book Name:</label><span></span>
+                <span>{{model.book.title}}</span>
+            </div>
+            <div ng-show="model.book._publisher">
+                <label class="song-detail-label">Publisher:</label><span></span>
+                <span>{{model.book._publisher.username}}</span>
+            </div>
+            <div ng-hide="model.book._publisher">
+                <label class="song-detail-label">Publisher:</label><span></span>
+                <span>{{model.book._publisher}}</span>
+            </div>
+        </div>
+        <div class="song-detail-header-control-div">
+            <div ng-show="model.user.type === 'READER'">
+                <a class="detail-operator" ng-click="model.reviewSong(song)"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a class="detail-operator" ng-click="model.favouriteSong('yes')"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <div ng-show="model.user._id === model.book._publisher._id">
+                <a class="detail-operator" ng-click="model.edit = 'yes'"><span class="glyphicon glyphicon-cog"></span></a>
+            </div>
+            <div ng-show="model.user.type === 'GENERAL'">
+                <a class="detail-operator" ng-click="model.favourite = 'yes'"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <div ng-show="model.user.type === 'PUBLISHER' && model.book._author">
+                <a class="detail-operator" ng-click="model.buy = 'yes'"><span class="glyphicon glyphicon-envelope"></span></a>
+            </div>
+        </div>
+    </div>
+    <div ng-show="model.favourite === 'yes'" ng-include src="'views/templates/favourite-book.html'"></div>
+    <div ng-show="model.edit === 'yes'" ng-include src="'views/templates/edit-book.html'"></div>
+    <div ng-show="model.editreview === 'yes'" ng-include src="'views/templates/edit-review.html'"></div>
+    <div ng-show="model.buy === 'yes'" ng-include src="'views/templates/buy-book.html'"></div>
+    <div>
+        <ul  class="list-group list-div active">
+            <li ng-repeat="review in model.reviews" class="list-group-item">
+                <div class="row">
+
+                    <div>
+                        <div class="review-item">
+                            <h2>Review Title:</h2>
+                            <h3 class="reivew-content">{{review.title}}</h3>
+                        </div>
+                        <div class="review-item">
+                            <h2>comment:</h2>
+                            <h3 class="reivew-content">{{review.comment}}</h3>
+                        </div>
+                        <div class="review-item">
+                            <h2>Rating:</h2>
+                            <h3 class="reivew-content">{{review.rating}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

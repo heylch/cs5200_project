@@ -37,7 +37,7 @@ function findBookById(bookId) {
     return bookModel
         .findOne({_id: bookId})
         .populate('_author')
-        .populate('_publisherId')
+        .populate('_publisher')
         .populate('_bookstore')
         .exec();
 }
