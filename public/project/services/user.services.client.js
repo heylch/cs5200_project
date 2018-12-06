@@ -12,8 +12,8 @@
             "findUserByCredentials": login,
             "updateUser": updateUser,
             "deleteUser": deleteUser,
-            "removeSong":removeSong,
-            "addSong":addSong,
+            "removeBook":removeBook,
+            "addBook":addBook,
             "findFollowingByUser":findFollowingByUser,
             "findFollowingByTypeByUser":findFollowingByTypeByUser,
             "logout": logout,
@@ -23,8 +23,8 @@
             "unFollow": unFollow,
             "findAllUsers": findAllUsers,
             "checkLogin": checkLogin,
-            "deletePlaylistForUser":deletePlaylistForUser,
-            "addPlaylistToUser":addPlaylistToUser
+            "deleteBooklistForUser":deleteBooklistForUser,
+            "addBooklistToUser":addBooklistToUser
         };
 
         return api;
@@ -65,24 +65,24 @@
             return $http.post("/projectapi/logout");
         }
 
-        function removeSong(userId, songId) {
-            var url = "/projectapi/user/" + userId + "/song/" + songId;
+        function removeBook(userId, bookId) {
+            var url = "/projectapi/user/" + userId + "/book/" + bookId;
             return $http.delete(url);
         }
 
-        function addPlaylistToUser(userId, playlistId) {
-            console.log(playlistId);
-            var url = "/projectapi/user/" + userId + "/playlist/" + playlistId;
+        function addBooklistToUser(userId, booklistId) {
+            console.log(booklistId);
+            var url = "/projectapi/user/" + userId + "/booklist/" + booklistId;
             return $http.put(url);
         }
 
-        function deletePlaylistForUser(userId, playlistId) {
-            var url = "/projectapi/user/" + userId + "/playlist/" + playlistId;
+        function deleteBooklistForUser(userId, booklistId) {
+            var url = "/projectapi/user/" + userId + "/booklist/" + booklistId;
             return $http.delete(url);
         }
 
-        function addSong(userId, songId) {
-            var url = "/projectapi/user/" + userId + "/song/" + songId;
+        function addBook(userId, bookId) {
+            var url = "/projectapi/user/" + userId + "/book/" + bookId;
             return $http.post(url);
         }
 
