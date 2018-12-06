@@ -4,9 +4,11 @@ var bookSchema = mongoose.Schema({
     _bookstore: [{type: mongoose.Schema.Types.ObjectId, ref: "UserModel"}],
     name: String,
     url: String,
+    thridPartyId:String,
     _author: {type: mongoose.Schema.Types.ObjectId, ref: "AuthorModel"},
     title: String,
     subTitle:String,
+    imageUrl:String,
     isbn13 : Number,
     _reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "ReviewModel"}],
     price: {
