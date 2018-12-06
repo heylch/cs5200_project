@@ -223,6 +223,8 @@ function addBooklist(userId, booklistId) {
             if(flag === '0') {
                 user._booklists.push(booklistId);
                 user.save();
+                console.log("addBooklist");
+                console.log(booklistId);
             }
             return user;
         })

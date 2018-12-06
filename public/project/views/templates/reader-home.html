@@ -20,10 +20,10 @@
                     <span class="glyphicon glyphicon-plus pull-right"></span>
                 </a>Booklists</li >
                 <div class = "my-playlist" >
-                    <div ng-show= "model._booklists" ng-repeat="booklist in model._booklists" class="list-group">
+                    <div ng-show= "model.booklists" ng-repeat="booklist in model.booklists" class="list-group">
                         <li class="list-group-item">
-                            <a ng-click="model.getAllBooksFromBooklist(booklist.id)" href="">{{booklist.name}}</a>
-                            <a class="glyphicon glyphicon-trash pull-right" ng-click="model.deleteBooklistForUser(booklist.id)"></a>
+                            <a ng-click="model.getAllBooksFromBooklist(booklist._id)" href="">{{booklist.name}}</a>
+                            <a class="glyphicon glyphicon-trash pull-right" ng-click="model.deleteBooklistForUser(booklist._id)"></a>
                         </li>
                     </div>
                 </div>

@@ -41,31 +41,31 @@
         model.defaultMessage = defaultMessage;
         function init() {
             console.log(model.user);
-            if (model.user.type === 'MUSICIAN') {
-                model.rightPanel = 'my-songs';
-                findSongsByMusician();
-                findCritics();
-            }
-            if (model.user.type === 'PUBLISHER') {
-                model.rightPanel = 'transactions';
-                findTransactionsByPublisher();
-            }
-            findMusicians();
-            findCritics();
+            // if (model.user.type === 'MUSICIAN') {
+            //     model.rightPanel = 'my-songs';
+            //     findSongsByMusician();
+            //     findCritics();
+            // }
+            // if (model.user.type === 'PUBLISHER') {
+            //     model.rightPanel = 'transactions';
+            //     findTransactionsByPublisher();
+            // }
+            // findMusicians();
+            // findCritics();
             findBooklists();
-            if (model.user.type === 'CRITIC') {
-                model.rightPanel = 'my-reviews';
-                findMusicians();
-                findBooklists()
-                findReviewsByCritic();
-            }
-
-            if (model.user.type === 'ADMIN') {
-                findCritics();
-                findAllUsers();
-                findAllSongs();
-                findAllReviews();
-            }
+            // if (model.user.type === 'CRITIC') {
+            //     model.rightPanel = 'my-reviews';
+            //     findMusicians();
+            //     findBooklists()
+            //     findReviewsByCritic();
+            // }
+            //
+            // if (model.user.type === 'ADMIN') {
+            //     findCritics();
+            //     findAllUsers();
+            //     findAllSongs();
+            //     findAllReviews();
+            // }
         }
 
         init();
@@ -122,7 +122,8 @@
         function findBooklists() {
             booklistService.findAllBooklistsByUser(user._id)
                 .then(function (response) {
-                    // console.log(response);
+                    console.log("find booklists");
+                    console.log(response);
                     model.booklists = response.data;
                     // console.log("model.playlists")
                     // console.log(model.playlists);
@@ -160,9 +161,11 @@
                 booklistService.createBooklistForUser(model.user._id, booklist)
                 .then(function (response) {
                     var newBooklistId = response.data._id;
+                    console.log("gagaga");
                     console.log(response);
                     userService.addBooklistToUser(model.user._id, newBooklistId)
-                        .then(function (response) {
+                        .then(function (res) {
+                            console.log(res);
                             console.log("hahahah");
                             init();
                         });

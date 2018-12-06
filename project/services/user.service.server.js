@@ -165,6 +165,7 @@ function removeBook(req,res) {
 function addBooklistToUser(req,res) {
     var userId = req.params.userId;
     var booklistId = req.params.booklistId;
+    console.log("backend server userId");
     userModel
         .addBooklist(userId, booklistId)
         .then(function (res) {
