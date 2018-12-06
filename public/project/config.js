@@ -34,6 +34,22 @@
                     user: checkLogin
                 }
             })
+            .when("/publisher", {
+                templateUrl: "views/templates/publisher.html",
+                controller: "publisherController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
+            })
+            .when("/bookstore", {
+                templateUrl: "views/templates/bookstore.html",
+                controller: "bookstoreController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
+            })
             .when("/user/:uid", {
                 templateUrl: "views/templates/home.html",
                 controller: "homeController",
@@ -79,9 +95,9 @@
                     user: checkLogin
                 }
             })
-            .when("/musician/:musicianId", {
-                templateUrl: "views/templates/musician-visit.html",
-                controller: "musicianVisitController",
+            .when("/publisher/:publisherId", {
+                templateUrl: "views/templates/publisher-visit.html",
+                controller: "publisherVisitController",
                 controllerAs: "model",
                 resolve: {
                     user: checkLogin

@@ -70,7 +70,7 @@
         <h5>Upload Avatar</h5>
         <form action="/projectapi/avatar" id = "upload" method="post" enctype="multipart/form-data">
             <input  name="avatar" type="file" class="form-control"/>
-            <input  name="userId" value="{{model.user._id}}"   style="display: none"/>
+            <input  name="userId" value="{{model.user.id}}"   style="display: none"/>
             <button type="submit" class="btn btn-block btn-success">Upload</button>
         </form>
     </div>

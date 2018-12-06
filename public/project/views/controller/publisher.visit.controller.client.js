@@ -1,30 +1,30 @@
 (function () {
     angular
         .module("ITBook")
-        .controller("musicianVisitController", musicianVisitController);
+        .controller("publisherVisitController", publisherVisitController);
 
-    function musicianVisitController(userService, songService, $routeParams, user, $location) {
+    function publisherVisitController(userService, songService, $routeParams, user, $location) {
         var model = this;
         model.user = user;
-        var musicianId = $routeParams["musicianId"];
-        model.findMusicianInfo = findMusicianInfo;
-        model.findMusicianSongs = findMusicianSongs;
-        model.followMusician = followMusician;
+        var publisherId = $routeParams["publisherId"];
+        model.findPublisherInfo = findPublisherInfo;
+        model.findPublisherBooks = findPublisherBooks;
+        // model.followPublisher = followPublisher;
         model.logout = logout;
         function init() {
-            findMusicianSongs();
-            findMusicianInfo();
+            findPublisherBooks();
+            findPublisherInfo();
         }
         init();
 
-        function findMusicianSongs() {
-            songService.findAllSongsByUser(musicianId)
+        function findPublisherBooks() {
+            bookService.findAllBooksByUser(musicianId)
                 .then(function (response) {
                     model.songs = response.data;
                 })
         }
 
-        function findMusicianInfo() {
+        function findPublisherInfo() {
             userService.findUserById(musicianId)
                 .then(function (response) {
                     model.musician = response.data;

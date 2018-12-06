@@ -8,7 +8,7 @@ var request = require('request');
 
 app.post("/projectapi/user/:userId/book", createBookForUser);
 app.get("/projectapi/book", findBookByBookName);
-app.get("/projectapi/publisher/:publisherId/book", findAllBooksByPublisher);
+app.get("/projectapi/user/:userId/book", findAllBooksByPublisher);
 app.get("/projectapi/search/book/:bookId", findBookById);
 app.put("/projectapi/book/:bookId", updateBook);
 app.post("/projectapi/upload", upload.single('myFile'), uploadBook);
@@ -129,7 +129,7 @@ function deleteBook(req, res) {
     var userId = req.params.userId;
     bookModel.findBookById(bookId)
         .then(function (book) {
-            var filePath = __dirname + '/../../'
+            var filePath = __dirname + '/../../';
             filePath += book.url;
             fs.unlinkSync(filePath);
             console.log('successfully deleted ');
