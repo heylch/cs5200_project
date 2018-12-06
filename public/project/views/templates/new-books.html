@@ -10,9 +10,9 @@
                            class="song-name">{{book.title}}</a>
                     </div>
                     <div ng-show="book._publisher">
-                        <label class="explore-label">Artist:</label>
-                        <a href="#!/musician/{{book._publisher._id}}"
-                           class="song-name">{{book._publisher.username}}</a>
+                        <label class="explore-label">Author:</label>
+                        <a href="#!/musician/{{book._author._id}}"
+                           class="song-name">{{book._author.name}}</a>
                     </div>
                     <div ng-hide="book._publisher">
                         <label class="explore-label">Publisher:</label>
