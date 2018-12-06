@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("Musiker")
+        .module("ITBook")
         .controller("loginController", loginController);
 
     function loginController($location, $rootScope, userService) {

@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("Musiker")
+        .module("ITBook")
         .controller("searchController", searchController);
 
     function searchController(searchService) {
@@ -9,15 +9,15 @@
         model.searchTrack = searchTrack;
         model.showDetails = showDetails;
         model.test = "gagagag";
-        function searchTrack(song) {
-            searchService.searchSong(song)
+        function searchTrack(book) {
+            searchService.searchBook(book)
                 .then(function (response) {
-                    model.search = response.data.songList;
+                    model.search = response.data.bookList;
                 })
         }
 
-        function showDetails(song) {
-            model.song = song;
+        function showDetails(book) {
+            model.book = book;
         }
     }
 })();

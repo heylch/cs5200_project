@@ -17,6 +17,7 @@ var userSchema = mongoose.Schema({
     _bookstore: bookstoreSchema,
     _booklists: [{type: mongoose.Schema.Types.ObjectId, ref:"BooklistModel"}],
     _transactions: [{type: mongoose.Schema.Types.ObjectId, ref:"TransactionModel"}],
+    _books: [{type: mongoose.Schema.Types.ObjectId, ref:"BookModel"}]
     // _followings: [{type: mongoose.Schema.Types.ObjectId, ref:"UserModel"}],
     // _reviews: [{type: mongoose.Schema.Types.ObjectId, ref:"ReviewModel"}]
 }, {collection: "user"});

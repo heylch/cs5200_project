@@ -15,7 +15,7 @@ userModel.addBook = addBook;
 userModel.removeBook = removeBook;
 userModel.findFollowingByUser = findFollowingByUser;
 userModel.findFollowingByTypeByUser = findFollowingByTypeByUser;
-userModel.findFollowersByUser = findFollowersByUser;
+// userModel.findFollowersByUser = findFollowersByUser;
 userModel.addFollowingByUser = addFollowingByUser;
 // userModel.addFollowersByUser = addFollowersByUser;
 userModel.addReview = addReview;
@@ -55,8 +55,8 @@ function updateUserAvatar(userId, avatarUrl) {
 }
 
 function createUser(user) {
-    var promise = playlistModel.findPlaylistById("88888");
-    var promise2 = songModel.findSongById("88888");
+    // var promise = playlistModel.findPlaylistById("88888");
+    //     // var promise2 = songModel.findSongById("88888");
     return userModel.create(user);
 }
 

@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("Musiker")
+        .module("ITBook")
         .service("reviewService", reviewService);
 
 

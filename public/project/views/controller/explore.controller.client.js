@@ -1,7 +1,7 @@
 (function() {
     angular
-        .module("Musiker")
-        .controller("exploreController", exploreController)
+        .module("ITBook")
+        .controller("exploreController", exploreController);
 
     function exploreController(user, songService, playlistService, reviewService,$location, userService) {
         var model = this;

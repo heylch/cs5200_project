@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("Musiker")
+        .module("ITBook")
         .controller("songController", songController);
 
     function songController(songService, playlistService,reviewService,songService,userService, transactionService,$routeParams,$location, user) {

@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("Musiker")
+        .module("ITBook")
         .controller("adminEditUserController", adminEditUserController);
 
     function adminEditUserController($routeParams, $location, userService,user) {

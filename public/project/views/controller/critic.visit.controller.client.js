@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("Musiker")
+        .module("ITBook")
         .controller("criticVisitController", criticVisitController);
 
     function criticVisitController(userService, reviewService, $routeParams, $location, user) {

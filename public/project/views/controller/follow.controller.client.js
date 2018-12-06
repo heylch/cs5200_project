@@ -1,7 +1,7 @@
 (function() {
     angular
-        .module("Musiker")
-        .controller("followController", followController)
+        .module("ITBook")
+        .controller("followController", followController);
 
     function followController($routeParams,$location, userService) {
         //declare controller

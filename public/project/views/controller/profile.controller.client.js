@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("Musiker")
+        .module("ITBook")
         .controller("profileController", profileController);
 
     function profileController($location, userService, user) {
