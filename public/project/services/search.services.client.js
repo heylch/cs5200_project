@@ -16,7 +16,7 @@
             //     .then(function (response) {
             //         return response;
             //     })
-            return $http.get('https://api.itbook.store/1.0/search/{book}')
+            return $http.get('/projectapi/search/thirdparty?bookname='+book)
                 .then(function (response) {
                     return response;
                 })

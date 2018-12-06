@@ -4,6 +4,7 @@ var userModel = require("../model/user.model.server");
 var multer = require('multer'); // npm install multer --save
 var upload = multer({dest: __dirname + '/../../public/uploads'});
 var fs = require('fs');
+var request = require('request');
 
 app.post("/projectapi/user/:userId/book", createBookForUser);
 app.get("/projectapi/book", findBookByBookName);
@@ -19,6 +20,7 @@ app.put("/projectapi/book/:bookId/bookstore/:publisherId/price/:priceNum", addBo
 app.post("/projectapi/book/api", createBookFromApi);
 app.get("/projectapi/review/book/:bookId", findBookByIdWithReview);
 // app.put("/projectapi/book/:bookId/booklist/:booklistId", addBooklistToBook);
+app.get("/projectapi/search/thirdparty",searchFromThirdPary);
 
 function findBookByIdWithReview(req, res) {
     var bookId = req.params.bookId;
@@ -215,4 +217,15 @@ function createBookFromApi(req, res) {
                         })
                 }
             })
+}
+
+function searchFromThirdPary(req,res) {
+    var bookname = req.query.bookname;
+    request('https://api.itbook.store/1.0/search/'+bookname, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            // console.log(body) // Print the google web page.
+            res.json(body);
+        }
+    })
+
 }

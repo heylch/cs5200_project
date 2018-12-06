@@ -12,7 +12,9 @@
         function searchTrack(book) {
             searchService.searchBook(book)
                 .then(function (response) {
-                    model.search = response.data.bookList;
+                    model.search = JSON.parse(response.data).books;
+                    // var books = JSON.parse(response.data);
+                    // console.log(books);
                 })
         }
 
