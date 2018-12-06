@@ -4,21 +4,21 @@
         .controller("homeController", homeController);
 
 
-    function homeController(songService,user,$location,userService, $route, reviewService,searchService, playlistService,transactionService) {
+    function homeController(bookService,user,$location,userService, $route, reviewService,searchService, booklistService,transactionService) {
         var model = this;
-        model.rightPanel = 'musicians';
+        model.rightPanel = 'readers';
         model.user = user;
-        model.currentPlaylistId = "";
+        model.currentBooklistId = "";
         model.errorMessage = '1';
         model.logout = logout;
         model.findMusicians = findMusicians;
         model.findCritics = findCritics;
         model.findCritics = findCritics;
         model.changeRightPanel = changeRightPanel;
-        model.createPlaylistForUser = createPlaylistForUser;
+        model.createBooklistForUser = createBooklistForUser;
         model.searchTrack = searchTrack;
         model.showDetails = showDetails;
-        model.getAllSongsFromPlaylist = getAllSongsFromPlaylist;
+        model.getAllBooksFromBooklist = getAllBooksFromBooklist;
         model.findFollowers = findFollowers;
         model.unFollow = unFollow;
         model.findSongsByMusician = findSongsByMusician;
@@ -30,13 +30,13 @@
         model.rejectTransaction = rejectTransaction;
         model.cancelTransaction = cancelTransaction;
         model.findAllUsers = findAllUsers;
-        model.findAllSongs = findAllSongs;
+        model.findAllBooks = findAllBooks;
         model.findAllReviews = findAllReviews;
         model.addSongToLocal = addSongToLocal;
-        model.deletePlaylistForUser = deletePlaylistForUser;
-        model.removeSongFromPlaylist = removeSongFromPlaylist;
-        model.deleteSong = deleteSong;
-        model.reviewSong = reviewSong;
+        model.deleteBooklistForUser = deleteBooklistForUser;
+        model.removeBookFromBooklist = removeBookFromBooklist;
+        model.deleteBook = deleteBook;
+        model.reviewBook = reviewBook;
         model.deleteTransaction = deleteTransaction;
         model.findCritics = findCritics;
         model.defaultMessage = defaultMessage;
@@ -99,13 +99,6 @@
                 })
         }
 
-        function findCritics() {
-            userService.findFollowingByTypeByUser(user._id, 'CRITIC')
-                .then(function (response) {
-                    model.followingCritics = response.data;
-                    // console.log(model.followingMusicians);
-                })
-        }
 
         function findFollowers() {
             model.rightPanel = 'followers';
@@ -126,11 +119,11 @@
                 })
         }
 
-        function findPlaylists() {
-            playlistService.findAllPlaylistsByUser(user._id)
+        function findBooklists() {
+            booklistService.findAllBooklistsByUser(user._id)
                 .then(function (response) {
                     // console.log(response);
-                    model.playlists = response.data;
+                    model.booklists = response.data;
                     // console.log("model.playlists")
                     // console.log(model.playlists);
                 });
@@ -148,11 +141,11 @@
                 })
         }
 
-        function showDetails(song) {
-            model.song = song;
+        function showDetails(book) {
+            model.book = book;
         }
 
-        function createPlaylistForUser(playlist, name ,description) {
+        function createBooklistForUser(booklist, name ,description) {
             if (name === null || name === '' || typeof name === 'undefined'){
                 model.errorMessage = "playlist name is required";
                 return;
@@ -163,11 +156,11 @@
             }
             else{
                 model.errorMessage = '1';
-                playlistService.createPlaylistForUser(model.user._id, playlist)
+                booklistService.createBooklistForUser(model.user._id, booklist)
                 .then(function (response) {
-                    var newPlaylistId = response.data._id;
+                    var newBooklistId = response.data._id;
                     console.log(response);
-                    userService.addPlaylistToUser(model.user._id, newPlaylistId)
+                    userService.addBooklistToUser(model.user._id, newBooklistId)
                         .then(function (response) {
                             console.log("hahahah");
                             init();
@@ -179,12 +172,12 @@
 
         }
 
-        function getAllSongsFromPlaylist(playlistId) {
-            model.currentPlaylistId = playlistId;
-            playlistService.getAllSongsFromPlaylist(playlistId)
+        function getAllBooksFromBooklist(booklistId) {
+            model.currentBooklistId = bookId;
+            booklistService.getAllBooksFromBooklist(booklistId)
                 .then(function (response) {
-                    model.songs = response.data;
-                    model.rightPanel = "songlist";
+                    model.books = response.data;
+                    model.rightPanel = "booklist";
                     // console.log("getAllSongsFromPlaylist");
                     // console.log(model.songs);
                 })
@@ -290,10 +283,10 @@
                 })
         }
 
-        function findAllSongs() {
-            songService.findAllSongs()
+        function findAllBooks() {
+            bookService.findAllBooks()
                 .then(function (response) {
-                    model.allSongs = response.data;
+                    model.allBooks = response.data;
                 })
         }
 
@@ -304,29 +297,29 @@
                 })
         }
 
-        function removeSongFromPlaylist(songId) {
-            playlistService
-                .removeSongFromPlaylist(model.currentPlaylistId, songId)
+        function removeBookFromBooklist(bookId) {
+            booklistService
+                .removeBookFromBooklist(model.currentBooklistId, bookId)
                 .then(function (res) {
                     if (res.data !== "0") {
-                        getAllSongsFromPlaylist(model.currentPlaylistId);
+                        getAllBooksFromBooklist(model.currentBooklistId);
                     }
 
                 })
         }
 
-        function deletePlaylistForUser(playlistId) {
+        function deleteBooklistForUser(booklistId) {
             userService
-                .deletePlaylistForUser(user._id, playlistId)
+                .deleteBooklistForUser(user.id, playlistId)
                 .then(function (status) {
                 }, function (err) {
                 });
             $route.reload();
         }
 
-        function deleteSong(songId){
+        function deleteBook(bookId){
             userService
-                .removeSong(user._id, songId)
+                .removeBook(user.id, bookId)
                 .then(function (res) {
                     if (res.data !== "0")
                         findSongsByMusician();

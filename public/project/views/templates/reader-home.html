@@ -13,14 +13,17 @@
                 <a ng-click="model.changeRightPanel('bookstores')" href="">
                     <li class="list-group-item">Bookstores</li >
                 </a>
+                <a ng-click="model.changeRightPanel('books')" href="">
+                    <li class="list-group-item">My Books</li >
+                </a>
                 <li class="list-group-item"><a ng-click="model.changeRightPanel('create-playlist')" href="">
                     <span class="glyphicon glyphicon-plus pull-right"></span>
                 </a>Booklists</li >
                 <div class = "my-playlist" >
-                    <div ng-show= "model.playlists" ng-repeat="playlist in model.playlists" class="list-group">
+                    <div ng-show= "model.booklists" ng-repeat="booklist in model.booklists" class="list-group">
                         <li class="list-group-item">
-                            <a ng-click="model.getAllSongsFromPlaylist(playlist._id)" href="">{{playlist.name}}</a>
-                            <a class="glyphicon glyphicon-trash pull-right" ng-click="model.deletePlaylistForUser(playlist._id)"></a>
+                            <a ng-click="model.getAllBooksFromBooklist(booklist.id)" href="">{{booklist.name}}</a>
+                            <a class="glyphicon glyphicon-trash pull-right" ng-click="model.deleteBooklistForUser(booklist.id)"></a>
                         </li>
                     </div>
                 </div>
@@ -34,6 +37,7 @@
         <div ng-show="model.rightPanel === 'songlist'" ng-include src="'views/templates/playlist-detail.html'"></div>
         <div ng-show="model.rightPanel === 'musicians'" ng-include src="'views/templates/following-musicians.html'"></div>
         <div ng-show="model.rightPanel === 'critics'" ng-include src="'views/templates/following-critics.html'"></div>
+        <div ng-show="model.rightPanel === 'books'" ng-include src="'views/templates/mybooks.html'"></div>
     </div>
 </div>
 
