@@ -10,7 +10,7 @@ app.get("/projectapi/song", findSongBySongName);
 app.get("/projectapi/user/:userId/song", findAllSongsByUser);
 app.get("/projectapi/search/song/:songId", findSongById);
 app.put("/projectapi/song/:songId", updateSong);
-app.post("/projectapi/upload", upload.single('myFile'), uploadSong);
+app.post("/projectapi/upload1", upload.single('myFile'), uploadSong);
 app.delete("/projectapi/user/:userId/song/:songId", deleteSong);
 app.get("/projectapi/songs", findAllSongs);
 app.get("/projectapi/song/:songId/creator", getSongCreator);

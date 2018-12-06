@@ -10,7 +10,7 @@
             "createBookForUser": createBookForUser,
             "findBookById": findBookById,
             "findBookByBookName":findBookByBookName,
-            "findAllBooksByUser": findAllBooksByUser,
+            "findAllBooksByPublisher": findAllBooksByPublisher,
             "updateBook": updateBook,
             "deleteBook": deleteBook,
             "findAllBooks": findAllBooks,
@@ -32,8 +32,8 @@
             return $http.get(url);
         }
 
-        function findAllBooksByUser(userId) {
-            var url = "/projectapi/user/" + userId + "/book";
+        function findAllBooksByPublisher(publisherId) {
+            var url = "/projectapi/publisher/" + publisherId + "/book";
             return $http.get(url);
         }
 

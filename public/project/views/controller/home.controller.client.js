@@ -20,7 +20,7 @@
         model.getAllBooksFromBooklist = getAllBooksFromBooklist;
         model.findFollowers = findFollowers;
         model.unFollow = unFollow;
-        model.findSongsByMusician = findSongsByMusician;
+        model.findAllBooksByPublisher = findAllBooksByPublisher;
         model.findReviewsByCritic = findReviewsByCritic;
         model.findMusicianAvatar = findMusicianAvatar;
         model.findTransactionsByPublisher = findTransactionsByPublisher;
@@ -194,15 +194,27 @@
                 })
         }
 
-        function findSongsByMusician() {
-            model.rightPanel = 'my-songs';
-            songService.findAllSongsByUser(model.user._id)
+        function findAllBooksByPublisher() {
+            console.log("find books");
+            model.rightPanel = 'my-books';
+            bookService.findAllBooksByPublisher(model.user._id)
                 .then(function (response) {
-                    model.musicianSongs = response.data;
-                    console.log("findSongById");
-                    console.log(model.musicianSongs);
+                    model.userBooks = response.data;
+                    console.log("findbookById");
+                    console.log(model.userBooks);
                 })
         }
+
+
+        // function findSongsByMusician() {
+        //     model.rightPanel = 'my-books';
+        //     songService.findAllSongsByUser(model.user._id)
+        //         .then(function (response) {
+        //             model.musicianSongs = response.data;
+        //             console.log("findSongById");
+        //             console.log(model.musicianSongs);
+        //         })
+        // }
 
         function findReviewsByCritic() {
             model.rightPanel = 'my-reviews';

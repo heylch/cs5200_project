@@ -7,7 +7,7 @@ var fs = require('fs');
 
 app.post("/projectapi/user/:userId/book", createBookForUser);
 app.get("/projectapi/book", findBookByBookName);
-app.get("/projectapi/user/:userId/book", findAllBooksByUser);
+app.get("/projectapi/publisher/:publisherId/book", findAllBooksByPublisher);
 app.get("/projectapi/search/book/:bookId", findBookById);
 app.put("/projectapi/book/:bookId", updateBook);
 app.post("/projectapi/upload", upload.single('myFile'), uploadBook);
@@ -18,7 +18,7 @@ app.put("/projectapi/book/:bookId/bookstore/:bookstoreId/price/:priceNum", addBo
 app.put("/projectapi/book/:bookId/bookstore/:publisherId/price/:priceNum", addBookPublisher);
 app.post("/projectapi/book/api", createBookFromApi);
 app.get("/projectapi/review/book/:bookId", findBookByIdWithReview);
-app.put("/projectapi/book/:bookId/booklist/:booklistId", addBooklistToBook);
+// app.put("/projectapi/book/:bookId/booklist/:booklistId", addBooklistToBook);
 
 function findBookByIdWithReview(req, res) {
     var bookId = req.params.bookId;
@@ -31,10 +31,10 @@ function findBookByIdWithReview(req, res) {
 }
 
 function uploadBook(req, res) {
-
+    // console.log("uploadbook0");
     var myFile = req.file;
     var userId = req.body.userId;
-    var cover = req.body.cover;
+    var imageUrl = req.body.cover;
     var bookName = req.body.bookName;
     var originalname = myFile.originalname; // file name on user's computer
     var index = originalname.indexOf(".");
@@ -47,11 +47,11 @@ function uploadBook(req, res) {
     var destination = myFile.destination;  // folder where file is saved to
     var size = myFile.size;
     var mimetype = myFile.mimetype;
-
+    // console.log("uploadbook1");
     var book= { "url":'/public/uploads/' + filename,
         "name": bookName,
         "_publisher" : userId,
-        "imageUrl" : imageurl,
+        "imageUrl" : imageUrl,
     };
 
     userModel.createBookForUser(userId,book)
@@ -98,11 +98,11 @@ function findBookByBookName(req, res) {
         });
 }
 
-function findAllBooksByUser(req, res) {
-    var userId = req.params.userId;
-    console.log(userId);
+function findAllBooksByPublisher(req, res) {
+    var publiserId = req.params.publisherId;
+    console.log(publiserId);
     bookModel
-        .findAllBooksByUser(userId)
+        .findAllBooksByPublisher(publiserId)
         .then(function (books) {
             res.json(books);
         }, function (err) {

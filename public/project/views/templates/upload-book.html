@@ -1,0 +1,15 @@
+<div class="search">
+    <h1 class="visible-sm visible-md visible-lg">Upload My Book</h1>
+    <h2 class="visible-xs">Upload My Book</h2>
+    <div class="alert " ng-show="model.errorMessage !== '1'">
+        <span class="closebtn" ng-click="model.defaultMessage()">&times;</span>
+        {{model.errorMessage}}
+    </div>
+    <form action="/projectapi/upload" id = "upload" method="post" enctype="multipart/form-data">
+        <input  name="myFile" type="file" class="form-control"/>
+        <input  name="bookName" id="bookname" placeholder="Book Name" class="form-control">
+        <input  name="userId" value="{{model.user._id}}"   style="display: none"/>
+        <input  name="cover" value="{{model.user.avatar}}"   style="display: none"/>
+        <button type="submit" class="btn btn-block btn-success">Upload Book</button>
+    </form>
+</div>
