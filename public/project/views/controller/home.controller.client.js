@@ -146,6 +146,7 @@
         }
 
         function createBooklistForUser(booklist, name ,description) {
+            console.log(booklist);
             if (name === null || name === '' || typeof name === 'undefined'){
                 model.errorMessage = "playlist name is required";
                 return;
@@ -156,11 +157,11 @@
             }
             else{
                 model.errorMessage = '1';
-                booklistService.createBooklistForUser(model.user.id, booklist)
+                booklistService.createBooklistForUser(model.user._id, booklist)
                 .then(function (response) {
                     var newBooklistId = response.data._id;
                     console.log(response);
-                    userService.addBooklistToUser(model.user.id, newBooklistId)
+                    userService.addBooklistToUser(model.user._id, newBooklistId)
                         .then(function (response) {
                             console.log("hahahah");
                             init();
