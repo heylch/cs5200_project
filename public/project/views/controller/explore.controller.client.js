@@ -3,28 +3,36 @@
         .module("ITBook")
         .controller("exploreController", exploreController);
 
-    function exploreController(user, songService, playlistService, reviewService,$location, userService) {
+    function exploreController(bookService,user, booklistService, reviewService,$location, userService) {
         var model = this;
         model.user = user;
-        model.getAllSongs = getAllSongs;
+        model.getAllBooks = getAllBooks;
         model.getAllReviews = getAllReviews;
-        model.getPlaylist = getPlaylist;
+        model.getBooklist = getBooklist;
         model.logout = logout;
 
         function init() {
-            getAllSongs();
-            getPlaylist();
+            getAllBooks();
+            getBooklist();
             getAllReviews();
         }
         init();
 
-        function getAllSongs() {
-            songService.findAllSongs()
+
+        function getAllBooks() {
+            bookService.findAllBooks()
                 .then(function (response) {
                     // console.log(response.data);
-                    return model.songs = response.data;
+                    return model.books = response.data;
                 })
         }
+        // function getAllSongs() {
+        //     songService.findAllSongs()
+        //         .then(function (response) {
+        //             // console.log(response.data);
+        //             return model.songs = response.data;
+        //         })
+        // }
 
         function getAllReviews() {
             reviewService.findAllReviews()
@@ -34,8 +42,8 @@
                 })
         }
 
-        // function addSongToPlaylist() {
-        //     playlistService.addSongToPlaylist(model.playlistId, model.song._id)
+        // function addSongToBooklist() {
+        //     booklistService.addSongToBooklist(model.booklistId, model.song._id)
         //         .then(function (response) {
         //             $location.url('/explore');
         //         })
@@ -57,13 +65,13 @@
         //         })
         // }
         //
-        function getPlaylist() {
-            playlistService.findAllPlaylistsByUser(user._id)
+        function getBooklist() {
+            booklistService.findAllBooklistsByUser(user._id)
                 .then(function (response) {
                     // console.log(response);
-                    model.playlists = response.data;
-                    // console.log("model.playlists")
-                    // console.log(model.playlists);
+                    model.booklists = response.data;
+                    // console.log("model.booklists")
+                    // console.log(model.booklists);
                 });
         }
 

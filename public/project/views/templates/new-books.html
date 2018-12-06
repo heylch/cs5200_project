@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <h2>Books</h2>
+    <ul class="list-group list-div active">
+        <li ng-repeat="book in model.books" class="list-group-item">
+            <div class="row">
+                <div class="book-info-div">
+                    <div>
+                        <label class="explore-label">Name:</label><span></span>
+                        <a href="#!/book/{{book._id}}"
+                           class="book-name">{{book.name}}</a>
+                    </div>
+                    <div ng-show="book._publisher">
+                        <label class="explore-label">Artist:</label>
+                        <a href="#!/musician/{{book._publisher._id}}"
+                           class="book-name">{{book._publisher.username}}</a>
+                    </div>
+                    <div ng-hide="book._publisher">
+                        <label class="explore-label">Artist:</label>
+                        {{book.artist}}
+                    </div>
+                </div>
+                <div class="book-artist-photo-div">
+                    <img class="book-artist-photo" ng-src="{{book.cover}}">
+                </div>
+            </div>
+        </li>
+    </ul>
+
+</div>
