@@ -1,4 +1,4 @@
-var authorModel =requir("./author.model.server");
+var authorModel =require("./author.model.server");
 
 var mongoose = require("mongoose");
 var reviewSchema = require("./review.schema.server");

@@ -20,7 +20,7 @@ bookModel.createBookFromApi = createBookFromApi;
 bookModel.findBookByIdWithReview = findBookByIdWithReview;
 bookModel.deleteBook = deleteBook;
 bookModel.getBookISBN = getBookISBN;
-songModel.findBookByThridPartyId = findBookByThridPartyId;
+bookModel.findBookByThridPartyId = findBookByThridPartyId;
 module.exports = bookModel;
 
 function findBookByThridPartyId(thirdPartyId) {
