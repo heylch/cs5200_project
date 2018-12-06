@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var transactionSchema = require("./transaction.schema.server");
 var transactionModel = mongoose.model("TransactionModel", transactionSchema);
-var songModel = require("./song.model.server");
+var bookModel = require("./book.model.server");
 var userModel = require("./user.model.server");
 var db = require("./database");
 
@@ -13,13 +13,13 @@ transactionModel.updateTransaction = updateTransaction;
 transactionModel.deleteTransaction = deleteTransaction;
 module.exports = transactionModel;
 
-function createTransaction(buyerId, songId, transaction) {
+function createTransaction(buyerId, bookId, transaction) {
     transaction._buyer = buyerId;
-    songModel.findSongById(songId)
-        .then(function (song) {
-            transaction._seller = song._creator;
+    bookModel.findBookById(bookId)
+        .then(function (book) {
+            transaction._seller = book._publisher;
         })
-    transaction._song = songId;
+    transaction._book = bookId;
     var sellerId = transaction._seller;
     console.log(transaction);
     var transactionTemp = null;
