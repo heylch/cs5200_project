@@ -35,13 +35,13 @@
                 }
             })
             .when("/user/:uid", {
-            templateUrl: "views/templates/home.html",
-            controller: "homeController",
-            controllerAs: "model",
-            resolve: {
-                user: checkLogin
-            }
-        })
+                templateUrl: "views/templates/home.html",
+                controller: "homeController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
+            })
             .when("/home", {
                 templateUrl: "views/templates/home.html",
                 controller: "homeController",
@@ -71,9 +71,9 @@
                     user: checkLogin
                 }
             })
-            .when("/song/:songId", {
-                templateUrl: "views/templates/song.html",
-                controller: "songController",
+            .when("/book/:bookId", {
+                templateUrl: "views/templates/book.html",
+                controller: "bookController",
                 controllerAs: "model",
                 resolve: {
                     user: checkLogin
