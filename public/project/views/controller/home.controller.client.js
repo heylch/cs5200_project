@@ -13,7 +13,6 @@
         model.logout = logout;
         model.findMusicians = findMusicians;
         model.findCritics = findCritics;
-        model.findCritics = findCritics;
         model.changeRightPanel = changeRightPanel;
         model.createBooklistForUser = createBooklistForUser;
         model.searchTrack = searchTrack;
@@ -41,6 +40,7 @@
         model.findCritics = findCritics;
         model.defaultMessage = defaultMessage;
         function init() {
+            console.log(model.user);
             if (model.user.type === 'MUSICIAN') {
                 model.rightPanel = 'my-songs';
                 findSongsByMusician();
@@ -52,11 +52,11 @@
             }
             findMusicians();
             findCritics();
-            findPlaylists();
+            findBooklists();
             if (model.user.type === 'CRITIC') {
                 model.rightPanel = 'my-reviews';
                 findMusicians();
-                findPlaylists();
+                findBooklists()
                 findReviewsByCritic();
             }
 
@@ -156,11 +156,11 @@
             }
             else{
                 model.errorMessage = '1';
-                booklistService.createBooklistForUser(model.user._id, booklist)
+                booklistService.createBooklistForUser(model.user.id, booklist)
                 .then(function (response) {
                     var newBooklistId = response.data._id;
                     console.log(response);
-                    userService.addBooklistToUser(model.user._id, newBooklistId)
+                    userService.addBooklistToUser(model.user.id, newBooklistId)
                         .then(function (response) {
                             console.log("hahahah");
                             init();
@@ -326,7 +326,7 @@
                 })
         }
 
-        function  reviewSong(reviewId) {
+        function  reviewBook(reviewId) {
             reviewService
                 .findReviewById(reviewId)
                 .then(function (res) {

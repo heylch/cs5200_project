@@ -1,5 +1,5 @@
 var app = require("../../express");
-var playlistModel = require("../model/playlist.model.server");
+var booklistModel = require("../model/booklist.model.server");
 
 
 

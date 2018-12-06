@@ -7,20 +7,20 @@
     <label for="name">Name</label>
     <input name="name"
            placeholder="Name"
-           ng-model="model.playlist.name"
+           ng-model="model.booklist.name"
            type="text"
            class="form-control"
            id="name"/>
 
     <label for="description">Description</label>
     <textarea name="description"
-              ng-model = "model.playlist.description"
+              ng-model = "model.booklist.description"
               rows="5"
               placeholder="Description"
               class="form-control"
               id="description"></textarea>
 
-    <a ng-click="model.createPlaylistForUser(model.playlist, model.playlist.name, model.playlist.description)"
+    <a ng-click="model.createBooklistForUser(model.booklist, model.booklist.name, model.booklist.description)"
        class="btn btn-default btn-success btn-block">Create</a>
     <!--<a href="#!/home" class="btn btn-danger black-btn btn-block">Cancel</a>-->
 
