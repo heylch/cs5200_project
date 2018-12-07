@@ -329,7 +329,7 @@
 
         function deleteBooklistForUser(booklistId) {
             userService
-                .deleteBooklistForUser(user.id, playlistId)
+                .deleteBooklistForUser(user._id, booklistId)
                 .then(function (status) {
                 }, function (err) {
                 });
@@ -338,10 +338,10 @@
 
         function deleteBook(bookId){
             userService
-                .removeBook(user.id, bookId)
+                .removeBook(user._id, bookId)
                 .then(function (res) {
                     if (res.data !== "0")
-                        findSongsByMusician();
+                        findAllBooksByUser();
                 })
         }
 
