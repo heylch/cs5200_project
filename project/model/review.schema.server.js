@@ -6,7 +6,7 @@ var reviewSchema = mongoose.Schema({
     _author: {type: mongoose.Schema.Types.ObjectId, ref: "AuthorModel"},
     type: {type: String, enum: ['BOOK', 'BOOKLIST', 'AUTHOR']},
     title: String,
-    text: String,
+    comment: String,
     dateCreated: {type: Date, default: Date.now}
 
 }, {collection: "review"});

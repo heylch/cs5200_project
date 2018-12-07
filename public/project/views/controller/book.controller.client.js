@@ -68,7 +68,7 @@
             model.editreview = 'yes';
         }
 
-        function addReviewToBook(title, comment, rating){
+        function addReviewToBook(title, comment){
             if (title === null || title === '' || typeof title === 'undefined'){
                 model.errorReviewMessage = "title is required";
                 return;
@@ -77,10 +77,7 @@
                 model.errorReviewMessage = "review is required";
                 return;
             }
-            else if (rating === null || rating === '' || typeof rating === 'undefined'){
-                model.errorReviewMessage = "rating required";
-                return;
-            }
+
             else if(model.newreview.title && model.newreview.comment){
                 model.errorReviewMessage = '1';
                 if(hasreviewed === true){
@@ -116,7 +113,7 @@
             else {
                 var transaction = {};
                 transaction._buyer = model.user._id;
-                transaction._seller = model.book._creator._id;
+                transaction._seller = model.book._publisher._id;
                 transaction._book = model.book._id;
                 transaction.price = price;
                 transaction.status = "PENDING";
@@ -164,7 +161,7 @@
         }
 
         function updateBook(bookname) {
-            model.book.name = bookname;
+            model.book.title = bookname;
             bookService.updateBook(model.book._id, model.book)
                 .then(function (response) {
                     model.edit = 'no';
@@ -175,6 +172,7 @@
         function deleteBook(book) {
             return bookService.deleteBook(model.user._id, book._id)
                 .then(function (response) {
+                    alert("success")
                     $location.url("/home");
                 })
         }

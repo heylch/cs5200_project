@@ -2,7 +2,6 @@ var mongoose = require("mongoose");
 var bookSchema = mongoose.Schema({
     _user: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
     _bookstore: [{type: mongoose.Schema.Types.ObjectId, ref: "UserModel"}],
-    name: String,
     url: String,
     thridPartyId:String,
     _author: {type: mongoose.Schema.Types.ObjectId, ref: "AuthorModel"},

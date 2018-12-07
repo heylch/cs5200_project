@@ -7,9 +7,11 @@
     </div>
     <form action="/projectapi/upload" id = "upload" method="post" enctype="multipart/form-data">
         <input  name="myFile" type="file" class="form-control"/>
-        <input  name="bookName" id="bookname" placeholder="Book Name" class="form-control">
+        <input  name="bookName" id="title" placeholder="Book Name" class="form-control">
         <input  name="userId" value="{{model.user._id}}"   style="display: none"/>
         <input  name="cover" value="{{model.user.avatar}}"   style="display: none"/>
+        <input  name="isbn" id="isbn" placeholder="ISBN NUMBER" class="form-control">
+        <input  name="price" id="price" placeholder="price" class="form-control">
         <button type="submit" class="btn btn-block btn-success">Upload Book</button>
     </form>
 </div>

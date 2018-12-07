@@ -37,7 +37,7 @@ function findBookById(bookId) {
     return bookModel
         .findOne({_id: bookId})
         .populate('_author')
-        .populate('_publisherId')
+        .populate('_publisher')
         .populate('_bookstore')
         .exec();
 }
@@ -114,9 +114,14 @@ function addReview(bookId,rId) {
     return bookModel
         .findById(bookId)
         .then(function (book) {
+            console.log("add review in book model step1")
             book._reviews.push(rId);
-            return book.save();
+            console.log(book);
+            book.save();
+            return book;
         });
+
+
 }
 
 

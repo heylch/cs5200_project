@@ -1,33 +1,27 @@
+var bookModel = require( "../model/book.model.server");
+
 var app = require("../../express");
 var reviewModel = require("../model/review.model.server");
 var songModel = require("../model/song.model.server");
 var userModel = require("../model/user.model.server");
 
-app.post("/projectapi/user/:userId/song/:songId/review", createReviewForSong);
+app.post("/projectapi/user/:userId/book/:bookId/review", createReviewForBook);
 app.post("/projectapi/user/:userId/playlist/:playlistId/review", createReviewForPlaylist);
 app.post("/projectapi/user/:userId/musician/:musicianId/review", createReviewForMusician);
 app.get("/projectapi/search/review/:reviewId", findReviewById);
 app.get("/projectapi/reviews", findAllReviews);
 app.get("/projectapi/musician/:musicianId/review", findReviewByMusicianId);
 app.get("/projectapi/playlist/:playlistId/review", findReviewByPlaylistId);
-app.get("/projectapi/song/:songId/review", findReviewBySongId);
+app.get("/projectapi/book/:bookId/review", findReviewByBookId);
 app.get("/projectapi/user/:userId/review", findAllReviewsByUser);
 app.put("/projectapi/review/:reviewId", updateReview);
 app.delete("/projectapi/review/:reviewId", deleteReview);
-app.get("/projectapi/userreview/:userid/:songid", isReviewed);
+app.get("/projectapi/userreview/:userId/:bookId", isReviewed);
 
 
 
-function createReviewForSong(req,res) {
-    var review = req.body;
-    var userId = req.params.userId;
-    var songId = req.params.songId;
-    reviewModel
-        .createReviewForSong(userId, songId,review)
-        .then(function (review) {
-            res.json(review);
-        });
-}
+
+
 
 function createReviewForPlaylist(req,res) {
     var review = req.body;
@@ -73,10 +67,10 @@ function findReviewByMusicianId(req,res) {
         });
 }
 
-function findReviewBySongId(req,res) {
-    var songId = req.params.songId;
+function findReviewByBookId(req,res) {
+    var bookId = req.params.bookId;
     reviewModel
-        .findReviewBySongId(songId)
+        .findReviewByBookId(bookId)
         .then(function (review) {
             res.json(review);
         }, function (err) {
@@ -105,6 +99,19 @@ function findAllReviewsByUser(req, res) {
             res.sendStatus(404).send(err);
         });
 }
+function createReviewForBook(req,res) {
+    var review = req.body;
+    var userId = req.params.userId;
+    var bookId = req.params.bookId;
+    console.log(bookId);
+    console.log(userId);
+    reviewModel
+        .createReviewForBook(userId, bookId,review)
+        .then(function (review) {
+            console.log("create review for book");
+            res.json(review);
+        });
+}
 
 function updateReview(req, res){
     var reviewId = req.params.reviewId;
@@ -120,17 +127,17 @@ function updateReview(req, res){
 
 function deleteReview(req, res) {
     var reviewId = req.params.reviewId;
-    var songId = "";
+    var bookId = "";
     var userId = "";
     reviewModel.findById(reviewId)
         .then(function (review) {
-            songId = review._song;
-            userId = review._critic;
+            bookId = review._book;
+            userId = review._reader;
             reviewModel
                 .remove({_id: reviewId})
                 .then(function (review) {
-                    return songModel
-                        .removeReview(songId,reviewId)
+                    return bookModel
+                        .removeReview(bookId,reviewId)
                         .then(function () {
                             return userModel
                                 .removeReview(userId,reviewId)
@@ -147,14 +154,14 @@ function deleteReview(req, res) {
 }
 
 function isReviewed(req,res){
-    var userid = req.params.userid;
-    var songid = req.params.songid;
+    var userId = req.params.userId;
+    var bookId = req.params.bookId;
     reviewModel
-        .findReviewBySongId(songid)
+        .findReviewByBookId(bookId)
         .then(function (reviews) {
             if(reviews) {
                 reviews.forEach(function(review) {
-                    if(review._critic == userid){
+                    if(review._reader == userId){
                         res.json(review);
                         return;
                     }

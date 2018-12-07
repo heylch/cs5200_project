@@ -15,13 +15,13 @@
                class="form-control input-block"
                placeholder="Review"
                   ng-model="model.newreview.comment"></textarea>
-        <h2>Rating</h2>
-        <input type="number"
-               class="form-control input-block"
-               placeholder="Rating"
-               ng-model="model.newreview.rating">
-        <a class="btn-primary btn btn-block" ng-click="model.addReviewToSong(model.newreview.title, model.newreview.comment
-        ,model.newreview.rating)">Review</a>
+        <!--<h2>Rating</h2>-->
+        <!--<input type="number"-->
+               <!--class="form-control input-block"-->
+               <!--placeholder="Rating"-->
+               <!--ng-model="model.newreview.rating">-->
+        <a class="btn-primary btn btn-block" ng-click="model.addReviewToBook(model.newreview.title, model.newreview.comment
+        )">Review</a>
         <a class="btn-danger btn btn-block"  href="#!/home">Cancel</a>
         <a class="btn-danger btn btn-block"  ng-click="model.deleteReview()">Delete</a>
     </form>
