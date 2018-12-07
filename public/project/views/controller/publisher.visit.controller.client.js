@@ -20,7 +20,8 @@
         function findPublisherBooks() {
             bookService.findAllBooksByUser(publisherId)
                 .then(function (response) {
-                    model.books = response.book;
+                    // console.log(response.data);
+                    model.books = response.data;
                 })
         }
 

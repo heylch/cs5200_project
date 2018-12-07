@@ -20,7 +20,7 @@
         function findBookstoreBooks() {
             bookService.findAllBooksByUser(bookstoreId)
                 .then(function (response) {
-                    model.books = response.book;
+                    model.books = response.data;
                 })
         }
 
