@@ -114,9 +114,14 @@ function addReview(bookId,rId) {
     return bookModel
         .findById(bookId)
         .then(function (book) {
+            console.log("add review in book model step1")
             book._reviews.push(rId);
-            return book.save();
+            console.log(book);
+            book.save();
+            return book;
         });
+
+
 }
 
 

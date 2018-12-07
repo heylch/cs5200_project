@@ -7,7 +7,7 @@
     function reviewService($http) {
 
         var api =  {
-            "createReviewForSong": createReviewForSong,
+            "createReviewForBook": createReviewForBook,
             "createReviewForMusician": createReviewForMusician,
             "createReviewForPlaylist": createReviewForPlaylist,
 
@@ -36,8 +36,8 @@
             return $http.get(url);
         }
 
-        function createReviewForSong(userId, songId, review) {
-            var url = "/projectapi/user/" + userId + "/song/" + songId + "/review";
+        function createReviewForBook(userId, bookId, review) {
+            var url = "/projectapi/user/" + userId + "/book/" + bookId + "/review";
             return $http.post(url,review);
         }
 
@@ -61,8 +61,8 @@
             return $http.delete(url);
         }
 
-        function isReviewed(userId, songId){
-            var url = "/projectapi/userreview/"+ userId + "/" + songId;
+        function isReviewed(userId, bookId){
+            var url = "/projectapi/userreview/"+ userId + "/" + bookId;
             return $http.get(url);
         }
 

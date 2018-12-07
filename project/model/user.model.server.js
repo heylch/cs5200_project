@@ -277,7 +277,7 @@ function deleteTransaction(userId, transactionId) {
 }
 
 function createBookForUser(userId, book) {
-    book._author = userId;
+    // book._author = userId;
     var bookTmp = null;
     return bookModel
         .create(book)

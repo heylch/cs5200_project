@@ -18,6 +18,7 @@
         init();
 
         function login(user) {
+
             userService.findUserByCredentials(user.username, user.password)
                 .then(function(response){
                     var userDoc = response.data;
@@ -50,6 +51,15 @@
         }
 
         function register(user, username) {
+            if(user.type === 'READER'){
+                user._reader = {firstname:"",lastname:"",_reviews:[]};
+            }
+            else if(user.type === 'PUBLISHER'){
+                user._publisher = {name:""};
+            }
+            else {
+                user._bookstore = {name:""};
+            }
             if (username === null || username === '' || typeof username === 'undefined'){
                 model.errorRegisterMessage = "username is required";
                 return;

@@ -22,7 +22,7 @@
         </div>
         <div class="song-detail-header-control-div">
             <div ng-show="model.user.type === 'READER'">
-                <a class="detail-operator" ng-click="model.reviewSong(song)"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a class="detail-operator" ng-click="model.reviewBook(book)"><span class="glyphicon glyphicon-pencil"></span></a>
                 <a class="detail-operator" ng-click="model.favouriteSong('yes')"><span class="glyphicon glyphicon-plus"></span></a>
             </div>
             <div ng-show="model.user._id === model.book._publisher._id">
