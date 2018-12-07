@@ -30,6 +30,7 @@ userModel.removeFollowingUser = removeFollowingUser;
 userModel.deleteTransaction = deleteTransaction;
 userModel.createBookForUser = createBookForUser;
 userModel.deleteBook = deleteBook;
+userModel.findAllBooksByUser = findAllBooksByUser;
 module.exports = userModel;
 
 function findUserByGoogleId(googleId) {
@@ -74,7 +75,7 @@ function deleteUserById(userId) {
             user._booklists.forEach(function (booklistId) {
                 booklistModel.deleteBooklist(booklistId);
             });
-            user._publisher._books.forEach(function (bookId) {
+            user._books.forEach(function (bookId) {
                 bookModel.deleteBook({_id:bookId});
                 booklistModel.removeBookFromAllBooklists(bookId);
             });
@@ -90,9 +91,11 @@ function removeBook(userId, bookId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            var index = user._publisher._books.indexOf(bookId);
-            user._publisher._books.splice(index, 1);
-            user.save();
+            var index = user._books.indexOf(bookId);
+            console.log("user server");
+            console.log(bookId);
+            user._books.splice(index, 1);
+            return user.save();
             // return playlistModel.removeSongFromAllPlaylists(songId);
         })
 }
@@ -101,7 +104,7 @@ function addBook(userId, bookId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            user._publisher._books.push(bookId);
+            user._books.push(bookId);
             return user.save();
         });
 }
@@ -296,9 +299,19 @@ function deleteBook(userId, bookId) {
         .remove({_id: bookId})
         .then(function (book) {
             bookTmp = book;
+            console.log(book);
             return userModel.removeBook(userId, bookId);
         })
         .then(function (userDoc) {
             return bookTmp;
+        })
+}
+
+function findAllBooksByUser(userId) {
+    return userModel.findById(userId)
+        .populate('_books')
+        .exec()
+        .then(function (user) {
+            return user._books;
         })
 }

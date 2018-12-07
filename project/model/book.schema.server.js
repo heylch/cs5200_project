@@ -1,6 +1,5 @@
 var mongoose = require("mongoose");
 var bookSchema = mongoose.Schema({
-    _user: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
     _bookstore: [{type: mongoose.Schema.Types.ObjectId, ref: "UserModel"}],
     url: String,
     thridPartyId:String,
@@ -10,6 +9,7 @@ var bookSchema = mongoose.Schema({
     imageUrl:String,
     isbn13 : Number,
     _reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "ReviewModel"}],
+    publisher: String,
     price: {
         type: Number,
         default: 0,

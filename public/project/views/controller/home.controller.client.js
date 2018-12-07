@@ -20,7 +20,7 @@
         model.getAllBooksFromBooklist = getAllBooksFromBooklist;
         model.findFollowers = findFollowers;
         model.unFollow = unFollow;
-        model.findAllBooksByPublisher = findAllBooksByPublisher;
+        model.findAllBooksByUser = findAllBooksByUser;
         model.findReviewsByCritic = findReviewsByCritic;
         model.findMusicianAvatar = findMusicianAvatar;
         model.findTransactionsByPublisher = findTransactionsByPublisher;
@@ -197,10 +197,10 @@
                 })
         }
 
-        function findAllBooksByPublisher() {
+        function findAllBooksByUser() {
             console.log("find books");
             model.rightPanel = 'my-books';
-            bookService.findAllBooksByPublisher(model.user._id)
+            bookService.findAllBooksByUser(model.user._id)
                 .then(function (response) {
                     model.userBooks = response.data;
                     console.log("findbookById");

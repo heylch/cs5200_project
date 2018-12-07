@@ -8,7 +8,7 @@
     <div class="mysidebar">
         <div class="list-menu">
             <ul class="list-group">
-                <a ng-click="model.findAllBooksByPublisher()" href="">
+                <a ng-click="model.findAllBooksByUser('my-books')" href="">
                     <li class="list-group-item">My Publications</li >
                 </a>
                 <a ng-click="model.changeRightPanel('upload')" href="">
@@ -17,7 +17,7 @@
                 <a ng-click="model.findTransactionsByMusician()" href="">
                     <li class="list-group-item">My Transactions</li >
                 </a>
-                <a ng-click="model.changeRightPanel('search')" href="#!/user-search">
+                <a ng-click="model.changeRightPanel('search')" href="">
                     <li class="list-group-item">Search My Published Books</li >
                 </a>
                 <!--<a ng-click="model.findFollowers()" href="">-->
@@ -33,6 +33,7 @@
         <div ng-show="model.rightPanel === 'followers'" ng-include src="'views/templates/follower-users.html'"></div>
         <div ng-show="model.rightPanel === 'my-books'" ng-include src="'views/templates/books-user.html'"></div>
         <div ng-show="model.rightPanel==='transactions'" ng-include="'views/templates/transactions-seller.html'"></div>
+        <div ng-show="model.rightPanel==='search'" ng-include="'views/templates/user-search.html'"></div>
     </div>
 
 </div>

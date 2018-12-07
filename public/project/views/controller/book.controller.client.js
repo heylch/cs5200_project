@@ -169,8 +169,8 @@
                 })
         }
 
-        function deleteBook(book) {
-            return bookService.deleteBook(model.user._id, book._id)
+        function deleteBook(bookId) {
+            return bookService.deleteBook(user._id, bookId)
                 .then(function (response) {
                     alert("success")
                     $location.url("/home");
