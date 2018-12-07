@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div  ng-include="'views/templates/footer-explore.html'"></div>
+<div ng-include="'views/templates/header.html'"></div>
+<div id="explore-back"><a href="#!/home"><span class="glyphicon glyphicon-arrow-left"></span></a></div>
+<div class="user-home container-fluid ">
+    <div class="container-fluid">
+        <h2>Bookstore</h2>
+        <ul class="list-group list-div active">
+            <li ng-repeat="bookstore in model.bookstores" class="list-group-item">
+                <div class="row">
+                    <div class="book-info-div">
+                        <div>
+                            <label class="explore-label">Name:</label><span></span>
+                            <a href="#!/bookstore/{{bookstore._id}}"
+                               class="book-name">{{bookstore.username}}</a>
+                        </div>
+                    </div>
 
-</body>
-</html>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>
