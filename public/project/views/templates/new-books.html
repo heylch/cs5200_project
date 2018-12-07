@@ -10,17 +10,17 @@
                            class="song-name">{{book.title}}</a>
                     </div>
                     <div ng-show="book._publisher">
-                        <label class="explore-label">Author:</label>
-                        <a href="#!/musician/{{book._author._id}}"
-                           class="song-name">{{book._author.name}}</a>
+                        <label class="explore-label">Publisher:</label>
+                        <a href="#!/publisher/{{book._publisher._id}}"
+                           class="song-name">{{book._publisher.username}}</a>
                     </div>
                     <div ng-hide="book._publisher">
-                        <label class="explore-label">Publisher:</label>
-                        {{book.artist}}
+                        <label class="explore-label">Author:</label>
+                        {{book.author}}
                     </div>
                 </div>
                 <div class="song-artist-photo-div">
-                    <img class="song-artist-photo" ng-src="{{book.cover}}">
+                    <img class="song-artist-photo" ng-src="{{book.image}}">
                 </div>
             </div>
         </li>

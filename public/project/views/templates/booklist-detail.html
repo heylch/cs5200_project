@@ -1,22 +1,23 @@
 <div class="container-fluid">
-    <h2>Songs</h2>
+    <h2>Books</h2>
     <ul class="list-group list-div active">
-        <li ng-repeat="song in model.songs" class="list-group-item col-xs-12 col-sm-6">
-            <div class="row" ng-show="song">
+        <li ng-repeat="book in model.books" class="list-group-item col-xs-12 col-sm-6">
+            <div class="row" ng-show="book">
                 <div class="song-info-div">
-                    <div ng-show="song._creator">
+                    <div ng-show="book.author">
                         <label class="explore-label">Name:</label>
                         <span></span>
-                        <a class="song-name" href="/projectapi/music?id={{song._id}}">{{song.name}}</a>
+                        <a href="#!/book/{{book._id}}"
+                           class="song-name">{{book.title}}</a>
                     </div>
-                    <div ng-hide="song._creator">
+                    <div ng-hide="book.author">
                         <label class="explore-label">Name:</label>
                         <span></span>
-                        <a class="song-name" href="{{song.url}}">{{song.name}}</a>
+                        <a class="song-name" href="{{book.url}}">{{book.title}}</a>
                     </div>
                 </div>
                 <div class="song-artist-photo-div">
-                    <img class="song-artist-photo" ng-src="{{song.cover}}">
+                    <img class="song-artist-photo" ng-src="{{book.image}}">
                 </div>
                 <a ng-click="model.removeSongFromPlaylist(song._id)" href=""><span class="glyphicon glyphicon-remove"></span></a>
             </div>

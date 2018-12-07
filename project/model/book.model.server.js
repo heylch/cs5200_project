@@ -112,7 +112,7 @@ function addReview(bookId,rId) {
         .findById(bookId)
         .then(function (book) {
             book._reviews.push(rId);
-            console.log(book);
+            // console.log(book);
             book.save();
             return book;
         });
@@ -134,7 +134,7 @@ function removeReview(bookId, reviewId) {
 function findAllBooks() {
     return bookModel
         .find()
-        .populate('_author')
+        .populate('_publisher')
         .exec();
 }
 
