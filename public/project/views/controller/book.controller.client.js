@@ -52,6 +52,7 @@
             bookService.findBookById(bookId)
                 .then(function (response) {
                     model.book = response.data;
+                    // console.log(model.book);
                 })
         }
 
@@ -137,12 +138,15 @@
                 model.errorFavouriteMessage = '1';
                 booklistService.addBookToBooklist(model.booklistId, bookId)
                     .then(function (response) {
-                    })
-                bookService.addBooklistToBook(model.booklistId, bookId)
-                    .then(function (response) {
                         alert("add to booklist success");
                         $location.url('/home');
                     })
+
+                // bookService.addBooklistToBook(model.booklistId, bookId)
+                //     .then(function (response) {
+                //         alert("add to booklist success");
+                //         $location.url('/home');
+                //     })
             }
 
         }
@@ -153,7 +157,7 @@
         }
 
         function getBookCreator() {
-            bookService.getBookCreator(bookId)
+            bookService.getBookPublisher(bookId)
                 .then(function (response) {
                     // console.log(response.data);
                     return model.creator = response.data;
@@ -180,7 +184,7 @@
         function getBooklist() {
             booklistService.findAllBooklistsByUser(user._id)
                 .then(function (response) {
-                    // console.log(response);
+                    console.log(response);
                     model.booklists = response.data;
                 });
         }
@@ -188,7 +192,7 @@
         function findBookReviews() {
             bookService.findBookByIdWithReview(bookId)
                 .then(function (response) {
-                    console.log(response.data);
+                    // console.log(response.data);
                     model.reviews = response.data[0].reviews;
                 })
         }
