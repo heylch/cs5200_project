@@ -299,7 +299,7 @@ function deleteBook(userId, bookId) {
         .remove({_id: bookId})
         .then(function (book) {
             bookTmp = book;
-            console.log(book);
+            // console.log(book);
             return userModel.removeBook(userId, bookId);
         })
         .then(function (userDoc) {
