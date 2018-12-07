@@ -6,7 +6,7 @@ var bookSchema = mongoose.Schema({
     _author: {type: mongoose.Schema.Types.ObjectId, ref: "AuthorModel"},
     title: String,
     subTitle:String,
-    imageUrl:String,
+    image:String,
     isbn13 : Number,
     _reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "ReviewModel"}],
     publisher: String,

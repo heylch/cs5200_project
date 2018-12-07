@@ -37,15 +37,15 @@ function uploadBook(req, res) {
     // console.log("uploadbook0");
     var myFile = req.file;
     var userId = req.body.userId;
-    var imageUrl = req.body.cover;
-    var bookName = req.body.bookName;
-    var isbn = req.body.isbn;
+    var image = req.body.image;
+    var title = req.body.title;
+    var isbn13 = req.body.isbn;
     var price = req.body.price;
     var originalname = myFile.originalname; // file name on user's computer
     var index = originalname.indexOf(".");
     originalname = originalname.substring(0, index);
-    if(bookName === "") {
-        bookName = originalname;
+    if(title === "") {
+        title = originalname;
     }
     var filename = myFile.filename;     // new file name in upload folder
     var path = myFile.path;         // full path of uploaded file
@@ -54,10 +54,9 @@ function uploadBook(req, res) {
     var mimetype = myFile.mimetype;
     // console.log("uploadbook1");
     var book= { "url":'/public/uploads/' + filename,
-        "title": bookName,
-        "_publisher" : userId,
-        "imageUrl" : imageUrl,
-        "isbn13": isbn,
+        "title": title,
+        "image" : image,
+        "isbn13": isbn13,
         "price":price,
     };
 
