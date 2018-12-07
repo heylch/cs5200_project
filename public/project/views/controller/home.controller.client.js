@@ -31,7 +31,7 @@
         model.findAllUsers = findAllUsers;
         model.findAllBooks = findAllBooks;
         model.findAllReviews = findAllReviews;
-        model.addSongToLocal = addSongToLocal;
+        model.addBookToLocal = addBookToLocal;
         model.deleteBooklistForUser = deleteBooklistForUser;
         model.removeBookFromBooklist = removeBookFromBooklist;
         model.deleteBook = deleteBook;
@@ -279,10 +279,10 @@
                 })
         }
 
-        function addSongToLocal(song) {
-            var newSong = {
-                "name": song.name,
-                "artist": song.artists[0].name,
+        function addBookToLocal(book) {
+            var newBook = {
+                "title": book.title,
+                "author": song.artists[0].name,
                 "cover": song.album.cover,
                 "thridPartyId": "" + song.id,
                 "_owner": model.user._id,

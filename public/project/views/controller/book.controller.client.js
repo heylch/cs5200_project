@@ -3,7 +3,7 @@
         .module("ITBook")
         .controller("bookController", bookController);
 
-    function bookController(bookService, booklistService,reviewService,bookService,userService, transactionService,$routeParams,$location, user) {
+    function bookController(bookService, booklistService,reviewService,userService, transactionService,$routeParams,$location, user) {
         var model = this;
         model.user = user;
         model.errorPurchaseMessage = '1';

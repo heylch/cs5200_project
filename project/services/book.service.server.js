@@ -21,6 +21,7 @@ app.post("/projectapi/book/api", createBookFromApi);
 app.get("/projectapi/review/book/:bookId", findBookByIdWithReview);
 // app.put("/projectapi/book/:bookId/booklist/:booklistId", addBooklistToBook);
 app.get("/projectapi/search/thirdparty",searchFromThirdPary);
+app.get("/projectapi/search/thirdparty/detail",searchFromThirdParyDetail);
 
 function findBookByIdWithReview(req, res) {
     var bookId = req.params.bookId;
@@ -223,7 +224,19 @@ function searchFromThirdPary(req,res) {
     var bookname = req.query.bookname;
     request('https://api.itbook.store/1.0/search/'+bookname, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            // console.log(body) // Print the google web page.
+            // console.log(body); // Print the google web page.
+            res.json(body);
+        }
+    })
+
+}
+
+
+function searchFromThirdParyDetail(req,res) {
+    var bookisbn = req.query.bookisbn;
+    request('https://api.itbook.store/1.0/books/'+bookisbn, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            console.log(body); // Print the google web page.
             res.json(body);
         }
     })

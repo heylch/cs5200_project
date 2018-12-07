@@ -9,7 +9,7 @@
         var publisherId = $routeParams["publisherId"];
         model.findPublisherInfo = findPublisherInfo;
         model.findPublisherBooks = findPublisherBooks;
-        // model.followPublisher = followPublisher;
+        model.followPublisher = followPublisher;
         model.logout = logout;
         function init() {
             findPublisherBooks();
@@ -18,22 +18,22 @@
         init();
 
         function findPublisherBooks() {
-            bookService.findAllBooksByUser(musicianId)
+            bookService.findAllBooksByUser(publisherId)
                 .then(function (response) {
-                    model.songs = response.data;
+                    model.books = response.book;
                 })
         }
 
         function findPublisherInfo() {
-            userService.findUserById(musicianId)
+            userService.findUserById(publisherId)
                 .then(function (response) {
-                    model.musician = response.data;
+                    model.publisher = response.data;
                 })
         }
         
-        function followMusician() {
-            if(model.user._id != musicianId) {
-                userService.addFollowingByUser(model.user._id, musicianId)
+        function followPublisher() {
+            if(model.user._id !== Id) {
+                userService.addFollowingByUser(model.user._id, publisherId)
                     .then(function (response) {
                         userService.addFollowersByUser(musicianId, model.user._id)
                             .then(function (response) {

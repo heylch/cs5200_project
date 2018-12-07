@@ -32,7 +32,7 @@
             return $http.get(url);
         }
 
-        function findAllBooksByUserr(userId) {
+        function findAllBooksByUser(userId) {
             var url = "/projectapi/user/" + userId + "/book";
             return $http.get(url);
         }
