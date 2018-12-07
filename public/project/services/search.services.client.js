@@ -7,7 +7,8 @@
 
         var api = {
             "searchBook": searchBook,
-            "searchBookDetail":searchBookDetail
+            "searchBookDetail":searchBookDetail,
+            "findBookByISBN":findBookByISBN
         };
 
         return api;
@@ -23,11 +24,15 @@
         function searchBookDetail(isbn) {
             return $http.get('/projectapi/search/thirdparty/detail?bookisbn='+isbn)
                 .then(function (response) {
-                    console.log('searchserver');
-                    console.log(response);
-                    console.log(response.authors);
+                    // console.log('searchserver');
+                    // console.log(response);
+                    // console.log(response.authors);
                     return response;
                 })
+        }
+
+        function findBookByISBN(isbn) {
+            return $http.get('/projectapi/book/isbn?bookisbn='+isbn);
         }
     }
 })();

@@ -22,6 +22,7 @@ app.get("/projectapi/review/book/:bookId", findBookByIdWithReview);
 // app.put("/projectapi/book/:bookId/booklist/:booklistId", addBooklistToBook);
 app.get("/projectapi/search/thirdparty",searchFromThirdPary);
 app.get("/projectapi/search/thirdparty/detail",searchFromThirdParyDetail);
+app.get("/projectapi/book/isbn",findBookByISBN);
 
 function findBookByIdWithReview(req, res) {
     var bookId = req.params.bookId;
@@ -208,19 +209,27 @@ function addBookBookstore(req, res) {
 
 function createBookFromApi(req, res) {
     var book = req.body;
-    bookModel
-        .findOne({thridPartyId: book.thridPartyId})
-        .then(
-            function (user) {
-                if (user) {//.length !== 0
-                    res.json(user);
-                } else {
-                    bookModel.createBookFromApi(book)
-                        .then(function (bookTmp) {
-                            res.json(bookTmp);
-                        })
-                }
-            })
+    // bookModel
+    //     .findOne({thridPartyId: book.thridPartyId})
+    //     .then(
+    //         function (user) {
+    //             if (user) {//.length !== 0
+    //                 res.json(user);
+    //             } else {
+    //                 bookModel.createBookFromApi(book)
+    //                     .then(function (bookTmp) {
+    //                         res.json(bookTmp);
+    //                     })
+    //             }
+    //         })
+    // console.log("create book from api server1");
+    // console.log(book);
+    bookModel.createBookFromApi(book)
+        .then(function(bookTmp){
+            // console.log("create book from api server2");
+            // console.log(bookTmp);
+            res.json(bookTmp);
+        })
 }
 
 function searchFromThirdPary(req,res) {
@@ -244,4 +253,14 @@ function searchFromThirdParyDetail(req,res) {
         }
     })
 
+}
+
+function findBookByISBN(req,res) {
+    var bookisbn = req.query.bookisbn;
+    bookModel.findBookByISBN(bookisbn)
+        .then(function (book) {
+            res.json(book);
+        },function (err) {
+            res.json(err);
+        })
 }

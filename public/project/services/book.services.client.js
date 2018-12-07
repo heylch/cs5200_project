@@ -18,7 +18,7 @@
             "addBookOwner": addBookOwner,
             "addBooklistToBook": addBooklistToBook,
             "createBookFromApi": createBookFromApi,
-            "findBookByIdWithReview": findBookByIdWithReview
+            "findBookByIdWithReview": findBookByIdWithReview,
         };
         return api;
 
@@ -43,7 +43,7 @@
         }
 
         function createBookFromApi(book) {
-            var url = "/projectapi/book/api/";
+            var url = "/projectapi/book/api";
             return $http.post(url, book);
         }
 
