@@ -138,15 +138,39 @@
         }
 
 
-        function searchTrack(song) {
-            searchService.searchSong(song)
+        function searchTrack(book) {
+            model.searchContent = "";
+            searchService.searchBook(book)
                 .then(function (response) {
-                    model.search = response.data.songList;
+                    model.search = JSON.parse(response.data).books;
+                    // var books = JSON.parse(response.data);
+                    // console.log(books);
                 })
         }
 
         function showDetails(book) {
-            model.book = book;
+            searchService.searchBookDetail(book.isbn13)
+                .then(function (response) {
+                    console.log("showDetails");
+                    console.log(response.data);
+                    var book = JSON.parse(response.data);
+                    var authors = book.authors.split(",");
+                    book.author = authors[0];
+                    model.book = book;
+                    searchService.findBookByISBN(book.isbn13)
+                        .then(function (response) {
+                            console.log("home controller show details");
+                            console.log(response);
+                            if(response.data.length ===0)
+                                addBookToLocal(book);
+                            else
+                                model.realBook = response.data;
+                        },function (err) {
+                            console.log("add book to local");
+
+                        })
+
+                });
         }
 
         function createBooklistForUser(booklist, name ,description) {
@@ -280,19 +304,33 @@
         }
 
         function addBookToLocal(book) {
+            // bookService.findBookByISBN(book.isbn13)
+            //     .then(function (response) {
+            //         console.log(response)
+            //     },function (err) {
+            //
+            //     })
+
             var newBook = {
                 "title": book.title,
-                "author": song.artists[0].name,
-                "cover": song.album.cover,
-                "thridPartyId": "" + song.id,
-                "_owner": model.user._id,
-                "url": "http://music.163.com/#/song?id=" + song.id
+                "author": book.author,
+                "image": book.image,
+                "publisher":book.publisher,
+                "price": Number(book.price.split("$")[1]),
+                "isbn13" : book.isbn13
             };
-            alert("successfully added to local database!")
-            return songService.createSongFromApi(newSong)
-                .then(function (response) {
+            console.log("home controller addBookToLocal");
+            return bookService.createBookFromApi(newBook)
+                .then(function(response){
+                    console.log(response);
+                    model.realBook = response.data;
                     return response.data;
                 })
+            // alert("successfully added to local database!")
+            // return songService.createSongFromApi(newSong)
+            //     .then(function (response) {
+            //         return response.data;
+            //     })
         }
 
         function findAllUsers() {

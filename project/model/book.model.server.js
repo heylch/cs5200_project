@@ -20,6 +20,7 @@ bookModel.findBookByIdWithReview = findBookByIdWithReview;
 bookModel.deleteBook = deleteBook;
 bookModel.getBookISBN = getBookISBN;
 bookModel.findBookByThridPartyId = findBookByThridPartyId;
+bookModel.findBookByISBN = findBookByISBN;
 module.exports = bookModel;
 
 function findBookByThridPartyId(thirdPartyId) {
@@ -148,4 +149,8 @@ function findBookByIdWithReview(bookId) {
     return bookModel.find({_id: bookId})
         .populate('_reviews')
         .exec();
+}
+
+function findBookByISBN(bookISBN) {
+    return bookModel.find({isbn13:bookISBN});
 }
