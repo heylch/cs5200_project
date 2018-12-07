@@ -32,10 +32,10 @@
         }
 
         function followBookstore() {
-            if(model.user._id !== Id) {
+            if(model.user._id !== bookstoreId) {
                 userService.addFollowingByUser(model.user._id, bookstoreId)
                     .then(function (response) {
-                        userService.addFollowersByUser(musicianId, model.user._id)
+                        userService.addFollowersByUser(bookstoreId, model.user._id)
                             .then(function (response) {
                                 alert("follow scceuss");
                             })

@@ -32,10 +32,10 @@
         }
         
         function followPublisher() {
-            if(model.user._id !== Id) {
+            if(model.user._id !== publisherId) {
                 userService.addFollowingByUser(model.user._id, publisherId)
                     .then(function (response) {
-                        userService.addFollowersByUser(musicianId, model.user._id)
+                        userService.addFollowersByUser(publisherId, model.user._id)
                             .then(function (response) {
                                 alert("follow scceuss");
                             })
