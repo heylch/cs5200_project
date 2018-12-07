@@ -289,6 +289,7 @@ function createBookForUser(userId, book) {
             return userModel.addBook(userId, bookTmp._id)
         })
         .then(function (userDoc) {
+            console.log("upload success");
             return bookTmp;
         })
 }

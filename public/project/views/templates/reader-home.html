@@ -16,6 +16,9 @@
                 <a ng-click="model.changeRightPanel('books')" href="">
                     <li class="list-group-item">My Books</li >
                 </a>
+                <a ng-click="model.changeRightPanel('search')" href="">
+                    <li class="list-group-item">Search Books</li >
+                </a>
                 <li class="list-group-item"><a ng-click="model.changeRightPanel('create-playlist')" href="">
                     <span class="glyphicon glyphicon-plus pull-right"></span>
                 </a>Booklists</li >
@@ -38,6 +41,7 @@
         <div ng-show="model.rightPanel === 'musicians'" ng-include src="'views/templates/following-musicians.html'"></div>
         <div ng-show="model.rightPanel === 'critics'" ng-include src="'views/templates/following-critics.html'"></div>
         <div ng-show="model.rightPanel === 'books'" ng-include src="'views/templates/mybooks.html'"></div>
+        <div ng-show="model.rightPanel==='search'" ng-include="'views/templates/user-search.html'"></div>
     </div>
 </div>
 
