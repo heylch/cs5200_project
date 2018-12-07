@@ -103,12 +103,12 @@ function createReviewForBook(req,res) {
     var review = req.body;
     var userId = req.params.userId;
     var bookId = req.params.bookId;
-    console.log(bookId);
-    console.log(userId);
+    // console.log(bookId);
+    // console.log(userId);
     reviewModel
         .createReviewForBook(userId, bookId,review)
         .then(function (review) {
-            console.log("create review for book");
+            // console.log("create review for book");
             res.json(review);
         });
 }

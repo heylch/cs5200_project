@@ -16,7 +16,7 @@
             "findAllBooks": findAllBooks,
             "getBookCreator":getBookCreator,
             "addBookOwner": addBookOwner,
-            "addBooklistToBook": addBooklistToBook,
+            // "addBooklistToBook": addBooklistToBook,
             "createBookFromApi": createBookFromApi,
             "findBookByIdWithReview": findBookByIdWithReview,
         };
@@ -77,11 +77,11 @@
             return $http.put(url);
         }
 
-        function addBooklistToBook(booklistId, bookId) {
-            var url = "/projectapi/book/" + bookId + "/booklist/" + booklistId;
-            console.log(url);
-            return $http.put(url);
-        }
+        // function addBooklistToBook(booklistId, bookId) {
+        //     var url = "/projectapi/book/" + bookId + "/booklist/" + booklistId;
+        //     console.log(url);
+        //     return $http.put(url);
+        // }
 
     }
 

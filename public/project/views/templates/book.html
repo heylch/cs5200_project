@@ -11,19 +11,19 @@
                 <label class="song-detail-label">Book Name:</label><span></span>
                 <span>{{model.book.title}}</span>
             </div>
-            <div ng-show="model.book._publisher">
+            <div ng-show="model.book.author">
+                <label class="song-detail-label">Author:</label><span></span>
+                <span>{{model.book.author}}</span>
+            </div>
+            <div ng-hide="model.book.author">
                 <label class="song-detail-label">Publisher:</label><span></span>
                 <span>{{model.book._publisher.username}}</span>
-            </div>
-            <div ng-hide="model.book._publisher">
-                <label class="song-detail-label">Publisher:</label><span></span>
-                <span>{{model.book._publisher}}</span>
             </div>
         </div>
         <div class="song-detail-header-control-div">
             <div ng-show="model.user.type === 'READER'">
                 <a class="detail-operator" ng-click="model.reviewBook(book)"><span class="glyphicon glyphicon-pencil"></span></a>
-                <a class="detail-operator" ng-click="model.favouriteSong('yes')"><span class="glyphicon glyphicon-plus"></span></a>
+                <a class="detail-operator" ng-click="model.favouriteBook('yes')"><span class="glyphicon glyphicon-plus"></span></a>
             </div>
             <div ng-show="model.user._id === model.book._publisher._id">
                 <a class="detail-operator" ng-click="model.edit = 'yes'"><span class="glyphicon glyphicon-cog"></span></a>

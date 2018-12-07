@@ -204,13 +204,13 @@
         }
 
         function getAllBooksFromBooklist(booklistId) {
-            model.currentBooklistId = bookId;
+            model.currentBooklistId = booklistId;
             booklistService.getAllBooksFromBooklist(booklistId)
                 .then(function (response) {
                     model.books = response.data;
                     model.rightPanel = "booklist";
                     // console.log("getAllSongsFromPlaylist");
-                    // console.log(model.songs);
+                    // console.log(model.books);
                 })
         }
 

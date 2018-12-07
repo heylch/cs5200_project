@@ -3,7 +3,7 @@
         <span class="closebtn" ng-click="model.defaultMessage()">&times;</span>
         {{model.errorFavouriteMessage}}
     </div>
-    <h5>Song Name</h5>
+    <h5>Book Name</h5>
     <input type="text"
            class="form-control input-block"
            readonly
@@ -13,22 +13,22 @@
            class="form-control input-block"
            readonly
            value="{{model.book.subTitle}}">
-    <h5>Creator</h5>
+    <h5>Author</h5>
     <input type="text"
            class="form-control input-block"
            readonly
-           value="{{model.book._publisher.username}}">
-    <h5>Add to Playlist</h5>
-    <select ng-model="model.playlistId"
+           value="{{model.book.author}}">
+    <h5>Add to Booklist</h5>
+    <select ng-model="model.booklistId"
             class="form-control">
-        <option ng-repeat=" booklist in model.booklist"
+        <option ng-repeat=" booklist in model.booklists"
                 value="{{booklist._id}}">{{booklist.name}}
         </option>
     </select>
     <a class="btn btn-primary btn-block"
        role="button"
-       ng-click="model.addSongToPlaylist(model.playlistId)">Confirm</a>
+       ng-click="model.addBookToBooklist(model.booklistId)">Confirm</a>
     <a class="btn btn-success btn-block"
        role="button"
-       ng-click="model.favouriteSong('no')">Cancel</a>
+       ng-click="model.favouriteBook('no')">Cancel</a>
 </form>
