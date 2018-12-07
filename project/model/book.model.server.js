@@ -6,7 +6,7 @@ var bookModel = mongoose.model("BookModel", bookSchema);
 bookModel.findBookById = findBookById;
 bookModel.findBookByBookName = findBookByBookName;
 bookModel.findAllBooksByAuthor = findAllBooksByAuthor;
-bookModel.findAllBooksByPublisher = findAllBooksByPublisher;
+bookModel.findAllBooksByUser = findAllBooksByUser;
 bookModel.findAllBooksByBookstore = findAllBooksByBookstore;
 bookModel.getBookPublisher = getBookPublisher;
 bookModel.getBookBookstore = getBookBookstore;
@@ -49,8 +49,8 @@ function findBookByBookName(bookname) {
 function findAllBooksByAuthor(authorId) {
     return bookModel.find({_author: authorId});
 }
-function findAllBooksByPublisher(publisherId) {
-    return bookModel.find({_publisher: publisherId});
+function findAllBooksByUser(userId) {
+    return bookModel.find({_user: userId});
 }
 function findAllBooksByBookstore(bookstoreId) {
     return bookModel.find({_bookstore: bookstoreId});

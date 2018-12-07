@@ -65,6 +65,18 @@ h2 {
     border-color: transparent;
 }
 
+.search-list-group-item{
+    background: transparent;
+    border-collapse: collapse;
+    border-color: transparent;
+    position: relative;
+    display: block;
+    /* padding: 10px 15px; */
+    margin-bottom: -1px;
+    /*background-color: #fff;*/
+    /*border: 1px solid #ddd;*/
+}
+
 .left-menu{
      /*background: transparent url("./background-18.jpg") no-repeat;*/
     background-color:#2e323b;

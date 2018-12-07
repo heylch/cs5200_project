@@ -10,6 +10,11 @@
                 controller: "searchController",
                 controllerAs: "model"
             })
+            .when("/user-search", {
+                templateUrl: "views/templates/user-search.html",
+                controller: "searchController",
+                controllerAs: "model"
+            })
             .when("/play", {
                 templateUrl: "views/templates/play.html"
             })
@@ -29,6 +34,22 @@
             .when("/profile", {
                 templateUrl: "views/templates/profile.html",
                 controller: "profileController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
+            })
+            .when("/publisher", {
+                templateUrl: "views/templates/publisher.html",
+                controller: "publisherController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
+            })
+            .when("/bookstore", {
+                templateUrl: "views/templates/bookstore.html",
+                controller: "bookstoreController",
                 controllerAs: "model",
                 resolve: {
                     user: checkLogin
@@ -79,9 +100,9 @@
                     user: checkLogin
                 }
             })
-            .when("/musician/:musicianId", {
-                templateUrl: "views/templates/musician-visit.html",
-                controller: "musicianVisitController",
+            .when("/publisher/:publisherId", {
+                templateUrl: "views/templates/publisher-visit.html",
+                controller: "publisherVisitController",
                 controllerAs: "model",
                 resolve: {
                     user: checkLogin

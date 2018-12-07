@@ -1,0 +1,34 @@
+<div  ng-include="'views/templates/footer-explore.html'"></div>
+<div ng-include="'views/templates/header.html'"></div>
+<div id="explore-back"><a href="#!/home"><span class="glyphicon glyphicon-arrow-left"></span></a></div>
+<div class="user-home container-fluid ">
+    <div class="container-fluid">
+        <h2>Publishers</h2>
+        <ul class="list-group list-div active">
+            <li ng-repeat="publisher in model.publishers" class="list-group-item">
+                <div class="row">
+                    <div class="book-info-div">
+                        <div>
+                            <label class="explore-label">Name:</label><span></span>
+                            <a href="#!/user/{{publisher.id}}"
+                               class="book-name">{{publisher.username}}</a>
+                        </div>
+                        <!--<div ng-show="publisher">-->
+                            <!--<label class="explore-label">Artist:</label>-->
+                            <!--<a href="#!/musician/{{book._publisher._id}}"-->
+                               <!--class="book-name">{{book._publisher.username}}</a>-->
+                        <!--</div>-->
+                        <!--<div ng-hide="publisher">-->
+                            <!--<label class="explore-label">Artist:</label>-->
+                            <!--{{book.artist}}-->
+                        <!--</div>-->
+                    </div>
+                    <!--<div class="book-artist-photo-div">-->
+                        <!--<img class="book-artist-photo" ng-src="{{book.cover}}">-->
+                    <!--</div>-->
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>
