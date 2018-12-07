@@ -152,7 +152,7 @@
         function createBooklistForUser(booklist, name ,description) {
             console.log(booklist);
             if (name === null || name === '' || typeof name === 'undefined'){
-                model.errorMessage = "playlist name is required";
+                model.errorMessage = "booklist name is required";
                 return;
             }
             else if (description === null || description === '' || typeof description === 'undefined'){
