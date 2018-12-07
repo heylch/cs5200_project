@@ -1,39 +1,39 @@
 (function () {
     angular
         .module("ITBook")
-        .controller("publisherVisitController", publisherVisitController);
+        .controller("bookstoreVisitController", bookstoreVisitController);
 
-    function publisherVisitController(userService, bookService, $routeParams, user, $location) {
+    function bookstoreVisitController(userService, bookService, $routeParams, user, $location) {
         var model = this;
         model.user = user;
-        var publisherId = $routeParams["pid"];
-        model.findPublisherInfo = findPublisherInfo;
-        model.findPublisherBooks = findPublisherBooks;
-        model.followPublisher = followPublisher;
+        var bookstoreId = $routeParams["bid"];
+        model.findBookstoreInfo = findBookstoreInfo;
+        model.findBookstoreBooks = findBookstoreBooks;
+        model.followBookstore = followBookstore;
         model.logout = logout;
         function init() {
-            findPublisherBooks();
-            findPublisherInfo();
+            findBookstoreBooks();
+            findBookstoreInfo();
         }
         init();
 
-        function findPublisherBooks() {
-            bookService.findAllBooksByUser(publisherId)
+        function findBookstoreBooks() {
+            bookService.findAllBooksByUser(bookstoreId)
                 .then(function (response) {
                     model.books = response.book;
                 })
         }
 
-        function findPublisherInfo() {
-            userService.findUserById(publisherId)
+        function findBookstoreInfo() {
+            userService.findUserById(bookstoreId)
                 .then(function (response) {
-                    model.publisher = response.data;
+                    model.bookstore = response.data;
                 })
         }
-        
-        function followPublisher() {
+
+        function followBookstore() {
             if(model.user._id !== Id) {
-                userService.addFollowingByUser(model.user._id, publisherId)
+                userService.addFollowingByUser(model.user._id, bookstoreId)
                     .then(function (response) {
                         userService.addFollowersByUser(musicianId, model.user._id)
                             .then(function (response) {
