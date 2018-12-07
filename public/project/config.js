@@ -47,9 +47,25 @@
                     user: checkLogin
                 }
             })
+            .when("/publisher/:pid", {
+                templateUrl: "views/templates/publisher-visit.html",
+                controller: "publisherVisitController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
+            })
             .when("/bookstore", {
                 templateUrl: "views/templates/bookstore.html",
                 controller: "bookstoreController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
+            })
+            .when("/bookstore/:bid", {
+                templateUrl: "views/templates/bookstore-visit.html",
+                controller: "bookstoreVisitController",
                 controllerAs: "model",
                 resolve: {
                     user: checkLogin
