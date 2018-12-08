@@ -8,13 +8,16 @@
         <div class="list-menu">
             <ul class="list-group">
                 <a ng-click="model.changeRightPanel('publishers')" href="">
-                    <li class="list-group-item">Publishers</li >
+                    <li class="list-group-item">Following Publishers</li >
                 </a>
                 <a ng-click="model.changeRightPanel('bookstores')" href="">
-                    <li class="list-group-item">Bookstores</li >
+                    <li class="list-group-item">Following Bookstores</li >
                 </a>
                 <a ng-click="model.changeRightPanel('books')" href="">
                     <li class="list-group-item">My Books</li >
+                </a>
+                <a ng-click="model.changeRightPanel('reviews')" href="">
+                    <li class="list-group-item">My Reviews</li >
                 </a>
                 <a ng-click="model.changeRightPanel('search')" href="">
                     <li class="list-group-item">Search Books</li >
@@ -42,6 +45,7 @@
         <div ng-show="model.rightPanel === 'critics'" ng-include src="'views/templates/following-critics.html'"></div>
         <div ng-show="model.rightPanel === 'books'" ng-include src="'views/templates/mybooks.html'"></div>
         <div ng-show="model.rightPanel==='search'" ng-include="'views/templates/user-search.html'"></div>
+        <div ng-show="model.rightPanel==='reviews'" ng-include="'views/templates/myreviews.html'"></div>
     </div>
 </div>
 
