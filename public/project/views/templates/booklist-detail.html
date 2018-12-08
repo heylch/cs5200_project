@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <h2>Books</h2>
     <ul class="list-group list-div active">
-        <li ng-repeat="book in model.books" class="list-group-item col-xs-12 col-sm-6">
+        <li ng-repeat="book in model.booksFromBooklist" class="list-group-item col-xs-12 col-sm-6">
             <div class="row" ng-show="book">
                 <div class="song-info-div">
                     <div ng-show="book.author">
@@ -19,7 +19,7 @@
                 <div class="song-artist-photo-div">
                     <img class="song-artist-photo" ng-src="{{book.image}}">
                 </div>
-                <a ng-click="model.removeSongFromPlaylist(song._id)" href=""><span class="glyphicon glyphicon-remove"></span></a>
+                <a ng-click="model.removeBookFromBooklist(book._id)" href=""><span class="glyphicon glyphicon-remove"></span></a>
             </div>
         </li>
     </ul>

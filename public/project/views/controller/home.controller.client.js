@@ -209,7 +209,9 @@
             model.currentBooklistId = booklistId;
             booklistService.getAllBooksFromBooklist(booklistId)
                 .then(function (response) {
-                    model.books = response.data;
+                    console.log("getAllBooksFromBooklist");
+                    console.log(response);
+                    model.booksFromBooklist = response.data;
                     model.rightPanel = "booklist";
                     // console.log("getAllSongsFromPlaylist");
                     // console.log(model.books);
@@ -317,6 +319,7 @@
                 "title": book.title,
                 "author": book.author,
                 "image": book.image,
+                "subtitle":book.subtitle,
                 "publisher":book.publisher,
                 "price": Number(book.price.split("$")[1]),
                 "isbn13" : book.isbn13
