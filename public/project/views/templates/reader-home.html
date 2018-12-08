@@ -19,13 +19,13 @@
                 <a ng-click="model.changeRightPanel('search')" href="">
                     <li class="list-group-item">Search Books</li >
                 </a>
-                <li class="list-group-item"><a ng-click="model.changeRightPanel('create-playlist')" href="">
+                <li class="list-group-item"><a ng-click="model.changeRightPanel('create-booklist')" href="">
                     <span class="glyphicon glyphicon-plus pull-right"></span>
                 </a>Booklists</li >
                 <div class = "my-playlist" >
                     <div ng-show= "model.booklists" ng-repeat="booklist in model.booklists" class="list-group">
                         <li class="list-group-item">
-                            <a ng-click="model.getAllBooksFromBooklist(booklist._id)" href="views/templates/booklist-detail.html">{{booklist.name}}</a>
+                            <a ng-click="model.getAllBooksFromBooklist(booklist._id)" href="">{{booklist.name}}</a>
                             <a class="glyphicon glyphicon-trash pull-right" ng-click="model.deleteBooklistForUser(booklist._id)"></a>
                         </li>
                     </div>
@@ -36,8 +36,8 @@
     </div>
 
     <div class="portfolio">
-        <div ng-show="model.rightPanel === 'create-playlist'" ng-include src="'views/templates/booklist-new.html'"></div>
-        <div ng-show="model.rightPanel === 'songlist'" ng-include src="'views/templates/playlist-detail.html'"></div>
+        <div ng-show="model.rightPanel === 'create-booklist'" ng-include src="'views/templates/booklist-new.html'"></div>
+        <div ng-show="model.rightPanel === 'booklist'" ng-include src="'views/templates/booklist-detail.html'"></div>
         <div ng-show="model.rightPanel === 'musicians'" ng-include src="'views/templates/following-musicians.html'"></div>
         <div ng-show="model.rightPanel === 'critics'" ng-include src="'views/templates/following-critics.html'"></div>
         <div ng-show="model.rightPanel === 'books'" ng-include src="'views/templates/mybooks.html'"></div>

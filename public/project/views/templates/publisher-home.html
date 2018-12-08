@@ -20,20 +20,34 @@
                 <a ng-click="model.changeRightPanel('search')" href="">
                     <li class="list-group-item">Search My Published Books</li >
                 </a>
+
                 <!--<a ng-click="model.findFollowers()" href="">-->
                 <!--<li class="ng-binding list-group-item">Followers</li>-->
                 <!--</a>-->
+                <li class="list-group-item"><a ng-click="model.changeRightPanel('create-booklist')" href="">
+                    <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>Create Categories</li >
+                <div class = "my-playlist" >
+                    <div ng-show= "model.booklists" ng-repeat="booklist in model.booklists" class="list-group">
+                        <li class="list-group-item">
+                            <a ng-click="model.getAllBooksFromBooklist(booklist._id)" href="">{{booklist.name}}</a>
+                            <a class="glyphicon glyphicon-trash pull-right" ng-click="model.deleteBooklistForUser(booklist._id)"></a>
+                        </li>
+                    </div>
+                </div>
             </ul>
         </div>
 
     </div>
 
     <div class="portfolio">
+        <div ng-show="model.rightPanel === 'create-booklist'" ng-include src="'views/templates/booklist-new.html'"></div>
         <div ng-show="model.rightPanel==='upload'" ng-include="'views/templates/upload-book.html'"></div>
-        <div ng-show="model.rightPanel === 'followers'" ng-include src="'views/templates/follower-users.html'"></div>
+        <!--<div ng-show="model.rightPanel === 'followers'" ng-include src="'views/templates/follower-users.html'"></div>-->
         <div ng-show="model.rightPanel === 'my-books'" ng-include src="'views/templates/books-user.html'"></div>
         <div ng-show="model.rightPanel==='transactions'" ng-include="'views/templates/transactions-seller.html'"></div>
         <div ng-show="model.rightPanel==='search'" ng-include="'views/templates/user-search.html'"></div>
+        <div ng-show="model.rightPanel === 'booklist'" ng-include src="'views/templates/booklist-detail.html'"></div>
     </div>
 
 </div>
