@@ -265,10 +265,6 @@ function unFollowUser(req, res) {
     var followingid = req.params.followingId;
     userModel
         .removeFollowingUser(userid, followingid)
-        // .then(function (user) {
-        //   userModel
-        //       .removeFollowingUser(userid,followingid)
-        // })
         .then(function (user) {
             res.send("1");
         }, function (err) {

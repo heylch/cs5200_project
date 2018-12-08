@@ -97,7 +97,7 @@
         }
 
         function findBookstores() {
-            userService.findFollowingByTypeByUser(user._id, 'BOOKSTOORE')
+            userService.findFollowingByTypeByUser(user._id, 'BOOKSTORE')
                 .then(function (response) {
                     model.followingBookstores = response.data;
                     // console.log(model.followingMusicians);

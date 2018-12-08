@@ -136,8 +136,8 @@ function findFollowingByTypeByUser(userId, usertype){
                 }
             }
 
-            // console.log("specificFollowing");
-            console.log(specificFollowing);
+            // console.log(usertype);
+            // console.log(specificFollowing);
             return specificFollowing;
             // var f = _.where(following,{type: usertype});
             // console.log("artist");
