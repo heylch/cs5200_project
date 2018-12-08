@@ -123,18 +123,20 @@ function findFollowingByUser(userId) {
 
 
 function findFollowingByTypeByUser(userId, usertype){
+
     return userModel.findUserById(userId)
         .populate('_reader._followings')
         .exec()
         .then(function (user) {
-            var allFollowing = user._reader_followings;
+            var allFollowing = user._reader._followings;
             var specificFollowing = [];
             for (i =0; i < allFollowing.length; i++){
                 if (allFollowing[i].type === usertype){
                     specificFollowing.push(allFollowing[i]);
                 }
             }
-            // console.log("specificFollowing");
+
+            // console.log(usertype);
             // console.log(specificFollowing);
             return specificFollowing;
             // var f = _.where(following,{type: usertype});
@@ -168,7 +170,7 @@ function addFollowingByUser(userId, followingId) {
         .then(function (user) {
             var flag = '1';
             for(var u in user._reader._followings) {
-                if(user._reader._followings[u] === followingId) {
+                if(user._reader._followings[u] == followingId) {
                     flag = '0';
                     break;
                 }

@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <h2>Bookstore</h2>
+    <ul class="list-group list-div active">
+        <li ng-repeat="bookstore in model.followingBookstores" class="list-group-item col-xs-12 col-sm-6">
+            <div class="row" ng-show="bookstore">
+                <div class="song-info-div">
+                    <div>
+                        <label class="explore-label">Name:</label>
+                        <span></span>
+                        <a class="song-name" href="#!/bookstore/{{bookstore._id}}">{{bookstore.username}}</a></div>
+                </div>
+                <div class="song-artist-photo-div">
+                    <img class="song-artist-photo" ng-src="{{bookstore.avatar}}">
+                </div>
+                <a ng-click="model.unFollow(bookstore._id)" href=""><span class="glyphicon glyphicon-remove"></span></a>
+            </div>
+        </li>
+    </ul>
+</div>
