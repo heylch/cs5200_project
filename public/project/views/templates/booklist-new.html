@@ -11,7 +11,6 @@
            type="text"
            class="form-control"
            id="name"/>
-
     <label for="description">Description</label>
     <textarea name="description"
               ng-model = "model.booklist.description"
@@ -19,6 +18,13 @@
               placeholder="Description"
               class="form-control"
               id="description"></textarea>
+    <label for="share">Sharable</label>
+    <select ng-model="model.share"
+            class="form-control" id="share">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
 
     <a ng-click="model.createBooklistForUser(model.booklist, model.booklist.name, model.booklist.description)"
        class="btn btn-default btn-success btn-block">Create</a>

@@ -19,6 +19,7 @@ h2 {
     text-align: center;
     margin-top: 60px;
 }
+
 .view{
     height: 100%;
 }
@@ -438,3 +439,29 @@ a.api-song-name:hover {
     left: 5px;
 }
 
+/*input[type=checkbox]{*/
+    /*outline: none;*/
+    /*height: 20px;*/
+    /*width: 20px;*/
+    /*border: 1px solid black;*/
+    /*color: black;*/
+    /*background-color: rgb(168, 168, 75);*/
+    /*box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);*/
+    /*display: inline-block;*/
+    /*position: relative;*/
+/*}*/
+
+/*input[type=checkbox].type1:checked:after {*/
+    /*content: '✓';    !* or '\2713', or '\2714' *!*/
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    /*position: absolute;*/
+    /*height: 1em;*/
+    /*width: 1em;*/
+    /*line-height: 1;*/
+    /*margin: auto;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+/*}*/

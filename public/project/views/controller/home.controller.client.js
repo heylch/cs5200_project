@@ -10,6 +10,7 @@
         model.user = user;
         model.currentBooklistId = "";
         model.errorMessage = '1';
+        model.share = "";
         model.logout = logout;
         model.findPublishers = findPublishers;
         model.findBookstores = findBookstores;
@@ -187,6 +188,11 @@
             }
             else{
                 model.errorMessage = '1';
+                console.log(model.share);
+                if(model.share === 'Yes')
+                    booklist.share = true;
+                else
+                    booklist.share = false;
                 booklistService.createBooklistForUser(model.user._id, booklist)
                 .then(function (response) {
                     var newBooklistId = response.data._id;
