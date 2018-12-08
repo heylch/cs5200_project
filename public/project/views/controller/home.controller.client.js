@@ -11,8 +11,8 @@
         model.currentBooklistId = "";
         model.errorMessage = '1';
         model.logout = logout;
-        model.findMusicians = findMusicians;
-        model.findCritics = findCritics;
+        model.findPublishers = findPublishers;
+        model.findBookstores = findBookstores;
         model.changeRightPanel = changeRightPanel;
         model.createBooklistForUser = createBooklistForUser;
         model.searchTrack = searchTrack;
@@ -37,7 +37,7 @@
         model.deleteBook = deleteBook;
         model.reviewBook = reviewBook;
         model.deleteTransaction = deleteTransaction;
-        model.findCritics = findCritics;
+
         model.defaultMessage = defaultMessage;
         model.redirect = redirect;
         function init() {
@@ -53,8 +53,10 @@
             //     model.rightPanel = 'transactions';
             //     findTransactionsByPublisher();
             // }
-            // findMusicians();
-            // findCritics();
+            if(model.user.type ==="READER") {
+                findPublishers();
+                findBookstores();
+            }
             findBooklists();
             // if (model.user.type === 'CRITIC') {
             //     model.rightPanel = 'my-reviews';
@@ -86,18 +88,18 @@
                     });
         }
 
-        function findMusicians() {
-            userService.findFollowingByTypeByUser(user._id, 'MUSICIAN')
+        function findPublishers() {
+            userService.findFollowingByTypeByUser(user._id, 'PUBLISHER')
                 .then(function (response) {
-                    model.followingMusicians = response.data;
-                    // console.log(model.followingMusicians);
+                    model.followingPublishers = response.data;
+                    console.log(model.followingPublishers);
                 })
         }
 
-        function findCritics() {
-            userService.findFollowingByTypeByUser(user._id, 'CRITIC')
+        function findBookstores() {
+            userService.findFollowingByTypeByUser(user._id, 'BOOKSTOORE')
                 .then(function (response) {
-                    model.followingCritics = response.data;
+                    model.followingBookstores = response.data;
                     // console.log(model.followingMusicians);
                 })
         }
@@ -116,8 +118,8 @@
             userService.unFollow(user._id, followingid)
                 .then(function (response) {
                     if (response) {
-                        findMusicians();
-                        findCritics();
+                        findPublishers();
+                        findBookstores();
                     }
                 })
         }
