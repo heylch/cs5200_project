@@ -15,15 +15,16 @@
                 <label class="song-detail-label">Author:</label><span></span>
                 <span>{{model.book.author}}</span>
             </div>
-            <div ng-hide="model.book.author">
+            <div>
                 <label class="song-detail-label">Publisher:</label><span></span>
-                <span>{{model.book._publisher.username}}</span>
+                <span>{{model.book.publisher}}</span>
             </div>
         </div>
         <div class="song-detail-header-control-div">
             <div ng-show="model.user.type === 'READER'">
                 <a class="detail-operator" ng-click="model.reviewBook(book)"><span class="glyphicon glyphicon-pencil"></span></a>
                 <a class="detail-operator" ng-click="model.favouriteBook('yes')"><span class="glyphicon glyphicon-plus"></span></a>
+                <button ng-click="model.purchaseBook('yes')" class="btn btn-success">Buy</button>
             </div>
             <div ng-show="model.user._id === model.book._publisher._id">
                 <a class="detail-operator" ng-click="model.edit = 'yes'"><span class="glyphicon glyphicon-cog"></span></a>
