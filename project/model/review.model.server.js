@@ -100,8 +100,8 @@ function findAllReviewsByUser(userId) {
         .find({_reader: userId})
         .populate('_book')
         .populate('_booklist')
-        .populate('_author')
-        .exec()
+        // .populate('_author')
+        .exec();
 }
 
 function deleteReview(reviewId, targetId) {

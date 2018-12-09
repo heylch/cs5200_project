@@ -23,7 +23,7 @@
         model.findFollowers = findFollowers;
         model.unFollow = unFollow;
         model.findAllBooksByUser = findAllBooksByUser;
-        model.findReviewsByCritic = findReviewsByCritic;
+        model.findReviewsByReader = findReviewsByReader;
         model.findMusicianAvatar = findMusicianAvatar;
         model.findTransactions = findTransactions;
         // model.findTransactionsByMusician = findTransactionsByMusician;
@@ -40,7 +40,7 @@
         model.reviewBook = reviewBook;
         model.deleteTransaction = deleteTransaction;
         model.addBookToUser = addBookToUser;
-
+        model.deleteReview = deleteReview;
         model.defaultMessage = defaultMessage;
         model.redirect = redirect;
         function init() {
@@ -60,6 +60,7 @@
             if(model.user.type ==="READER") {
                 findPublishers();
                 findBookstores();
+                findReviewsByReader();
                 // findTransactions();
             }
             findBooklists();
@@ -268,12 +269,24 @@
         //             console.log(model.musicianSongs);
         //         })
         // }
+        function deleteReview(reiviewId) {
+            reviewService
+                .deleteReview(reiviewId)
+                .then(function (res) {
+                    if(res.data === "1"){
+                        alert("delete success");
+                        findReviewsByReader();
+                    }else{
+                        alert("delete fail");
+                    }
 
-        function findReviewsByCritic() {
-            model.rightPanel = 'my-reviews';
+                })
+        }
+        function findReviewsByReader() {
             reviewService.findAllReviewsByUser(model.user._id)
                 .then(function (response) {
                     model.reviews = response.data;
+                    console.log(model.reviews)
                 })
         }
 
