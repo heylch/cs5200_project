@@ -53,6 +53,7 @@
                 })
         }
         function findBookInfo() {
+            model.ownBook = 'NO';
             bookService.findBookById(bookId)
                 .then(function (response) {
                     model.book = response.data;
@@ -60,6 +61,14 @@
                     model.publisher = model.book._publisher;
                     console.log("bookInfo");
                     console.log(model.book);
+                    var i;
+                    for (i=0;i<model.bookstore.length;i++)
+                        if (model.bookstore[i]._id == model.user._id){
+                            model.ownBook = 'YES';
+                            break;
+                        }
+                    console.log(model.ownBook)
+                    // console.log(model.user._id)
                 })
         }
 
