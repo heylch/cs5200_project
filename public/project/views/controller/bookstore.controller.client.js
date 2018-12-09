@@ -7,6 +7,8 @@
         var model = this;
         model.userId = user.id;
         model.findAllBookstore = findAllBookstore;
+        model.logout = logout;
+        model.user = user;
 
 
         function init() {
@@ -26,6 +28,15 @@
                     }
                     return model.bookstores;
                 })
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(
+                    function(response) {
+                        $location.url("/");
+                    });
         }
     }
 })();

@@ -21,6 +21,8 @@ bookModel.deleteBook = deleteBook;
 bookModel.getBookISBN = getBookISBN;
 bookModel.findBookByThridPartyId = findBookByThridPartyId;
 bookModel.findBookByISBN = findBookByISBN;
+bookModel.setPublisher = setPublisher;
+bookModel.addBookstore = addBookstore;
 module.exports = bookModel;
 
 function findBookByThridPartyId(thirdPartyId) {
@@ -36,7 +38,6 @@ function deleteBook(bookId) {
 function findBookById(bookId) {
     return bookModel
         .findOne({_id: bookId})
-        .populate('_author')
         .populate('_publisher')
         .populate('_bookstore')
         .populate('_reviews')
@@ -155,4 +156,24 @@ function findBookByIdWithReview(bookId) {
 
 function findBookByISBN(bookISBN) {
     return bookModel.find({isbn13:bookISBN});
+}
+
+function setPublisher(userId,bookId) {
+    return bookModel.findOne({_id: bookId})
+        .then(function (book) {
+            book._publisher = userId;
+            return book.save();
+        })
+}
+
+function addBookstore(userId,bookId) {
+    return bookModel.findOne({_id:bookId})
+        .then(function (book) {
+            console.log(book);
+            console.log(book._bookstore.indexOf(userId));
+            if(book._bookstore.indexOf(userId) < 0)
+                book._bookstore.push(userId);
+            console.log(book);
+            return book.save();
+        })
 }

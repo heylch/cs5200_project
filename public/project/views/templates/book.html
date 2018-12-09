@@ -24,13 +24,13 @@
             <div ng-show="model.user.type === 'READER'">
                 <a class="detail-operator" ng-click="model.reviewBook(book)"><span class="glyphicon glyphicon-pencil"></span></a>
                 <a class="detail-operator" ng-click="model.favouriteBook('yes')"><span class="glyphicon glyphicon-plus"></span></a>
-                <button ng-click="model.purchaseBook('yes')" class="btn btn-success">Buy</button>
+                <button ng-click="model.buyBook()" class="btn btn-success">Buy</button>
+            </div>
+            <div ng-show="model.user.type === 'BOOKSTORE'">
+                <button ng-click="model.buyBook()" class="btn btn-success">Buy</button>
             </div>
             <div ng-show="model.user._id === model.book._publisher._id">
                 <a class="detail-operator" ng-click="model.edit = 'yes'"><span class="glyphicon glyphicon-cog"></span></a>
-            </div>
-            <div ng-show="model.user.type === 'GENERAL'">
-                <a class="detail-operator" ng-click="model.favourite = 'yes'"><span class="glyphicon glyphicon-plus"></span></a>
             </div>
             <div ng-show="model.user.type === 'PUBLISHER' && model.book._author">
                 <a class="detail-operator" ng-click="model.buy = 'yes'"><span class="glyphicon glyphicon-envelope"></span></a>

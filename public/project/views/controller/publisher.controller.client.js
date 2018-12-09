@@ -6,7 +6,9 @@
     function publisherController(bookService, booklistService,reviewService,bookService,userService, transactionService,$routeParams,$location, user) {
         var model = this;
         model.userId = user.id;
+        model.user = user;
         model.findAllPublishers = findAllPublishers;
+        model.logout = logout;
 
 
         function init() {
@@ -26,6 +28,15 @@
                     }
                     return model.publishers;
                 })
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(
+                    function(response) {
+                        $location.url("/");
+                    });
         }
     }
 })();

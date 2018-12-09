@@ -5,7 +5,7 @@ var transactionSchema = mongoose.Schema({
     _book: {type: mongoose.Schema.Types.ObjectId, ref: "BookModel"},
     price: Number,
     amount: Number,
-    status: {type: String, enum: ['DONE', 'PENDING', 'REJECTED','CANCELED']},
+    // status: {type: String, enum: ['DONE', 'PENDING', 'REJECTED','CANCELED']},
     dateCreated: {type: Date, default: Date.now}
 
 }, {collection: "transaction"});

@@ -11,6 +11,7 @@
         model.currentBooklistId = "";
         model.errorMessage = '1';
         model.share = "";
+        model.realBook = '0';
         model.logout = logout;
         model.findPublishers = findPublishers;
         model.findBookstores = findBookstores;
@@ -24,8 +25,8 @@
         model.findAllBooksByUser = findAllBooksByUser;
         model.findReviewsByCritic = findReviewsByCritic;
         model.findMusicianAvatar = findMusicianAvatar;
-        model.findTransactionsByPublisher = findTransactionsByPublisher;
-        model.findTransactionsByMusician = findTransactionsByMusician;
+        model.findTransactions = findTransactions;
+        // model.findTransactionsByMusician = findTransactionsByMusician;
         model.accecptTransaction = accecptTransaction;
         model.rejectTransaction = rejectTransaction;
         model.cancelTransaction = cancelTransaction;
@@ -38,10 +39,12 @@
         model.deleteBook = deleteBook;
         model.reviewBook = reviewBook;
         model.deleteTransaction = deleteTransaction;
+        model.addBookToUser = addBookToUser;
 
         model.defaultMessage = defaultMessage;
         model.redirect = redirect;
         function init() {
+            model.transactions = [];
             console.log("user");
             console.log(user);
             console.log(model.user);
@@ -57,8 +60,10 @@
             if(model.user.type ==="READER") {
                 findPublishers();
                 findBookstores();
+                // findTransactions();
             }
             findBooklists();
+            findTransactions();
             // if (model.user.type === 'CRITIC') {
             //     model.rightPanel = 'my-reviews';
             //     findMusicians();
@@ -136,6 +141,14 @@
                 });
         }
 
+        function findTransactions(){
+            // model.transactions = user._transactions;
+            transactionService.findAllTransactionsByUser(user._id)
+                .then(function (response) {
+                    model.transactions = response.data;
+                })
+        }
+
         function changeRightPanel(mode) {
             model.rightPanel = mode;
         }
@@ -165,9 +178,12 @@
                             console.log("home controller show details");
                             console.log(response);
                             if(response.data.length ===0)
-                                addBookToLocal(book);
+                                addBookToLocal(book)
+                                    .then(function (realBook) {
+                                        model.realBook = realBook;
+                                    });
                             else
-                                model.realBook = response.data;
+                                model.realBook = response.data[0];
                         },function (err) {
                             console.log("add book to local");
 
@@ -261,21 +277,35 @@
                 })
         }
 
-        function findTransactionsByPublisher() {
+        function findTransactionsByUser() {
+            if(user.type === 'READER')
+                findTransactionsByBuyer();
+            else if(user.type === 'PUBLISHER')
+                findTransactionsBySeller();
+            else{
+                findTransactionsByBuyer();
+                findTransactionsBySeller();
+            }
+        }
+
+        function findTransactionsByBuyer() {
             model.rightPanel = 'transactions';
-            transactionService.findTransactionsByBuyer(model.user._id)
+            console.log("findTransactionsByBuyer");
+            transactionService.findTransactionsByBuyer(user._id)
                 .then(function (response) {
-                    model.transactions = response.data;
-                })
+                    console.log(response.data);
+                    model.transactions.concat(response.data);
+                });
             console.log(model.transactions)
         }
 
-        function findTransactionsByMusician() {
+        function findTransactionsBySeller() {
             model.rightPanel = 'transactions';
             transactionService.findTransactionsBySeller(model.user._id)
                 .then(function (response) {
-                    model.transactions = response.data;
-                })
+                    console.log(response.data);
+                    model.transactions.concat(response.data);
+                });
             console.log(model.transactions)
         }
 
@@ -405,6 +435,17 @@
 
         function redirect(){
             $location.url("/home");
+        }
+
+        function addBookToUser(bookId) {
+            userService
+                .addBookToUser(user._id,bookId,user.type)
+                .then(function(response){
+                    if(user.type === 'BOOKSTORE')
+                        alert("add book to bookstore success!");
+                    if(user.type === 'PUBLISHER')
+                        alert("add book to bookstore success!");
+                })
         }
 
     }
