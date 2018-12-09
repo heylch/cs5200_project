@@ -24,7 +24,8 @@
             "findAllUsers": findAllUsers,
             "checkLogin": checkLogin,
             "deleteBooklistForUser":deleteBooklistForUser,
-            "addBooklistToUser":addBooklistToUser
+            "addBooklistToUser":addBooklistToUser,
+            "addBookToUser":addBookToUser,
         };
 
         return api;
@@ -129,6 +130,12 @@
                     return response.data;
                 })
         }
+
+        function addBookToUser(userId,bookId,userType) {
+            var url = "/projectapi/user/" + userId + "/book/" + bookId+"/type/"+userType;
+            return $http.put(url);
+        }
+
     }
 
 })();

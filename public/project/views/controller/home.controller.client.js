@@ -11,6 +11,7 @@
         model.currentBooklistId = "";
         model.errorMessage = '1';
         model.share = "";
+        model.realBook = '0';
         model.logout = logout;
         model.findPublishers = findPublishers;
         model.findBookstores = findBookstores;
@@ -38,6 +39,7 @@
         model.deleteBook = deleteBook;
         model.reviewBook = reviewBook;
         model.deleteTransaction = deleteTransaction;
+        model.addBookToUser = addBookToUser;
 
         model.defaultMessage = defaultMessage;
         model.redirect = redirect;
@@ -165,9 +167,12 @@
                             console.log("home controller show details");
                             console.log(response);
                             if(response.data.length ===0)
-                                addBookToLocal(book);
+                                addBookToLocal(book)
+                                    .then(function (realBook) {
+                                        model.realBook = realBook;
+                                    });
                             else
-                                model.realBook = response.data;
+                                model.realBook = response.data[0];
                         },function (err) {
                             console.log("add book to local");
 
@@ -405,6 +410,17 @@
 
         function redirect(){
             $location.url("/home");
+        }
+
+        function addBookToUser(bookId) {
+            userService
+                .addBookToUser(user._id,bookId,user.type)
+                .then(function(response){
+                    if(user.type === 'BOOKSTORE')
+                        alert("add book to bookstore success!");
+                    if(user.type === 'PUBLISHER')
+                        alert("add book to bookstore success!");
+                })
         }
 
     }
