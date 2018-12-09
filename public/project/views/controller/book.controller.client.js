@@ -31,12 +31,11 @@
         var hasreviewed = false;
         model.favourite = "no";
         model.buy = "no";
-        model.booklistId = "";
+        model.bookId = "";
         function init() {
             findBookInfo();
             findBookReviews();
             getBooklist();
-
         }
         init();
 

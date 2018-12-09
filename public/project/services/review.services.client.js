@@ -19,7 +19,8 @@
             "updateReview": updateReview,
             "deleteReview": deleteReview,
             "isReviewed": isReviewed,
-            "findAllReviews": findAllReviews
+            "isReviewedbybooklist":isReviewedbybooklist ,
+                "findAllReviews": findAllReviews
         };
 
         return api;

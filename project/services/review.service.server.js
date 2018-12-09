@@ -24,16 +24,6 @@ app.get("/projectapi/listreview/:userId/:booklistId", isReviewedbybooklist);
 
 
 
-function createReviewForBooklist(req,res) {
-    var review = req.body;
-    var userId = req.params.userId;
-    var booklistId = req.params.booklistId;
-    reviewModel
-        .createReviewForBooklist(userId, booklistId,review)
-        .then(function (review) {
-            res.json(review);
-        });
-}
 
 function createReviewForMusician(req,res) {
     var review = req.body;
@@ -113,6 +103,17 @@ function createReviewForBook(req,res) {
             res.json(review);
         });
 }
+function createReviewForBooklist(req,res) {
+    var review = req.body;
+    var userId = req.params.userId;
+    var booklistId = req.params.booklistId;
+    reviewModel
+        .createReviewForBooklist(userId, booklistId,review)
+        .then(function (review) {
+            res.json(review);
+        });
+}
+
 
 function updateReview(req, res){
     var reviewId = req.params.reviewId;
