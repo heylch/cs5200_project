@@ -36,6 +36,7 @@
             findBookInfo();
             findBookReviews();
             getBooklist();
+
         }
         init();
 

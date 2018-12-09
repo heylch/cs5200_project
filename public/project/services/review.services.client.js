@@ -9,7 +9,7 @@
         var api =  {
             "createReviewForBook": createReviewForBook,
             "createReviewForMusician": createReviewForMusician,
-            "createReviewForPlaylist": createReviewForPlaylist,
+            "createReviewForBooklist": createReviewForBooklist,
 
             // "findReviewByPlaylistId": findReviewByPlaylistId,
             // "findReviewByMusicianId": findReviewByMusicianId,
@@ -46,8 +46,8 @@
             return $http.post(url,review);
         }
 
-        function createReviewForPlaylist(userId, playlistId, review) {
-            var url = "/projectapi/user/" + userId + "/playlist/" + playlistId + "/review";
+        function createReviewForBooklist(userId, bookistId, review) {
+            var url = "/projectapi/user/" + userId + "/booklist/" + booklistId + "/review";
             return $http.post(url,review);
         }
 
@@ -66,6 +66,11 @@
             return $http.get(url);
         }
 
+
+        function isReviewedbybooklist(userId, booklistId){
+            var url = "/projectapi/listreview/"+ userId + "/" + booklistId;
+            return $http.get(url);
+        }
         function findAllReviews(){
             var url = "/projectapi/reviews";
             return $http.get(url);

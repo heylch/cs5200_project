@@ -6,7 +6,7 @@ var songModel = require("../model/song.model.server");
 var userModel = require("../model/user.model.server");
 
 app.post("/projectapi/user/:userId/book/:bookId/review", createReviewForBook);
-app.post("/projectapi/user/:userId/playlist/:playlistId/review", createReviewForPlaylist);
+app.post("/projectapi/user/:userId/booklist/:booklistId/review", createReviewForBooklist);
 app.post("/projectapi/user/:userId/musician/:musicianId/review", createReviewForMusician);
 app.get("/projectapi/search/review/:reviewId", findReviewById);
 app.get("/projectapi/reviews", findAllReviews);
@@ -17,18 +17,19 @@ app.get("/projectapi/user/:userId/review", findAllReviewsByUser);
 app.put("/projectapi/review/:reviewId", updateReview);
 app.delete("/projectapi/review/:reviewId", deleteReview);
 app.get("/projectapi/userreview/:userId/:bookId", isReviewed);
+app.get("/projectapi/listreview/:userId/:booklistId", isReviewedbybooklist);
 
 
 
 
 
 
-function createReviewForPlaylist(req,res) {
+function createReviewForBooklist(req,res) {
     var review = req.body;
     var userId = req.params.userId;
-    var playlistId = req.params.playlistId;
+    var booklistId = req.params.booklistId;
     reviewModel
-        .createReviewForPlaylist(userId, playlistId,review)
+        .createReviewForBooklist(userId, booklistId,review)
         .then(function (review) {
             res.json(review);
         });
@@ -152,7 +153,23 @@ function deleteReview(req, res) {
         })
 
 }
-
+function isReviewedbybooklist(req,res){
+    var userId = req.params.userId;
+    var bookId = req.params.bookId;
+    reviewModel
+        .findReviewByBooklistId(booklistId)
+        .then(function (reviews) {
+            if(reviews) {
+                reviews.forEach(function(review) {
+                    if(review._reader == userId){
+                        res.json(review);
+                        return;
+                    }
+                });
+            }
+            res.send("0");
+        })
+}
 function isReviewed(req,res){
     var userId = req.params.userId;
     var bookId = req.params.bookId;

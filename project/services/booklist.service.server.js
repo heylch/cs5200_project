@@ -12,7 +12,7 @@ app.delete("/projectapi/booklist/:booklistId", deleteBooklist);
 app.put("/projectapi/booklist/:booklistId/book/:bookId", addBookToBooklist);
 app.put("/projectapi/booklist/:booklistId/book/:bookId/remove", removeBookFromBooklist);
 app.get("/projectapi/booklist/:booklistId/book", getAllBooksFromBooklist);
-
+app.get("/projectapi/share/booklist",findAllSharedBooklists);
 function removeBookFromBooklist(req,res) {
     var booklistid = req.params.booklistId;
     var bookid = req.params.bookId;
@@ -62,6 +62,16 @@ function findBooklistByBooklistName(req, res) {
         });
 }
 
+function findAllSharedBooklists(req,res){
+    booklistModel
+        .findAllSharedBooklists()
+        .then(function (lists) {
+            // console.log(lists);
+            res.json(lists);
+        }, function (err) {
+            res.sendStatus(404).send(err);
+        });
+}
 function findAllBooklistsByUser(req, res) {
     // console.log("gagagagagag");
     var userId = req.params.userId;

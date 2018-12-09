@@ -14,7 +14,7 @@ booklistModel.addBookToBooklist = addBookToBooklist;
 booklistModel.removeBookFromBooklist = removeBookFromBooklist;
 booklistModel.getAllBooksFromBooklist = getAllBooksFromBooklist;
 booklistModel.removeBookFromAllBooklists = removeBookFromAllBooklists;
-
+booklistModel.findAllSharedBooklists =findAllSharedBooklists;
 
 module.exports = booklistModel;
 
@@ -28,7 +28,11 @@ function createBooklistForUser(userId, booklist) {
 }
 
 function findBooklistById(booklistId) {
-    return booklistModel.findOne({_id: booklistId});
+    return booklistModel.findOne({_id: booklistId})
+        .populate('_books')
+        .populate('_owner')
+        .populate('_reviews')
+        .exec();
 }
 
 function findListByListName(booklistname) {
@@ -41,6 +45,13 @@ function findAllBooklistsByUserId(userId) {
         .populate('_owner')
         .exec();
 }
+function findAllSharedBooklists(){
+    return booklistModel
+        .find({share: true})
+        .populate('_owner')
+        .exec();
+}
+
 function findAllShareBooklist() {
     return booklistModel
         .find({_share: true})

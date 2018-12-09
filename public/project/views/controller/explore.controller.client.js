@@ -10,6 +10,7 @@
         model.getAllReviews = getAllReviews;
         model.getBooklist = getBooklist;
         model.logout = logout;
+        model.getAllBooksFromBooklist = getAllBooksFromBooklist;
 
         function init() {
             getAllBooks();
@@ -66,7 +67,7 @@
         // }
         //
         function getBooklist() {
-            booklistService.findAllBooklistsByUser(user._id)
+            booklistService.findAllSharedBooklists()
                 .then(function (response) {
                     // console.log(response);
                     model.booklists = response.data;
@@ -74,7 +75,17 @@
                     // console.log(model.booklists);
                 });
         }
-
+        function getAllBooksFromBooklist(booklistId) {
+            model.currentBooklistId = booklistId;
+            booklistService.getAllBooksFromBooklist(booklistId)
+                .then(function (response) {
+                    console.log("getAllBooksFromBooklist");
+                    console.log(response);
+                    model.booksFromBooklist = response.data;
+                    // console.log("getAllSongsFromPlaylist");
+                    // console.log(model.books);
+                })
+        }
         function logout() {
             userService
                 .logout()

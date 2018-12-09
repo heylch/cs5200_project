@@ -39,7 +39,9 @@ function findBookById(bookId) {
         .populate('_author')
         .populate('_publisher')
         .populate('_bookstore')
+        .populate('_reviews')
         .exec();
+
 }
 function findBookByBookName(bookname) {
     return bookModel.find({name: bookname});

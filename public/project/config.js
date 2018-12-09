@@ -116,6 +116,14 @@
                     user: checkLogin
                 }
             })
+            .when("/booklist/:booklistId",{
+                templateUrl: "views/templates/booklist.html",
+                controller: "booklistController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
+            })
             .when("/publisher/:publisherId", {
                 templateUrl: "views/templates/publisher-visit.html",
                 controller: "publisherVisitController",

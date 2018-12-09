@@ -1,0 +1,46 @@
+<div class="new-reviews container-fluid">
+    <h2>Recent Booklists</h2>
+    <ul  class="list-group list-div active">
+        <li ng-repeat="booklist in model.booklists" class="list-group-item">
+            <div class="row">
+                <div class="song-info-div">
+                    <!--<div class="review-item">-->
+                    <!--<h2>Critic Name:</h2>-->
+                    <!--<a class="reivew-content" href="#!/critic/{{review._critic._id}}">{{review._critic.username}}</a>-->
+                    <!--</div>-->
+                    <div ng-show="booklist._owner.username">
+                        <label class="explore-label">Reader Name:</label><span></span>
+                        <!--<a href="#!/user/{{booklist._owner._id}}"-->
+                           <!--class="song-name">{{booklist._owner.username}}</a>-->
+                        <a class="song-name">{{booklist._owner.username}}</a>
+                    </div>
+
+                    <div ng-show="booklist._owner.username">
+                        <label class="explore-label">Booklist:</label><span></span>
+                        <!--<a ng-click="model.getAllBooksFromBooklist(booklist._id)" href="">{{booklist.name}}</a>-->
+                        <a href="#!/booklist/{{booklist._id}}"
+                           class="song-name">{{booklist.name}}</a>
+                    </div>
+
+
+                    <!--<div class="review-item">-->
+                        <!--<label class="explore-label">Review Title:</label>-->
+                        <!--<a class="reivew-content">{{review.title}}</a>-->
+                    <!--</div>-->
+                    <!--<div class="review-item">-->
+                        <!--<label class="explore-label">Comment:</label>-->
+                        <!--<a class="reivew-content">{{review.comment}}</a>-->
+                    <!--</div>-->
+                    <!--<div class="review-item">-->
+                    <!--<label class="explore-label">Rating:</label>-->
+                    <!--<h3 class="reivew-content">{{review.rating}}</h3>-->
+                    <!--</div>-->
+                </div>
+                <div class="song-artist-photo-div" ng-show="review._reader.username">
+                    <img class="song-artist-photo"
+                         ng-src={{review._reader.avatar}}>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
