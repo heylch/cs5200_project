@@ -7,10 +7,23 @@
         <h4>Price:</h4>
         <input type="text"
                class="form-control input-block"
+               value="model.book.price"
+               ng-model="model.book.price" disabled>
+        <h4>Number:</h4>
+        <input type="text"
+               class="form-control input-block"
                placeholder="0"
-               ng-model="model.price">
+               ng-model="model.bookNum">
+        <h4 ng-show="model.user.type === 'READER'">Select Bookstores</h4>
+        <select ng-model="model.sellerId"
+                class="form-control" ng-show="model.user.type === 'READER'">
+            <option ng-repeat="bookstore in model.bookstore"
+                    value="{{bookstore._id}}">{{bookstore.username}}
+            </option>
+        </select>
+        <h4 ng-show="model.user.type === 'BOOKSTORE'">Buy From Publisher {{model.publisher.username}}</h4>
 
-        <button class="btn-success btn btn-block" ng-click="model.purchaseSong(model.price)">Offer</button>
+        <button class="btn-success btn btn-block" ng-click="model.purchaseBook(model.bookNum)">Buy</button>
         <button class="btn-primary btn btn-block" ng-click="model.cancelPurchase()">Cancel</button>
     </form>
 </div>

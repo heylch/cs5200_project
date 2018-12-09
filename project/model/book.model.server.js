@@ -41,6 +41,7 @@ function findBookById(bookId) {
         .populate('_publisher')
         .populate('_bookstore')
         .exec();
+
 }
 function findBookByBookName(bookname) {
     return bookModel.find({name: bookname});
@@ -157,7 +158,7 @@ function findBookByISBN(bookISBN) {
 }
 
 function setPublisher(userId,bookId) {
-    return bookModel.find({_id: bookId})
+    return bookModel.findOne({_id: bookId})
         .then(function (book) {
             book._publisher = userId;
             return book.save();
@@ -165,10 +166,13 @@ function setPublisher(userId,bookId) {
 }
 
 function addBookstore(userId,bookId) {
-    return bookModel.find({_id:bookId})
+    return bookModel.findOne({_id:bookId})
         .then(function (book) {
-            if(book._bookstore.indexOf(bookId) < 0)
+            console.log(book);
+            console.log(book._bookstore.indexOf(userId));
+            if(book._bookstore.indexOf(userId) < 0)
                 book._bookstore.push(userId);
+            console.log(book);
             return book.save();
         })
 }

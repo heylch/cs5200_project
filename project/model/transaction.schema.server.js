@@ -1,8 +1,7 @@
 var mongoose = require("mongoose");
 var transactionSchema = mongoose.Schema({
-    _reader: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
-    _bookstore: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
-    _publisher: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
+    _buyer: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
+    _seller: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
     _book: {type: mongoose.Schema.Types.ObjectId, ref: "BookModel"},
     price: Number,
     amount: Number,

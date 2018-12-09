@@ -11,7 +11,7 @@
                 <a ng-click="model.findAllBooksByUser('my-books')" href="">
                     <li class="list-group-item">Books on Sale</li >
                 </a>
-                <a ng-click="model.findTransactionsByMusician()" href="">
+                <a ng-click="model.changeRightPanel('transactions')" href="">
                     <li class="list-group-item">My Transactions</li >
                 </a>
                 <a ng-click="model.changeRightPanel('search')" href="">
@@ -42,7 +42,7 @@
         <div ng-show="model.rightPanel==='upload'" ng-include="'views/templates/upload-book.html'"></div>
         <!--<div ng-show="model.rightPanel === 'followers'" ng-include src="'views/templates/follower-users.html'"></div>-->
         <div ng-show="model.rightPanel === 'my-books'" ng-include src="'views/templates/books-user.html'"></div>
-        <div ng-show="model.rightPanel==='transactions'" ng-include="'views/templates/transactions-seller.html'"></div>
+        <div ng-show="model.rightPanel==='transactions'" ng-include="'views/templates/mytransactions.html'"></div>
         <div ng-show="model.rightPanel==='search'" ng-include="'views/templates/user-search.html'"></div>
         <div ng-show="model.rightPanel === 'booklist'" ng-include src="'views/templates/booklist-detail.html'"></div>
     </div>

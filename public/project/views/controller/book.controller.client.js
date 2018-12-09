@@ -27,10 +27,13 @@
         model.defaultMessage = defaultMessage;
         model.findBookReviews = findBookReviews;
         model.logout = logout;
+        model.buyBook = buyBook;
         var bookId = $routeParams["bookId"];
         var hasreviewed = false;
         model.favourite = "no";
         model.buy = "no";
+        model.review = "no";
+        model.edit = "no";
         model.booklistId = "";
         function init() {
             findBookInfo();
@@ -52,7 +55,10 @@
             bookService.findBookById(bookId)
                 .then(function (response) {
                     model.book = response.data;
-                    // console.log(model.book);
+                    model.bookstore = model.book._bookstore;
+                    model.publisher = model.book._publisher;
+                    console.log("bookInfo");
+                    console.log(model.book);
                 })
         }
 
@@ -61,10 +67,16 @@
         }
 
         function editBook() {
+            model.favourite = "no";
+            model.buy = "no";
+            model.review = "no";
             model.edit = 'yes';
         }
 
         function reviewBook(review) {
+            model.favourite = "no";
+            model.buy = "no";
+            model.edit = "no";
             model.getReview();
             model.editreview = 'yes';
         }
@@ -104,23 +116,34 @@
             model.errorFavouriteMessage = '1';
 
         }
+        function buyBook() {
+            model.favourite = "no";
+            model.review = "no";
+            model.edit = "no";
+            model.buy = 'yes';
+        }
 
-        function purchaseBook(price) {
-            if(model.book._owner) {
-                model.errorPurchaseMessage = "Alreay purchased by another publisher";
-            } else if(!price) {
-                model.errorPurchaseMessage = "Please offer your price";
+        function purchaseBook(bookNum) {
+            // if(model.book._owner) {
+            //     model.errorPurchaseMessage = "Alreay purchased by another publisher";
+            if(!bookNum) {
+                model.errorPurchaseMessage = "Please offer your numbers";
             }
             else {
                 var transaction = {};
-                transaction._buyer = model.user._id;
-                transaction._seller = model.book._publisher._id;
+                transaction._buyer = user._id;
+                if(user.type === 'READER')
+                    transaction._seller = model.sellerId;
+                else if(user.type === 'BOOKSTORE')
+                    transaction._seller = model.publisher._id;
                 transaction._book = model.book._id;
-                transaction.price = price;
-                transaction.status = "PENDING";
-                transactionService.createTransaction(model.user._id, model.book._id, transaction)
+                transaction.price = model.book.price;
+                transaction.amount = bookNum;
+                console.log(user.type);
+                console.log(transaction._seller);
+                transactionService.createTransaction(user._id, transaction._seller,model.book._id, transaction)
                     .then(function (response) {
-                        $location.url('/explore');
+                        $location.url('/home');
                     })
             }
         }

@@ -25,8 +25,8 @@
         model.findAllBooksByUser = findAllBooksByUser;
         model.findReviewsByCritic = findReviewsByCritic;
         model.findMusicianAvatar = findMusicianAvatar;
-        model.findTransactionsByPublisher = findTransactionsByPublisher;
-        model.findTransactionsByMusician = findTransactionsByMusician;
+        model.findTransactions = findTransactions;
+        // model.findTransactionsByMusician = findTransactionsByMusician;
         model.accecptTransaction = accecptTransaction;
         model.rejectTransaction = rejectTransaction;
         model.cancelTransaction = cancelTransaction;
@@ -44,6 +44,7 @@
         model.defaultMessage = defaultMessage;
         model.redirect = redirect;
         function init() {
+            model.transactions = [];
             console.log("user");
             console.log(user);
             console.log(model.user);
@@ -59,8 +60,10 @@
             if(model.user.type ==="READER") {
                 findPublishers();
                 findBookstores();
+                // findTransactions();
             }
             findBooklists();
+            findTransactions();
             // if (model.user.type === 'CRITIC') {
             //     model.rightPanel = 'my-reviews';
             //     findMusicians();
@@ -136,6 +139,14 @@
                     // console.log("model.playlists")
                     // console.log(model.playlists);
                 });
+        }
+
+        function findTransactions(){
+            // model.transactions = user._transactions;
+            transactionService.findAllTransactionsByUser(user._id)
+                .then(function (response) {
+                    model.transactions = response.data;
+                })
         }
 
         function changeRightPanel(mode) {
@@ -266,21 +277,35 @@
                 })
         }
 
-        function findTransactionsByPublisher() {
+        function findTransactionsByUser() {
+            if(user.type === 'READER')
+                findTransactionsByBuyer();
+            else if(user.type === 'PUBLISHER')
+                findTransactionsBySeller();
+            else{
+                findTransactionsByBuyer();
+                findTransactionsBySeller();
+            }
+        }
+
+        function findTransactionsByBuyer() {
             model.rightPanel = 'transactions';
-            transactionService.findTransactionsByBuyer(model.user._id)
+            console.log("findTransactionsByBuyer");
+            transactionService.findTransactionsByBuyer(user._id)
                 .then(function (response) {
-                    model.transactions = response.data;
-                })
+                    console.log(response.data);
+                    model.transactions.concat(response.data);
+                });
             console.log(model.transactions)
         }
 
-        function findTransactionsByMusician() {
+        function findTransactionsBySeller() {
             model.rightPanel = 'transactions';
             transactionService.findTransactionsBySeller(model.user._id)
                 .then(function (response) {
-                    model.transactions = response.data;
-                })
+                    console.log(response.data);
+                    model.transactions.concat(response.data);
+                });
             console.log(model.transactions)
         }
 

@@ -207,6 +207,7 @@ function addBookToUser(req,res) {
     var userType = req.params.userType;
     console.log(userId);
     console.log(bookId);
+    console.log(userType);
     console.log("addBookToUser");
     userModel.addBook(userId,bookId)
         .then(function (user) {
@@ -221,6 +222,7 @@ function addBookToUser(req,res) {
             else if(userType === 'BOOKSTORE')
                 bookModel.addBookstore(userId,bookId)
                     .then(function (book) {
+                        console.log(book);
                         res.json(user);
                     },function (err) {
                         res.send("0")
