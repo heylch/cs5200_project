@@ -49,6 +49,7 @@ function createReviewForBook(userId, bookId, review) {
 function createReviewForBooklist(userId, booklistId, review) {
     review._reader = userId;
     review._booklist = booklistId;
+    review.type = "BOOKLIST"
     var reviewTemp = null;
     return reviewModel
         .create(review)

@@ -18,6 +18,7 @@
             "findReviewById": findReviewById,
             "updateReview": updateReview,
             "deleteReview": deleteReview,
+            "deleteReviewForBooklist":deleteReviewForBooklist,
             "isReviewed": isReviewed,
             "isReviewedbybooklist":isReviewedbybooklist ,
                 "findAllReviews": findAllReviews
@@ -47,7 +48,7 @@
             return $http.post(url,review);
         }
 
-        function createReviewForBooklist(userId, bookistId, review) {
+        function createReviewForBooklist(userId, booklistId, review) {
             var url = "/projectapi/user/" + userId + "/booklist/" + booklistId + "/review";
             return $http.post(url,review);
         }
@@ -61,6 +62,11 @@
             var url = "/projectapi/review/" + reviewId;
             return $http.delete(url);
         }
+        function deleteReviewForBooklist(reviewId){
+            var url = "/projectapi/listreview/" + reviewId;
+            return $http.delete(url);
+        }
+
 
         function isReviewed(userId, bookId){
             var url = "/projectapi/userreview/"+ userId + "/" + bookId;

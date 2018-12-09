@@ -10,6 +10,7 @@ booklistModel.findAllBooklistsByUserId = findAllBooklistsByUserId;
 booklistModel.deleteBooklist = deleteBooklist;
 booklistModel.updateBooklist = updateBooklist;
 booklistModel.addReview = addReview;
+booklistModel.removeReviewForBooklist =removeReviewForBooklist;
 booklistModel.addBookToBooklist = addBookToBooklist;
 booklistModel.removeBookFromBooklist = removeBookFromBooklist;
 booklistModel.getAllBooksFromBooklist = getAllBooksFromBooklist;
@@ -123,27 +124,25 @@ function getAllBooksFromBooklist(booklistId) {
         });
 
 }
-function findAllShareBooklist() {
 
-}
 
 //review
 function addReview(booklistId, reviewId) {
     return booklistModel
-        .findById(booklistId)
+        .findBooklistById(booklistId)
         .then(function (list) {
             list._reviews.push(reviewId);
             return list.save();
         });
 }
 
-function removeReview(booklistId, reviewId) {
+function removeReviewForBooklist(booklistId, reviewId) {
     return booklistModel
-        .findById(booklistId)
-        .then(function (booklist) {
-            var index = booklist._reviews.indexOf(reviewId);
-            booklist._reviews.splice(index, 1);
-            return booklist.save();
+        .findBooklistById(booklistId)
+        .then(function (list) {
+            var index = list._reviews.indexOf(reviewId);
+            list._reviews.splice(index, 1);
+            return list.save();
         })
 }
 

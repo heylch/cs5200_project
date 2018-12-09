@@ -20,7 +20,7 @@
         model.logout = logout;
         var booklistId = $routeParams["booklistId"];
         var hasreviewed = false;
-        // model.booklistId = "";
+        model.booklistId = "";
         function init() {
 
             findBooklistById();
@@ -122,7 +122,7 @@
 
         function deleteReview() {
             reviewService
-                .deleteReview(model.newreview._id)
+                .deleteReviewForBooklist(model.newreview._id)
                 .then(function (res) {
                     if(res.data === "1"){
                         alert("delete success");

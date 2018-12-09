@@ -20,8 +20,10 @@
                <!--class="form-control input-block"-->
                <!--placeholder="Rating"-->
                <!--ng-model="model.newreview.rating">-->
-        <a class="btn-primary btn btn-block" ng-click="model.addReviewToBook(model.newreview.title, model.newreview.comment
+        <a ng-show="model.book" class="btn-primary btn btn-block" ng-click="model.addReviewToBook(model.newreview.title, model.newreview.comment
         )">Review</a>
+        <a ng-show="model.booklist"class="btn-primary btn btn-block" ng-click="model.addReviewToBooklist(model.newreview.title, model.newreview.comment
+        )">Booklist Review</a>
         <a class="btn-danger btn btn-block"  href="#!/home">Cancel</a>
         <a class="btn-danger btn btn-block"  ng-click="model.deleteReview()">Delete</a>
     </form>

@@ -1,5 +1,5 @@
 var bookModel = require( "../model/book.model.server");
-
+var booklistModel = require( "../model/booklist.model.server");
 var app = require("../../express");
 var reviewModel = require("../model/review.model.server");
 var songModel = require("../model/song.model.server");
@@ -16,6 +16,8 @@ app.get("/projectapi/book/:bookId/review", findReviewByBookId);
 app.get("/projectapi/user/:userId/review", findAllReviewsByUser);
 app.put("/projectapi/review/:reviewId", updateReview);
 app.delete("/projectapi/review/:reviewId", deleteReview);
+app.delete("/projectapi/listreview/:reviewId", deleteReviewForBooklist);
+
 app.get("/projectapi/userreview/:userId/:bookId", isReviewed);
 app.get("/projectapi/listreview/:userId/:booklistId", isReviewedbybooklist);
 
@@ -154,9 +156,37 @@ function deleteReview(req, res) {
         })
 
 }
+function deleteReviewForBooklist(req, res) {
+    var reviewId = req.params.reviewId;
+    var booklistId = "";
+    var userId = "";
+    reviewModel.findById(reviewId)
+        .then(function (review) {
+            booklistId = review._booklist;
+            userId = review._reader;
+            reviewModel
+                .remove({_id: reviewId})
+                .then(function (review) {
+                    return booklistModel
+                        .removeReviewForBooklist(booklistId,reviewId)
+                        .then(function () {
+                            return userModel
+                                .removeReview(userId,reviewId)
+                                .then(function () {
+                                    res.send("1")
+                                })
+                        })
+
+                }, function (err) {
+                    res.send("0");
+                });
+        })
+
+}
+
 function isReviewedbybooklist(req,res){
     var userId = req.params.userId;
-    var bookId = req.params.bookId;
+    var booklistId = req.params.booklistId;
     reviewModel
         .findReviewByBooklistId(booklistId)
         .then(function (reviews) {
