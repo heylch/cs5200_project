@@ -37,6 +37,19 @@ function createTransaction(buyerId, sellerId, bookId, transaction) {
         .then(function (res) {
             return transactionTemp;
         })
+        .then(function (res) {
+            return userModel.addBook(buyerId,bookId);
+        })
+        .then(function (res) {
+            return userModel.findOne({_id:buyerId})
+                .then(function (user) {
+                    // console.log(user);
+                    // console.log(user.type);
+                    if(user.type ==='BOOKSTORE')
+                        return bookModel.addBookstore(buyerId,bookId)
+                })
+
+        })
 }
 
 

@@ -302,16 +302,17 @@ function createBookForUser(userId, book) {
 
 function deleteBook(userId, bookId) {
     var bookTmp = null;
-    return bookModel
-        .remove({_id: bookId})
-        .then(function (book) {
-            bookTmp = book;
-            // console.log(book);
-            return userModel.removeBook(userId, bookId);
-        })
-        .then(function (userDoc) {
-            return bookTmp;
-        })
+    return userModel.removeBook(userId, bookId);
+    // return bookModel
+    //     .remove({_id: bookId})
+    //     .then(function (book) {
+    //         bookTmp = book;
+    //         // console.log(book);
+    //         return userModel.removeBook(userId, bookId);
+    //     })
+    //     .then(function (userDoc) {
+    //         return bookTmp;
+    //     })
 }
 
 function findAllBooksByUser(userId) {

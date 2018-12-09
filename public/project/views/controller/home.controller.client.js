@@ -363,7 +363,7 @@
             console.log("home controller addBookToLocal");
             return bookService.createBookFromApi(newBook)
                 .then(function(response){
-                    console.log(response);
+                    // console.log(response);
                     model.realBook = response.data;
                     return response.data;
                 })
