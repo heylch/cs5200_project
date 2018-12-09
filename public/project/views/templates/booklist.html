@@ -1,0 +1,60 @@
+<div  ng-include="'views/templates/footer-explore.html'"></div>
+<div ng-include="'views/templates/header.html'"></div>
+<div id="explore-back"><a href="#!/home"><span class="glyphicon glyphicon-arrow-left"></span></a></div>
+<div class="song-detail-div container-fluid">
+    <div  class="song-detail-header-div">
+        <div class="song-detail-header-description-div">
+            <div>
+                <label class="song-detail-label">Booklist Name:</label><span></span>
+                <span>{{model.booklist.name}}</span>
+            </div>
+            <div ng-show="model.booklist._owner">
+                <label class="song-detail-label">Owner:</label><span></span>
+                <span>{{model.booklist._owner.username}}</span>
+            </div>
+
+        </div>
+        <div class="song-detail-header-control-div">
+            <div ng-show="model.user.type === 'READER'">
+                <a class="detail-operator" ng-click="model.reviewBooklist(booklist)"><span class="glyphicon glyphicon-pencil"></span></a>
+            </div>
+        </div>
+    </div>
+    <div ng-show="model.editreview === 'yes'" ng-include src="'views/templates/edit-review.html'"></div>
+
+<div class="user-home container-fluid ">
+    <div class="col-xs-12 col-sm-6"
+         >
+        <div class="container-fluid">
+            <h2>Books</h2>
+            <ul class="list-group list-div active">
+                <li ng-repeat="book in model.books" class="list-group-item">
+                    <div class="row">
+                        <div class="song-info-div">
+                            <div>
+                                <label class="explore-label">Name:</label><span></span>
+                                <a href="#!/book/{{book._id}}"
+                                   class="song-name">{{book.title}}</a>
+                            </div>
+                            <div ng-show="book._publisher">
+                                <label class="explore-label">Publisher:</label>
+                                <a href="#!/publisher/{{book._publisher._id}}"
+                                   class="song-name">{{book._publisher.username}}</a>
+                            </div>
+                            <div ng-hide="book._publisher">
+                                <label class="explore-label">Author:</label>
+                                {{book.author}}
+                            </div>
+                        </div>
+                        <div class="song-artist-photo-div">
+                            <img class="song-artist-photo" ng-src="{{book.image}}">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6"
+         ng-include="'views/templates/new-reviews.html'"></div>
+</div>

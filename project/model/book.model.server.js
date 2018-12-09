@@ -40,6 +40,7 @@ function findBookById(bookId) {
         .findOne({_id: bookId})
         .populate('_publisher')
         .populate('_bookstore')
+        .populate('_reviews')
         .exec();
 
 }

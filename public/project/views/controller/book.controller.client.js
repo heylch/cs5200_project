@@ -32,6 +32,7 @@
         var hasreviewed = false;
         model.favourite = "no";
         model.buy = "no";
+        model.bookId = "";
         model.review = "no";
         model.edit = "no";
         model.booklistId = "";

@@ -1,12 +1,12 @@
 var bookModel = require( "../model/book.model.server");
-
+var booklistModel = require( "../model/booklist.model.server");
 var app = require("../../express");
 var reviewModel = require("../model/review.model.server");
 var songModel = require("../model/song.model.server");
 var userModel = require("../model/user.model.server");
 
 app.post("/projectapi/user/:userId/book/:bookId/review", createReviewForBook);
-app.post("/projectapi/user/:userId/playlist/:playlistId/review", createReviewForPlaylist);
+app.post("/projectapi/user/:userId/booklist/:booklistId/review", createReviewForBooklist);
 app.post("/projectapi/user/:userId/musician/:musicianId/review", createReviewForMusician);
 app.get("/projectapi/search/review/:reviewId", findReviewById);
 app.get("/projectapi/reviews", findAllReviews);
@@ -16,23 +16,16 @@ app.get("/projectapi/book/:bookId/review", findReviewByBookId);
 app.get("/projectapi/user/:userId/review", findAllReviewsByUser);
 app.put("/projectapi/review/:reviewId", updateReview);
 app.delete("/projectapi/review/:reviewId", deleteReview);
+app.delete("/projectapi/listreview/:reviewId", deleteReviewForBooklist);
+
 app.get("/projectapi/userreview/:userId/:bookId", isReviewed);
+app.get("/projectapi/listreview/:userId/:booklistId", isReviewedbybooklist);
 
 
 
 
 
 
-function createReviewForPlaylist(req,res) {
-    var review = req.body;
-    var userId = req.params.userId;
-    var playlistId = req.params.playlistId;
-    reviewModel
-        .createReviewForPlaylist(userId, playlistId,review)
-        .then(function (review) {
-            res.json(review);
-        });
-}
 
 function createReviewForMusician(req,res) {
     var review = req.body;
@@ -112,6 +105,17 @@ function createReviewForBook(req,res) {
             res.json(review);
         });
 }
+function createReviewForBooklist(req,res) {
+    var review = req.body;
+    var userId = req.params.userId;
+    var booklistId = req.params.booklistId;
+    reviewModel
+        .createReviewForBooklist(userId, booklistId,review)
+        .then(function (review) {
+            res.json(review);
+        });
+}
+
 
 function updateReview(req, res){
     var reviewId = req.params.reviewId;
@@ -152,7 +156,51 @@ function deleteReview(req, res) {
         })
 
 }
+function deleteReviewForBooklist(req, res) {
+    var reviewId = req.params.reviewId;
+    var booklistId = "";
+    var userId = "";
+    reviewModel.findById(reviewId)
+        .then(function (review) {
+            booklistId = review._booklist;
+            userId = review._reader;
+            reviewModel
+                .remove({_id: reviewId})
+                .then(function (review) {
+                    return booklistModel
+                        .removeReviewForBooklist(booklistId,reviewId)
+                        .then(function () {
+                            return userModel
+                                .removeReview(userId,reviewId)
+                                .then(function () {
+                                    res.send("1")
+                                })
+                        })
 
+                }, function (err) {
+                    res.send("0");
+                });
+        })
+
+}
+
+function isReviewedbybooklist(req,res){
+    var userId = req.params.userId;
+    var booklistId = req.params.booklistId;
+    reviewModel
+        .findReviewByBooklistId(booklistId)
+        .then(function (reviews) {
+            if(reviews) {
+                reviews.forEach(function(review) {
+                    if(review._reader == userId){
+                        res.json(review);
+                        return;
+                    }
+                });
+            }
+            res.send("0");
+        })
+}
 function isReviewed(req,res){
     var userId = req.params.userId;
     var bookId = req.params.bookId;

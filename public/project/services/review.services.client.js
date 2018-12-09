@@ -9,7 +9,7 @@
         var api =  {
             "createReviewForBook": createReviewForBook,
             "createReviewForMusician": createReviewForMusician,
-            "createReviewForPlaylist": createReviewForPlaylist,
+            "createReviewForBooklist": createReviewForBooklist,
 
             // "findReviewByPlaylistId": findReviewByPlaylistId,
             // "findReviewByMusicianId": findReviewByMusicianId,
@@ -18,8 +18,10 @@
             "findReviewById": findReviewById,
             "updateReview": updateReview,
             "deleteReview": deleteReview,
+            "deleteReviewForBooklist":deleteReviewForBooklist,
             "isReviewed": isReviewed,
-            "findAllReviews": findAllReviews
+            "isReviewedbybooklist":isReviewedbybooklist ,
+                "findAllReviews": findAllReviews
         };
 
         return api;
@@ -46,8 +48,8 @@
             return $http.post(url,review);
         }
 
-        function createReviewForPlaylist(userId, playlistId, review) {
-            var url = "/projectapi/user/" + userId + "/playlist/" + playlistId + "/review";
+        function createReviewForBooklist(userId, booklistId, review) {
+            var url = "/projectapi/user/" + userId + "/booklist/" + booklistId + "/review";
             return $http.post(url,review);
         }
 
@@ -60,12 +62,22 @@
             var url = "/projectapi/review/" + reviewId;
             return $http.delete(url);
         }
+        function deleteReviewForBooklist(reviewId){
+            var url = "/projectapi/listreview/" + reviewId;
+            return $http.delete(url);
+        }
+
 
         function isReviewed(userId, bookId){
             var url = "/projectapi/userreview/"+ userId + "/" + bookId;
             return $http.get(url);
         }
 
+
+        function isReviewedbybooklist(userId, booklistId){
+            var url = "/projectapi/listreview/"+ userId + "/" + booklistId;
+            return $http.get(url);
+        }
         function findAllReviews(){
             var url = "/projectapi/reviews";
             return $http.get(url);

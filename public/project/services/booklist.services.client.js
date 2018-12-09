@@ -15,7 +15,8 @@
             "deleteBooklist": deleteBooklist,
             "addBookToBooklist":addBookToBooklist,
             "getAllBooksFromBooklist":getAllBooksFromBooklist,
-            "removeBookFromBooklist": removeBookFromBooklist
+            "removeBookFromBooklist": removeBookFromBooklist,
+            "findAllSharedBooklists":findAllSharedBooklists
         };
 
         return api;
@@ -31,11 +32,18 @@
             var url = "/projectapi/user/" + userId + "/booklist";
             return $http.get(url);
         }
+        function findAllSharedBooklists() {
+            // console.log(userId);
+            var url = "/projectapi/share/booklist";
+            return $http.get(url);
+        }
+
 
         function createBooklistForUser(userId, booklist) {
             var url = "/projectapi/user/" + userId + "/booklist";
             return $http.post(url,booklist);
         }
+
 
         function findBooklistByBooklistName(booklistname) {
             var url = "/projectapi/booklist?booklistname="+booklistname;
