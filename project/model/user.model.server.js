@@ -31,6 +31,7 @@ userModel.deleteTransaction = deleteTransaction;
 userModel.createBookForUser = createBookForUser;
 userModel.deleteBook = deleteBook;
 userModel.findAllBooksByUser = findAllBooksByUser;
+// userModel.addBookToUser = addBookToUser;
 module.exports = userModel;
 
 function findUserByGoogleId(googleId) {
@@ -104,7 +105,9 @@ function addBook(userId, bookId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            user._books.push(bookId);
+            if(user._books.indexOf(bookId) <0){
+                user._books.push(bookId);
+            }
             return user.save();
         });
 }
@@ -212,6 +215,7 @@ function addTransaction(userId, transactionId) {
             return user.save();
         })
 }
+
 
 //playlist
 function addBooklist(userId, booklistId) {

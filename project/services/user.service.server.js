@@ -1,6 +1,7 @@
 var app = require("../../express");
 var userModel = require("../model/user.model.server");
-var playlistModel = require("../model/playlist.model.server");
+var booklistModel = require("../model/booklist.model.server");
+var bookModel = require("../model/book.model.server");
 var bcrypt = require("bcrypt-nodejs");
 var multer = require('multer'); // npm install multer --save
 var upload = multer({dest: __dirname + '/../../public/avatar/upload'});
@@ -49,6 +50,7 @@ app.delete("/projectapi/user/:userId", deleteUser);
 app.post("/projectapi/avatar", upload.single('avatar'), uploadAvatar);
 app.delete("/projectapi/user/:userId/booklist/:booklistId", removeBooklist);
 app.delete("/projectapi/user/book/:bookId", removeBook);
+app.put("/projectapi/user/:userId/book/:bookId/type/:userType",addBookToUser);
 
 function findAllUsers(req,res) {
     var publicUsers = [];
@@ -199,6 +201,35 @@ function addBook(req,res) {
         });
 }
 
+function addBookToUser(req,res) {
+    var userId = req.params.userId;
+    var bookId = req.params.bookId;
+    var userType = req.params.userType;
+    console.log(userId);
+    console.log(bookId);
+    console.log(userType);
+    console.log("addBookToUser");
+    userModel.addBook(userId,bookId)
+        .then(function (user) {
+            console.log(user);
+            if(userType === 'PUBLISHER')
+                bookModel.setPublisher(userId,bookId)
+                    .then(function (book) {
+                        res.json(user);
+                    },function (err) {
+                        res.send("0")
+                    });
+            else if(userType === 'BOOKSTORE')
+                bookModel.addBookstore(userId,bookId)
+                    .then(function (book) {
+                        console.log(book);
+                        res.json(user);
+                    },function (err) {
+                        res.send("0")
+                    });
+        })
+}
+
 function findFollowingByUser(req, res) {
     var userId = req.params.userId;
     userModel
@@ -299,9 +330,13 @@ function checkLogin(req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');
     }
 
+
+
 function serializeUser(user, done) {
         done(null, user);
     }
+
+
 
 function deserializeUser(user, done) {
         userModel
@@ -315,6 +350,8 @@ function deserializeUser(user, done) {
                         }
                 );
 }
+
+
 
 function googleStrategy(token, refreshToken, profile, done) {
     // console.log(profile);

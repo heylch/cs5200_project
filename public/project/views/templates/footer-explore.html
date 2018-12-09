@@ -1,11 +1,12 @@
 <nav class=" footer-explore navbar navbar-inverse navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-footer">
-            <a class="navbar-brand" href="#!/home">Musiker</a>
+            <a class="navbar-brand" href="#!/home">IT Books</a>
         </div>
-        <a id="button-exp" style="float: right;" href="#!/explore" role="button">Explore</a>
-        <a ng-hide="model.user.type === 'PUBLISHER'" id="button-pub"style="float: right;" href="#!/publisher" role="button">All Publishers</a>
+        <a ng-hide="model.user.type === 'BOOKSTORE'" id="button-exp" style="float: right;" href="#!/explore" role="button">Explore</a>
+        <a ng-show="model.user.type === 'READER'" id="button-pub"style="float: right;" href="#!/publisher" role="button">All Publishers</a>
         <a ng-hide="model.user.type === 'BOOKSTORE'" id="button-store" style="float: right;" href="#!/bookstore" role="button">All Bookstores</a>
+        <a ng-show="model.user.type === 'BOOKSTORE'" id="button-pub" style="float: right;" href="#!/publisher" role="button">Buy From Publishers</a>
         <!--<a id="button-exp" style="float: right;" href="#!/explore" role="button">Explore</a>-->
 
     </div>

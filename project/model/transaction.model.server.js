@@ -9,19 +9,21 @@ transactionModel.createTransaction = createTransaction;
 transactionModel.findTransactionById = findTransactionById;
 transactionModel.findTransactionBySeller = findTransactionBySeller;
 transactionModel.findTransactionsByBuyer = findTransactionsByBuyer;
+transactionModel.findAllTransactionsByUser = findAllTransactionsByUser;
 transactionModel.updateTransaction = updateTransaction;
 transactionModel.deleteTransaction = deleteTransaction;
+
 module.exports = transactionModel;
 
-function createTransaction(buyerId, bookId, transaction) {
-    transaction._buyer = buyerId;
-    bookModel.findBookById(bookId)
-        .then(function (book) {
-            transaction._seller = book._publisher;
-        })
-    transaction._book = bookId;
-    var sellerId = transaction._seller;
-    console.log(transaction);
+function createTransaction(buyerId, sellerId, bookId, transaction) {
+    // transaction._buyer = buyerId;
+    // bookModel.findBookById(bookId)
+    //     .then(function (book) {
+    //         transaction._seller = book._publisher;
+    //     })
+    // transaction._book = bookId;
+    // var sellerId = transaction._seller;
+    // console.log(transaction);
     var transactionTemp = null;
     return transactionModel
         .create(transaction)
@@ -29,7 +31,7 @@ function createTransaction(buyerId, bookId, transaction) {
             transactionTemp = newtransaction;
             return userModel.addTransaction(buyerId, newtransaction._id);
         })
-        .then(function (res) {
+        .then(function (res1) {
             return userModel.addTransaction(sellerId, transactionTemp._id);
         })
         .then(function (res) {
@@ -39,19 +41,28 @@ function createTransaction(buyerId, bookId, transaction) {
 
 
 function findTransactionById(transactionId) {
-    return transactionModel.findOne({_id: transactionId});
+    return transactionModel.findOne({_id: transactionId})
+        .populate('_buyer')
+        .populate('_seller')
+        .populate('_book')
+        .exec();
 }
 
 function findTransactionBySeller(sellerId) {
-    return transactionModel.find({_seller: sellerId})
-        .populate('_buyer')
-        .exec();
+    return transactionModel.find({_seller: sellerId});
 }
 
 function findTransactionsByBuyer(buyerId) {
-    return transactionModel.find({_buyer: buyerId})
+    return transactionModel.find({_buyer: buyerId});
+}
+
+function findAllTransactionsByUser(userId){
+    return transactionModel.find({$or:[{_buyer:userId}, {_seller:userId}]})
+        .populate('_book')
+        .populate('_buyer')
         .populate('_seller')
         .exec();
+
 }
 
 function updateTransaction(transactionId, transaction){

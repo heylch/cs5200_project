@@ -12,7 +12,7 @@
             "findTransactionsByBuyer":findTransactionsByBuyer,
             "findTransactionsBySeller": findTransactionsBySeller,
             "findTransactionById": findTransactionById,
-
+            "findAllTransactionsByUser":findAllTransactionsByUser,
             "updateTransaction": updateTransaction,
             "deleteTransaction": deleteTransaction
         };
@@ -20,8 +20,8 @@
         return api;
 
 
-        function createTransaction(buyerId,songId, transaction) {
-            var url = "/projectapi/transaction/" + buyerId + "/song/" + songId;
+        function createTransaction(buyerId,sellerId, bookId, transaction) {
+            var url = "/projectapi/transaction/" + buyerId + "/buy/"+sellerId+"/book/" + bookId;
             return $http.post(url, transaction);
         }
 
@@ -40,7 +40,10 @@
             var url = "/projectapi/transaction/seller/" + sellerId;
             return $http.get(url);
         }
-
+        function findAllTransactionsByUser(userId) {
+            var url = "/projectapi/transaction/user/" + userId;
+            return $http.get(url);
+        }
 
 
         function updateTransaction(transactionId,transaction){
@@ -52,7 +55,6 @@
             var url = "/projectapi/transaction/" + transactionId;
             return $http.delete(url);
         }
-
     }
 
 })();

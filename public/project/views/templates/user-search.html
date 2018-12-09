@@ -29,9 +29,13 @@
             </tr>
         </table>
 
-        <div ng-show="model.realBook" class="col-sm-8 hidden-xs">
-            <a href="#!/book/{{model.realBook._id}}">Go To Book Page</a>
+        <div ng-show="model.realBook !=='0'" class="col-sm-8 hidden-xs">
+            <button ng-show="model.user.type === 'PUBLISHER'"
+                    class="btn btn-success" ng-click="model.addBookToUser(model.realBook._id)">Add to My Publications</button>
+            <button ng-show="model.user.type === 'BOOKSTORE'"
+                    class="btn btn-success" ng-click="model.addBookToUser(model.realBook._id)">Add to Store</button>
             <ul class="list-group lch-list" style="text-align: center">
+                <a href="#!/book/{{model.realBook._id}}"><span class="glyphicon glyphicon-arrow-right"></span>Go To Book Page</a>
                 <li class="ng-binding search-list-group-item">
                     Title:   {{model.book.title}}
                 </li >
