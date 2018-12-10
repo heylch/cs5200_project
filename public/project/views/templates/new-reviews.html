@@ -3,17 +3,17 @@
     <ul  class="list-group list-div active">
         <li ng-repeat="review in model.reviews" class="list-group-item">
             <div class="row">
-                <div class="song-info-div">
+                <div class="book-info-div">
                     <div ng-show="review._reader.username">
                         <label class="explore-label">Reader Name:</label><span></span>
                         <a href="#!/user/{{review._reader._id}}"
-                           class="song-name">{{review._reader.username}}</a>
+                           class="book-name">{{review._reader.username}}</a>
                     </div>
 
                     <div ng-show="review._reader.username">
                         <label class="explore-label">Book:</label><span></span>
                         <a href="#!/book/{{review._book._id}}"
-                           class="song-name">{{review._book.title}}</a>
+                           class="book-name">{{review._book.title}}</a>
                     </div>
 
 
@@ -26,8 +26,8 @@
                         <a class="reivew-content">{{review.comment}}</a>
                     </div>
                 </div>
-                <div class="song-artist-photo-div" ng-show="review._reader.username">
-                    <img class="song-artist-photo"
+                <div class="book-publisher-photo-div" ng-show="review._reader.username">
+                    <img class="book-publisher-photo"
                          ng-src={{review._reader.avatar}}>
                 </div>
             </div>

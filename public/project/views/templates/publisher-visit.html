@@ -1,35 +1,35 @@
 <div  ng-include="'views/templates/footer-explore.html'"></div>
 <div ng-include="'views/templates/header.html'"></div>
 
-<div class="musician-detail-div container-fluid">
-    <div class="musician-detail-header-div">
-        <div class="musician-detail-header-img-div">
-            <img class="musician-photo-large" ng-src="{{model.publisher.avatar}}">
+<div class="publisher-detail-div container-fluid">
+    <div class="publisher-detail-header-div">
+        <div class="publisher-detail-header-img-div">
+            <img class="publisher-photo-large" ng-src="{{model.publisher.avatar}}">
         </div>
     </div>
-    <div class="musician-detail-header-div">
-        <div class="musician-detail-header-description-div">
+    <div class="publisher-detail-header-div">
+        <div class="publisher-detail-header-description-div">
             <div>
-                <label class="musician-detail-label">Publisher Name:</label><span></span>
+                <label class="publisher-detail-label">Publisher Name:</label><span></span>
                 <span>{{model.publisher.username}}</span>
             </div>
         </div>
-        <div class="musician-detail-header-control-div">
+        <div class="publisher-detail-header-control-div">
             <div ng-show="model.user.type === 'READER'">
                 <a ng-click="model.followPublisher()" class="detail-operator">
                     <span class="glyphicon glyphicon-heart"></span></a>
             </div>
         </div>
     </div>
-    <div class="musician-detail-conntent-div">
+    <div class="publisher-detail-conntent-div">
         <ul class="list-group list-div active">
             <li ng-repeat="book in model.books" class="list-group-item col-sm-6">
                 <div class="row">
-                    <div class="song-info-div">
+                    <div class="book-info-div">
                         <div>
                             <label class="explore-label">Name:</label><span></span>
                             <a href="#!/book/{{book._id}}"
-                               class="song-name">{{book.title}}</a>
+                               class="book-name">{{book.title}}</a>
                         </div>
                     </div>
                 </div>

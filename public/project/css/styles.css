@@ -208,7 +208,7 @@ li:hover {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.song-artist-photo {
+.book-publisher-photo {
     width: 60px;
     height: 60px;
     float: right;
@@ -216,14 +216,14 @@ li:hover {
     margin-top: 2px;
 }
 
-.song-artist-photo-div {
+.book-publisher-photo-div {
     margin-right: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
     flex: auto;
 }
 
-.song-info-div {
+.book-info-div {
     padding-left: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -234,7 +234,7 @@ label.explore-label {
     font-weight: 100;
 }
 
-label.song-detail-label {
+label.book-detail-label {
     font-weight: 100;
 }
 
@@ -245,28 +245,28 @@ span.separator {
     display: block;
 }
 
-.song-name {
+.book-name {
     cursor: pointer;
     font-weight: 500;
     color: mediumaquamarine;
 }
 
-a.song-name:hover {
+a.book-name:hover {
     color: aquamarine;
     font-size: x-large;
 }
 
 
 
-.song-artist-photo.btn-default{
+.book-publisher-photo.btn-default{
     background: transparent;
  }
 
-.song-detail-div {
+.book-detail-div {
     margin: 50px 15px 15px 15px;
 }
 
-.song-detail-header-div {
+.book-detail-header-div {
     margin: 20px;
     display: flex;
     justify-content: center;
@@ -274,27 +274,27 @@ a.song-name:hover {
     font-size: 18px;
 }
 
-.song-artist-photo-large {
+.book-publisher-photo-large {
     width: 200px;
     height: 200px;
     float: left;
 }
 
-.song-artist-photo-large{
+.book-publisher-photo-large{
     background: transparent;
 }
 
-.song-detail-header-description-div {
+.book-detail-header-description-div {
     margin-left: 20px
 }
 
-.musician-detail-div {
+.publisher-detail-div {
     margin: 20px;
     padding-top: 25px;
     padding-bottom: 25px;
 }
 
-.musician-detail-header-div {
+.publisher-detail-header-div {
     margin: 20px;
     display: flex;
     justify-content: center;
@@ -302,11 +302,11 @@ a.song-name:hover {
     font-size: 18px;
 }
 
-label.musician-detail-label {
+label.publisher-detail-label {
     font-weight: 100;
 }
 
-.musician-photo-large {
+.publisher-photo-large {
     width: 200px;
     height: 200px;
     float: left;
@@ -419,12 +419,12 @@ a.tag-icon:hover {
     color: #efefef;
 }
 
-a.api-song-name {
+a.api-book-name {
     color: lightgoldenrodyellow;
     cursor: pointer;
 }
 
-a.api-song-name:hover {
+a.api-book-name:hover {
     font-size: 20px;
     color: lightgoldenrodyellow;
 }

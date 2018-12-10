@@ -3,20 +3,20 @@
     <ul  class="list-group list-div active">
         <li ng-repeat="booklist in model.booklists" class="list-group-item">
             <div class="row">
-                <div class="song-info-div">
+                <div class="book-info-div">
                     <div ng-show="booklist._owner.username">
                         <label class="explore-label">Creater Name:</label><span></span>
-                        <a class="song-name">{{booklist._owner.username}}</a>
+                        <a class="book-name">{{booklist._owner.username}}</a>
                     </div>
 
                     <div ng-show="booklist._owner.username">
                         <label class="explore-label">Booklist:</label><span></span>
                         <a href="#!/booklist/{{booklist._id}}"
-                           class="song-name">{{booklist.name}}</a>
+                           class="book-name">{{booklist.name}}</a>
                     </div>
                 </div>
-                <div class="song-artist-photo-div" ng-show="review._reader.username">
-                    <img class="song-artist-photo"
+                <div class="book-publisher-photo-div" ng-show="review._reader.username">
+                    <img class="book-publisher-photo"
                          ng-src={{review._reader.avatar}}>
                 </div>
             </div>

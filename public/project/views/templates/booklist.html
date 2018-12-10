@@ -1,20 +1,20 @@
 <div  ng-include="'views/templates/footer-explore.html'"></div>
 <div ng-include="'views/templates/header.html'"></div>
 <div id="explore-back"><a href="#!/home"><span class="glyphicon glyphicon-arrow-left"></span></a></div>
-<div class="song-detail-div container-fluid">
-    <div  class="song-detail-header-div">
-        <div class="song-detail-header-description-div">
+<div class="book-detail-div container-fluid">
+    <div  class="book-detail-header-div">
+        <div class="book-detail-header-description-div">
             <div>
-                <label class="song-detail-label">Booklist Name:</label><span></span>
+                <label class="book-detail-label">Booklist Name:</label><span></span>
                 <span>{{model.booklist.name}}</span>
             </div>
             <div ng-show="model.booklist._owner">
-                <label class="song-detail-label">Owner:</label><span></span>
+                <label class="book-detail-label">Owner:</label><span></span>
                 <span>{{model.booklist._owner.username}}</span>
             </div>
 
         </div>
-        <div class="song-detail-header-control-div">
+        <div class="book-detail-header-control-div">
             <div ng-show="model.user.type === 'READER'">
                 <a class="detail-operator" ng-click="model.reviewBooklist(booklist)"><span class="glyphicon glyphicon-pencil"></span></a>
             </div>
@@ -30,24 +30,24 @@
             <ul class="list-group list-div active">
                 <li ng-repeat="book in model.books" class="list-group-item">
                     <div class="row">
-                        <div class="song-info-div">
+                        <div class="book-info-div">
                             <div>
                                 <label class="explore-label">Name:</label><span></span>
                                 <a href="#!/book/{{book._id}}"
-                                   class="song-name">{{book.title}}</a>
+                                   class="book-name">{{book.title}}</a>
                             </div>
                             <div ng-show="book._publisher">
                                 <label class="explore-label">Publisher:</label>
                                 <a href="#!/publisher/{{book._publisher._id}}"
-                                   class="song-name">{{book._publisher.username}}</a>
+                                   class="book-name">{{book._publisher.username}}</a>
                             </div>
                             <div ng-hide="book._publisher">
                                 <label class="explore-label">Author:</label>
                                 {{book.author}}
                             </div>
                         </div>
-                        <div class="song-artist-photo-div">
-                            <img class="song-artist-photo" ng-src="{{book.image}}">
+                        <div class="book-publisher-photo-div">
+                            <img class="book-publisher-photo" ng-src="{{book.image}}">
                         </div>
                     </div>
                 </li>

@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <h2>My Reviews</h2>
-    <div class="musician-detail-conntent-div">
+    <div class="publisher-detail-conntent-div">
         <ul  class="list-group list-div active">
             <li ng-repeat="review in model.reviews" class="list-group-item col-xs-12 col-sm-6">
                 <div class="row">
@@ -12,7 +12,7 @@
                         </div>
                         <div ng-show="review._book" class="review-item">
                             <h2>for Book:</h2>
-                            <h3 class="reivew-content song-name">{{review._book.title}}</h3>
+                            <h3 class="reivew-content book-name">{{review._book.title}}</h3>
                         </div>
                         <div ng-show="review._booklist" class="review-item">
                             <h2>For Booklist:</h2>

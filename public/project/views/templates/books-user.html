@@ -1,18 +1,18 @@
 <div class="container-fluid">
     <h2>Books</h2>
-    <div class="musician-detail-conntent-div">
+    <div class="publisher-detail-conntent-div">
         <ul class="list-group list-div active">
             <li ng-repeat="book in model.userBooks" class="list-group-item col-xs-12 col-sm-6">
                 <div class="row">
-                    <div class="song-info-div">
+                    <div class="book-info-div">
                         <div>
                             <label class="explore-label">Name:</label><span></span>
                             <a href="#!/book/{{book._id}}"
-                               class="song-name">{{book.title}}</a>
+                               class="book-name">{{book.title}}</a>
                         </div>
                     </div>
-                    <div class="song-artist-photo-div">
-                        <img class="song-artist-photo" ng-src="{{book.image}}">
+                    <div class="book-publisher-photo-div">
+                        <img class="book-publisher-photo" ng-src="{{book.image}}">
                     </div>
                     <a ng-click="model.deleteBook(book._id)" href=""><span class="glyphicon glyphicon-remove"></span></a>
                 </div>

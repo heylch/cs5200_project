@@ -1,26 +1,26 @@
 <div  ng-include="'views/templates/footer-explore.html'"></div>
 <div ng-include="'views/templates/header.html'"></div>
 <div id="explore-back"><a href="#!/home"><span class="glyphicon glyphicon-arrow-left"></span></a></div>
-<div class="song-detail-div container-fluid">
-    <div class="song-detail-header-div">
-        <div class="song-detail-header-img-div">
-            <img class="song-artist-photo-large"  ng-src="{{model.book.image}}">
+<div class="book-detail-div container-fluid">
+    <div class="book-detail-header-div">
+        <div class="book-detail-header-img-div">
+            <img class="book-publisher-photo-large"  ng-src="{{model.book.image}}">
         </div>
-        <div class="song-detail-header-description-div">
+        <div class="book-detail-header-description-div">
             <div>
-                <label class="song-detail-label">Book Name:</label><span></span>
+                <label class="book-detail-label">Book Name:</label><span></span>
                 <span>{{model.book.title}}</span>
             </div>
             <div ng-show="model.book.author">
-                <label class="song-detail-label">Author:</label><span></span>
+                <label class="book-detail-label">Author:</label><span></span>
                 <span>{{model.book.author}}</span>
             </div>
             <div>
-                <label class="song-detail-label">Publisher:</label><span></span>
+                <label class="book-detail-label">Publisher:</label><span></span>
                 <span>{{model.book.publisher}}</span>
             </div>
         </div>
-        <div class="song-detail-header-control-div">
+        <div class="book-detail-header-control-div">
             <div ng-show="model.user.type === 'READER'">
                 <a class="detail-operator" ng-click="model.reviewBook(book)"><span class="glyphicon glyphicon-pencil"></span></a>
                 <a class="detail-operator" ng-click="model.favouriteBook('yes')"><span class="glyphicon glyphicon-plus"></span></a>
@@ -75,7 +75,7 @@
     <ul  class="list-group list-div active">
         <li ng-repeat="review in model.book._reviews" class="list-group-item">
             <div class="row">
-                <div class="song-info-div">
+                <div class="book-info-div">
                     <div class="review-item">
                         <label class="explore-label">Review Title:</label>
                         <a class="reivew-content">{{review.title}}</a>
@@ -86,8 +86,8 @@
                     </div>
 
                 </div>
-                <div class="song-artist-photo-div" ng-show="review._reader.username">
-                    <img class="song-artist-photo"
+                <div class="book-publisher-photo-div" ng-show="review._reader.username">
+                    <img class="book-publisher-photo"
                          ng-src={{review._reader.avatar}}>
                 </div>
             </div>
