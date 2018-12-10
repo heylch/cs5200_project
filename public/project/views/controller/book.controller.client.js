@@ -88,7 +88,7 @@
             model.buy = "no";
             model.edit = "no";
             model.getReview();
-            model.editreview = 'yes';
+            model.review = 'yes';
         }
 
         function addReviewToBook(title, comment){
@@ -185,7 +185,10 @@
         }
 
         function favouriteBook(option) {
-            model.favourite = option;
+            model.favourite = "yes";
+            model.review = "no";
+            model.edit = "no";
+            model.buy = 'no';
 
         }
 
