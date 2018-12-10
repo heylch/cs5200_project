@@ -77,7 +77,6 @@ function findAllBooklistsByUser(req, res) {
     booklistModel
         .findAllBooklistsByUserId(userId)
         .then(function (lists) {
-            // console.log(lists);
             res.json(lists);
         }, function (err) {
             res.sendStatus(404).send(err);
@@ -111,8 +110,6 @@ function addBookToBooklist(req,res) {
     var booklistId = req.params.booklistId;
     var bookId = req.params.bookId;
     console.log("booklist server");
-    // console.log(playlistId);
-    // console.log(songId);
     booklistModel
         .addBookToBooklist(booklistId, bookId)
         .then(function (list) {

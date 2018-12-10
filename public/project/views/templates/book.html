@@ -76,23 +76,6 @@
         <li ng-repeat="review in model.book._reviews" class="list-group-item">
             <div class="row">
                 <div class="song-info-div">
-                    <!--<div class="review-item">-->
-                    <!--<h2>Critic Name:</h2>-->
-                    <!--<a class="reivew-content" href="#!/critic/{{review._critic._id}}">{{review._critic.username}}</a>-->
-                    <!--</div>-->
-                    <!--<div ng-show="review._reader.username">-->
-                        <!--<label class="explore-label">Reader Name:</label><span></span>-->
-                        <!--<a href="#!/user/{{review._reader._id}}"-->
-                           <!--class="song-name">{{review._reader.username}}</a>-->
-                    <!--</div>-->
-
-                    <!--<div ng-show="review._reader.username">-->
-                        <!--<label class="explore-label">Book:</label><span></span>-->
-                        <!--<a href="#!/book/{{review._book._id}}"-->
-                           <!--class="song-name">{{review._book.title}}</a>-->
-                    <!--</div>-->
-
-
                     <div class="review-item">
                         <label class="explore-label">Review Title:</label>
                         <a class="reivew-content">{{review.title}}</a>
@@ -101,11 +84,6 @@
                         <label class="explore-label">Comment:</label>
                         <a class="reivew-content">{{review.comment}}</a>
                     </div>
-                    <!--<div class="review-item">-->
-                    <!--<label class="explore-label">Rating:</label>-->
-                    <!--<h3 class="reivew-content">{{review.rating}}</h3>-->
-                    <!--</div>-->
-
 
                 </div>
                 <div class="song-artist-photo-div" ng-show="review._reader.username">

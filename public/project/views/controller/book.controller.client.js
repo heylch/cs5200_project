@@ -68,7 +68,6 @@
                             break;
                         }
                     console.log(model.ownBook)
-                    // console.log(model.user._id)
                 })
         }
 

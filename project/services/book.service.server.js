@@ -19,7 +19,6 @@ app.put("/projectapi/book/:bookId/bookstore/:bookstoreId/price/:priceNum", addBo
 app.put("/projectapi/book/:bookId/bookstore/:publisherId/price/:priceNum", addBookPublisher);
 app.post("/projectapi/book/api", createBookFromApi);
 app.get("/projectapi/review/book/:bookId", findBookByIdWithReview);
-// app.put("/projectapi/book/:bookId/booklist/:booklistId", addBooklistToBook);
 app.get("/projectapi/search/thirdparty",searchFromThirdPary);
 app.get("/projectapi/search/thirdparty/detail",searchFromThirdParyDetail);
 app.get("/projectapi/book/isbn",findBookByISBN);
@@ -140,12 +139,6 @@ function updateBook(req, res){
 function deleteBook(req, res) {
     var bookId = req.params.bookId;
     var userId = req.params.userId;
-    // bookModel.findBookById(bookId)
-    //     .then(function (book) {
-    //         var filePath = __dirname + '/../../';
-    //         filePath += book.url;
-    //         fs.unlinkSync(filePath);
-    //     });
     userModel
         .deleteBook(userId, bookId)
         .then(function (book) {
@@ -205,37 +198,11 @@ function addBookBookstore(req, res) {
         })
 }
 
-// function addBooklistToBook(req,res) {
-//     var bookId = req.params.bookId;
-//     var booklistId = req.params.booklistId;
-//     return bookModel
-//         .addBooklistToBook(booklistId,bookId)
-//         .then(function (book) {
-//             res.json(book);
-//         });
-// }
 
 function createBookFromApi(req, res) {
     var book = req.body;
-    // bookModel
-    //     .findOne({thridPartyId: book.thridPartyId})
-    //     .then(
-    //         function (user) {
-    //             if (user) {//.length !== 0
-    //                 res.json(user);
-    //             } else {
-    //                 bookModel.createBookFromApi(book)
-    //                     .then(function (bookTmp) {
-    //                         res.json(bookTmp);
-    //                     })
-    //             }
-    //         })
-    // console.log("create book from api server1");
-    // console.log(book);
     bookModel.createBookFromApi(book)
         .then(function(bookTmp){
-            // console.log("create book from api server2");
-            // console.log(bookTmp);
             res.json(bookTmp);
         })
 }
@@ -244,7 +211,6 @@ function searchFromThirdPary(req,res) {
     var bookname = req.query.bookname;
     request('https://api.itbook.store/1.0/search/'+bookname, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            // console.log(body); // Print the google web page.
             res.json(body);
         }
     })

@@ -6,36 +6,17 @@ var userModel = require("../model/user.model.server");
 
 app.post("/projectapi/user/:userId/book/:bookId/review", createReviewForBook);
 app.post("/projectapi/user/:userId/booklist/:booklistId/review", createReviewForBooklist);
-app.post("/projectapi/user/:userId/musician/:musicianId/review", createReviewForMusician);
 app.get("/projectapi/search/review/:reviewId", findReviewById);
 app.get("/projectapi/reviews", findAllReviews);
-app.get("/projectapi/musician/:musicianId/review", findReviewByMusicianId);
-app.get("/projectapi/playlist/:playlistId/review", findReviewByPlaylistId);
 app.get("/projectapi/book/:bookId/review", findReviewByBookId);
 app.get("/projectapi/user/:userId/review", findAllReviewsByUser);
 app.put("/projectapi/review/:reviewId", updateReview);
 app.delete("/projectapi/review/:reviewId", deleteReview);
 app.delete("/projectapi/listreview/:reviewId", deleteReviewForBooklist);
-
 app.get("/projectapi/userreview/:userId/:bookId", isReviewed);
 app.get("/projectapi/listreview/:userId/:booklistId", isReviewedbybooklist);
 
 
-
-
-
-
-
-function createReviewForMusician(req,res) {
-    var review = req.body;
-    var userId = req.params.userId;
-    var musicianId = req.params.musicianId;
-    reviewModel
-        .createReviewForMusician(userId, musicianId,review)
-        .then(function (review ) {
-            res.json(review);
-        });
-}
 
 function findReviewById(req,res) {
     var reviewId = req.params.reviewId;
@@ -48,16 +29,6 @@ function findReviewById(req,res) {
         });
 }
 
-function findReviewByMusicianId(req,res) {
-    var musicianId = req.params.musicianId;
-    reviewModel
-        .findReviewByMusicianId(musicianId)
-        .then(function (review) {
-            res.json(review);
-        }, function (err) {
-            res.sendStatus(404).send(err);
-        });
-}
 
 function findReviewByBookId(req,res) {
     var bookId = req.params.bookId;
@@ -70,16 +41,6 @@ function findReviewByBookId(req,res) {
         });
 }
 
-function findReviewByPlaylistId(req, res) {
-    var playlistId = req.params.playlistId;
-    reviewModel
-        .findReviewByPlaylistId(playlistId)
-        .then(function (review) {
-            res.json(review);
-        }, function (err) {
-            res.sendStatus(404).send(err);
-        });
-}
 
 function findAllReviewsByUser(req, res) {
     var userId = req.params.userId;
@@ -100,7 +61,6 @@ function createReviewForBook(req,res) {
     reviewModel
         .createReviewForBook(userId, bookId,review)
         .then(function (review) {
-            // console.log("create review for book");
             res.json(review);
         });
 }

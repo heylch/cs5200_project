@@ -24,9 +24,8 @@
         model.unFollow = unFollow;
         model.findAllBooksByUser = findAllBooksByUser;
         model.findReviewsByReader = findReviewsByReader;
-        model.findMusicianAvatar = findMusicianAvatar;
+        model.findUserAvatar = findUserAvatar;
         model.findTransactions = findTransactions;
-        // model.findTransactionsByMusician = findTransactionsByMusician;
         model.accecptTransaction = accecptTransaction;
         model.rejectTransaction = rejectTransaction;
         model.cancelTransaction = cancelTransaction;
@@ -48,15 +47,6 @@
             console.log("user");
             console.log(user);
             console.log(model.user);
-            // if (model.user.type === 'MUSICIAN') {
-            //     model.rightPanel = 'my-songs';
-            //     findSongsByMusician();
-            //     findCritics();
-            // }
-            // if (model.user.type === 'PUBLISHER') {
-            //     model.rightPanel = 'transactions';
-            //     findTransactionsByPublisher();
-            // }
             if(model.user.type ==="READER") {
                 findPublishers();
                 findBookstores();
@@ -65,19 +55,6 @@
             }
             findBooklists();
             findTransactions();
-            // if (model.user.type === 'CRITIC') {
-            //     model.rightPanel = 'my-reviews';
-            //     findMusicians();
-            //     findBooklists()
-            //     findReviewsByCritic();
-            // }
-            //
-            // if (model.user.type === 'ADMIN') {
-            //     findCritics();
-            //     findAllUsers();
-            //     findAllSongs();
-            //     findAllReviews();
-            // }
         }
 
         init();
@@ -107,7 +84,6 @@
             userService.findFollowingByTypeByUser(user._id, 'BOOKSTORE')
                 .then(function (response) {
                     model.followingBookstores = response.data;
-                    // console.log(model.followingMusicians);
                 })
         }
 
@@ -137,13 +113,12 @@
                     console.log("find booklists");
                     console.log(response);
                     model.booklists = response.data;
-                    // console.log("model.playlists")
-                    // console.log(model.playlists);
+
                 });
         }
 
         function findTransactions(){
-            // model.transactions = user._transactions;
+
             transactionService.findAllTransactionsByUser(user._id)
                 .then(function (response) {
                     model.transactions = response.data;
@@ -160,8 +135,6 @@
             searchService.searchBook(book)
                 .then(function (response) {
                     model.search = JSON.parse(response.data).books;
-                    // var books = JSON.parse(response.data);
-                    // console.log(books);
                 })
         }
 
@@ -236,13 +209,11 @@
                     console.log(response);
                     model.booksFromBooklist = response.data;
                     model.rightPanel = "booklist";
-                    // console.log("getAllSongsFromPlaylist");
-                    // console.log(model.books);
                 })
         }
 
-        function findMusicianAvatar(musicianId) {
-            return userService.findUserById(musicianId)
+        function findUserAvatar(userId) {
+            return userService.findUserById(userId)
                 .then(function (response) {
                     return response.data.avatar;
                 })
@@ -259,16 +230,6 @@
                 })
         }
 
-
-        // function findSongsByMusician() {
-        //     model.rightPanel = 'my-books';
-        //     songService.findAllSongsByUser(model.user._id)
-        //         .then(function (response) {
-        //             model.musicianSongs = response.data;
-        //             console.log("findSongById");
-        //             console.log(model.musicianSongs);
-        //         })
-        // }
         function deleteReview(reiviewId) {
             reviewService
                 .deleteReview(reiviewId)
@@ -357,12 +318,6 @@
         }
 
         function addBookToLocal(book) {
-            // bookService.findBookByISBN(book.isbn13)
-            //     .then(function (response) {
-            //         console.log(response)
-            //     },function (err) {
-            //
-            //     })
 
             var newBook = {
                 "title": book.title,
@@ -380,11 +335,6 @@
                     model.realBook = response.data;
                     return response.data;
                 })
-            // alert("successfully added to local database!")
-            // return songService.createSongFromApi(newSong)
-            //     .then(function (response) {
-            //         return response.data;
-            //     })
         }
 
         function findAllUsers() {

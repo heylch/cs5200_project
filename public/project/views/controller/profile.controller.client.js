@@ -37,21 +37,10 @@
                 model.errorMessage = "password is required";
                 return;
             }
-            // else if (firstname === null || firstname === '' || typeof firstname === 'undefined'){
-            //     model.errorMessage = "firstname is required";
-            //     return;
-            // }
-            // else if (lastname === null || lastname === '' || typeof lastname === 'undefined'){
-            //     model.errorMessage = "lastname is required";
-            //     return;
-            // }
             else{
                 model.errorMessage = '1';
                 userService.updateUser(user._id, user)
                     .then(function (response) {
-                        // model.user = response.data;
-                        // model.user = cloneObj(_user);
-                        // if(model.user != "0"){
                         alert("update scceuss");
                         return;
                         // }

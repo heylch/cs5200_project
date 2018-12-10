@@ -37,14 +37,12 @@ app.get("/projectapi/user/:userId/following", findFollowingByUser);
 app.get("/projectapi/user/:userId/following/:followingtype", findFollowingByTypeByUser);
 app.get("/projectapi/user/:userId/following", findFollowingByUser);
 app.get("/projectapi/user/:userId/following", findFollowingByUser);
-// app.get("/projectapi/user/:userId/follower", findFollowersByUser);
 app.get("/projectapi/users", findAllUsers);
 app.get("/projectapi/checkLogin", checkLogin);
 app.put("/projectapi/user/:userId", updateUser);
 app.put("/projectapi/user/:userId/booklist/:booklistId", addBooklistToUser);
 app.put("/projectapi/user/:userId/book/:bookId", addBook);
 app.put("/projectapi/user/:userId/following/:followingId", addFollowingByUser);
-// app.put("/projectapi/user/:userId/follower/:followerId", addFollowerByUser);
 app.put("/projectapi/user/:userId/unfollowuser/:followingId", unFollowUser);
 app.delete("/projectapi/user/:userId", deleteUser);
 app.post("/projectapi/avatar", upload.single('avatar'), uploadAvatar);
@@ -155,13 +153,6 @@ function updateUser(req,res) {
         }
     })
 
-    // userModel
-    //     .updateUser(userId,user)
-    //     .then(function (user) {
-    //         res.json(user);
-    //     }, function (err) {
-    //         res.sendStatus(404).send(err);
-    //     });
 
 }
 
@@ -278,30 +269,6 @@ function findFollowingByTypeByUser(req,res){
             res.sendStatus(404).send(err);
         });
 }
-
-// function findFollowersByUser(req, res) {
-//     var userId = req.params.userId;
-//     userModel
-//         .findFollowersByUser(userId)
-//         .then(function (follwer) {
-//             res.json(follwer);
-//         }, function (err) {
-//             res.sendStatus(404).send(err);
-//         });
-// }
-
-// function addFollowerByUser(req, res) {
-//     var userId = req.params.userId;
-//     var followerId = req.params.followerId;
-//     console.log(userId);
-//     userModel
-//         .addFollowersByUser(userId,followerId)
-//         .then(function (user) {
-//             res.send("1");
-//         }, function (err) {
-//             res.send("0");
-//         });
-// }
 
 function addFollowingByUser(req,res) {
     var userId = req.params.userId;

@@ -18,14 +18,12 @@
             <table ng-show = "model.search" class="col-sm-4">
                 <tr class="search-table" ng-repeat="book in model.search">
                     <td>
-                        <!--<a class="tag-icon" ng-click="model.addBookToLocal(book)"><span class="glyphicon glyphicon-save"></span></a>-->
                         <a class="api-song-name"
                            ng-click="model.showDetails(book)">
                             {{book.title}}
                         </a>
                     </td>
                     <td>
-                        <!--{{song.artists[0].name}}-->
                     </td>
                 </tr>
             </table>
