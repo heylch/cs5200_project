@@ -197,8 +197,10 @@
                 })
         }
 
-        function updateBook(bookname) {
+        function updateBook(bookname,bookSubTitle,bookPrice) {
             model.book.title = bookname;
+            model.book.subTitle = bookSubTitle;
+            model.book.price = bookPrice;
             bookService.updateBook(model.book._id, model.book)
                 .then(function (response) {
                     model.edit = 'no';

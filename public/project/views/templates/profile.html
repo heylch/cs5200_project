@@ -45,7 +45,22 @@
                ng-model="model.user.password"
                id="pass"
         >
-
+        <div ng-show="model.user.type === 'PUBLISHER'" >
+            <h5>Name</h5>
+            <input type="text"
+                   class="form-control input-block"
+                   placeholder="name"
+                   ng-model="model.user._publisher.name"
+            >
+        </div>
+        <div ng-show="model.user.type === 'BOOKSTORE'" >
+            <h5>Name</h5>
+            <input type="text"
+                   class="form-control input-block"
+                   placeholder="name"
+                   ng-model="model.user._bookstore.name"
+            >
+        </div>
         <div ng-show="model.user.type === 'READER'" >
             <h5>Balance</h5>
             <input type="text"

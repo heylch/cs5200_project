@@ -5,7 +5,17 @@
                class="form-control input-block"
                placeholder="{{model.book.title}}"
                ng-model="model.book.newTitle">
-        <button class="btn-primary btn btn-block" ng-click="model.updateBook(model.book.newTitle)">Update</button>
+        <h5>Book Description</h5>
+        <input type="text"
+               class="form-control input-block"
+               placeholder="{{model.book.subTitle}}"
+               ng-model="model.book.newSubTitle">
+        <h5>Book price</h5>
+        <input type="text"
+               class="form-control input-block"
+               placeholder="{{model.book.price}}"
+               ng-model="model.book.newPrice">
+        <button class="btn-primary btn btn-block" ng-click="model.updateBook(model.book.newTitle,model.book.newSubTitle,model.book.newPrice)">Update</button>
         <button class="btn-danger btn btn-block" ng-click="model.deleteBook(model.book)">Delete</button>
     </form>
 </div>
