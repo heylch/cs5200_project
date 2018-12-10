@@ -5,7 +5,6 @@ const bookstoreSchema = require('./bookstore.schema.server.js');
 var userSchema = mongoose.Schema({
     username: String,
     password: String,
-    emali: String,
     balance: {type:Number,default:0},
     avatar: {
         type: String,
