@@ -2,7 +2,6 @@ var bookModel = require( "../model/book.model.server");
 var booklistModel = require( "../model/booklist.model.server");
 var app = require("../../express");
 var reviewModel = require("../model/review.model.server");
-var songModel = require("../model/song.model.server");
 var userModel = require("../model/user.model.server");
 
 app.post("/projectapi/user/:userId/book/:bookId/review", createReviewForBook);

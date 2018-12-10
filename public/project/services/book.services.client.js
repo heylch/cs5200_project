@@ -19,6 +19,7 @@
             // "addBooklistToBook": addBooklistToBook,
             "createBookFromApi": createBookFromApi,
             "findBookByIdWithReview": findBookByIdWithReview,
+            "findAllNewBooks":findAllNewBooks
         };
         return api;
 
@@ -75,6 +76,11 @@
             var url = "/projectapi/book/" + bookId + "/owner/" + ownerId + "/price/" + price;
             console.log(url);
             return $http.put(url);
+        }
+
+        function findAllNewBooks(){
+            var url = "/projectapi/book/new"
+            return $http.get(url);
         }
 
         // function addBooklistToBook(booklistId, bookId) {

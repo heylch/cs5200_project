@@ -1,6 +1,6 @@
 <div class="search">
-    <h1 class="visible-sm visible-md visible-lg">Upload My Book</h1>
-    <h2 class="visible-xs">Upload My Book</h2>
+    <h1 class="visible-sm visible-md visible-lg">Publish Book</h1>
+    <h2 class="visible-xs">Publish Book</h2>
     <div class="alert " ng-show="model.errorMessage !== '1'">
         <span class="closebtn" ng-click="model.defaultMessage()">&times;</span>
         {{model.errorMessage}}
@@ -8,10 +8,12 @@
     <form action="/projectapi/upload" id = "upload" method="post" enctype="multipart/form-data">
         <input  name="myFile" type="file" class="form-control"/>
         <input  name="title" id="title" placeholder="Book Name" class="form-control">
+        <input  name="subTitle" id="subTitle" placeholder="Book Description" class="form-control">
         <input  name="userId" value="{{model.user._id}}"   style="display: none"/>
-        <input  name="image" value="{{model.user.avatar}}"   style="display: none"/>
+        <input  name="image" value="/avatar/default-cover.png"   style="display: none"/>
         <input  name="isbn" id="isbn" placeholder="ISBN NUMBER" class="form-control">
         <input  name="author" id="author" placeholder="Author Name" class="form-control">
+        <input  name="publisher" id="publisher" placeholder="Publisher Name" class="form-control">
         <input  name="price" id="price" placeholder="price" class="form-control">
         <button type="submit" class="btn btn-block btn-success">Upload Book</button>
     </form>

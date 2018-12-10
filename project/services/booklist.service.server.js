@@ -1,8 +1,6 @@
 var app = require("../../express");
 var booklistModel = require("../model/booklist.model.server");
 
-
-
 app.post("/projectapi/user/:userId/booklist", createBooklistForUser);
 app.get("/projectapi/booklist", findBooklistByBooklistName);
 app.get("/projectapi/user/:userId/booklist", findAllBooklistsByUser);

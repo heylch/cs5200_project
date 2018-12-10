@@ -1,5 +1,3 @@
-var authorModel =require("./author.model.server");
-
 var mongoose = require("mongoose");
 var reviewSchema = require("./review.schema.server");
 var reviewModel = mongoose.model("ReviewModel", reviewSchema);
@@ -25,7 +23,7 @@ module.exports = reviewModel;
 function createReviewForBook(userId, bookId, review) {
     review._reader = userId;
     review._book = bookId;
-    review.type = "BOOK"
+    review.type = "BOOK";
     var reviewId = null;
     var reviewTemp = null;
     return reviewModel
@@ -100,7 +98,6 @@ function findAllReviewsByUser(userId) {
         .find({_reader: userId})
         .populate('_book')
         .populate('_booklist')
-        // .populate('_author')
         .exec();
 }
 

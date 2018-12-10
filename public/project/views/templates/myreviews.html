@@ -5,6 +5,7 @@
             <li ng-repeat="review in model.reviews" class="list-group-item col-xs-12 col-sm-6">
                 <div class="row">
                     <div>
+                        <a ng-click="model.deleteReview(review._id)" href=""><span class="glyphicon glyphicon-remove"></span></a>
                         <div class="review-item">
                             <h2>Review Title:</h2>
                             <h3 class="reivew-content">{{review.title}}</h3>
@@ -13,17 +14,14 @@
                             <h2>for Book:</h2>
                             <h3 class="reivew-content song-name">{{review._book.title}}</h3>
                         </div>
+                        <div ng-show="review._booklist" class="review-item">
+                            <h2>For Booklist:</h2>
+                            <h3 class="reivew-content">{{review._booklist.name}}</h3>
+                        </div>
                         <div class="review-item">
                             <h2>comment:</h2>
                             <h3 class="reivew-content">{{review.comment}}</h3>
                         </div>
-                        <div ng-show="review._booklist" class="review-item">
-                            <h2>For Booklist:</h2>
-                            <h3 class="reivew-content">{{review.review._booklist.name}}</h3>
-                        </div>
-                        <a ng-click="model.deleteReview(review._id)" href=""><span class="glyphicon glyphicon-remove"></span></a>
-
-
                     </div>
                 </div>
             </li>

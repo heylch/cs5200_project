@@ -15,9 +15,6 @@
                 controller: "searchController",
                 controllerAs: "model"
             })
-            .when("/play", {
-                templateUrl: "views/templates/play.html"
-            })
             .when("/", {
                 templateUrl: "views/templates/login.html",
                 controller: "loginController",
@@ -92,22 +89,6 @@
                 controller: "followController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/edit", {
-                templateUrl: "views/templates/admin-edit-user.html",
-                controller: "adminEditUserController",
-                controllerAs: "model",
-                resolve: {
-                    user: checkLogin
-                }
-            })
-            .when("/review/:rid/edit", {
-                templateUrl: "views/templates/admin-edit-review.html",
-                controller: "adminEditReviewController",
-                controllerAs: "model",
-                resolve: {
-                    user: checkLogin
-                }
-            })
             .when("/book/:bookId", {
                 templateUrl: "views/templates/book.html",
                 controller: "bookController",
@@ -132,14 +113,7 @@
                     user: checkLogin
                 }
             })
-            .when("/critic/:criticId", {
-                templateUrl: "views/templates/critic-visit.html",
-                controller: "criticVisitController",
-                controllerAs: "model",
-                resolve: {
-                    user: checkLogin
-                }
-            })
+
 
         function checkLogin(userService, $q, $location) {
             var deferred = $q.defer();

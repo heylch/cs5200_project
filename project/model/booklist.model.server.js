@@ -81,7 +81,7 @@ function addBookToBooklist(booklistId,bookId) {
         .then(function (list) {
             var flag = '0';
             for(var i = 0; i < list._books.length; i ++) {
-                if(list._books[i] == bookId) {
+                if(list._books[i]._id == bookId) {
                     flag = '1';
                     break;
                 }

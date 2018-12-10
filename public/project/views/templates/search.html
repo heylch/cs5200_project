@@ -1,6 +1,6 @@
 <!--<div ng-include="'views/templates/header.html'"></div>-->
 
-
+<div id="explore-back"><a href="#!"><span class="glyphicon glyphicon-arrow-left"></span></a></div>
 <div class="search">
         <h1 class="visible-sm visible-md visible-lg">IT Books</h1>
         <h2 class="visible-xs">IT Books</h2>
@@ -18,7 +18,7 @@
             <table ng-show = "model.search" class="col-sm-4">
                 <tr class="search-table" ng-repeat="book in model.search">
                     <td>
-                        <a class="tag-icon" ng-click="model.addBookToLocal(book)"><span class="glyphicon glyphicon-save"></span></a>
+                        <!--<a class="tag-icon" ng-click="model.addBookToLocal(book)"><span class="glyphicon glyphicon-save"></span></a>-->
                         <a class="api-song-name"
                            ng-click="model.showDetails(book)">
                             {{book.title}}

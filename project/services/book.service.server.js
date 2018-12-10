@@ -2,7 +2,7 @@ var app = require("../../express");
 var bookModel = require("../model/book.model.server");
 var userModel = require("../model/user.model.server");
 var multer = require('multer'); // npm install multer --save
-var upload = multer({dest: __dirname + '/../../public/uploads'});
+var upload = multer({dest: __dirname + '/../../public/project/uploads'});
 var fs = require('fs');
 var request = require('request');
 
@@ -23,6 +23,7 @@ app.get("/projectapi/review/book/:bookId", findBookByIdWithReview);
 app.get("/projectapi/search/thirdparty",searchFromThirdPary);
 app.get("/projectapi/search/thirdparty/detail",searchFromThirdParyDetail);
 app.get("/projectapi/book/isbn",findBookByISBN);
+app.get("/projectapi/book/new",findAllNewBooks);
 
 function findBookByIdWithReview(req, res) {
     var bookId = req.params.bookId;
@@ -30,7 +31,7 @@ function findBookByIdWithReview(req, res) {
         .then(function (books) {
             res.json(books);
         }, function (err) {
-            res.sendStatus(500).send(err);;
+            res.sendStatus(500).send(err);
         })
 }
 
@@ -38,11 +39,12 @@ function uploadBook(req, res) {
     // console.log("uploadbook0");
     var myFile = req.file;
     var userId = req.body.userId;
-    var image = req.body.image;
+    var subTitle = req.body.subTitle;
     var title = req.body.title;
     var isbn13 = req.body.isbn;
     var price = req.body.price;
     var author =req.body.author;
+    var publisher =req.body.publisher;
     var originalname = myFile.originalname; // file name on user's computer
     var index = originalname.indexOf(".");
     originalname = originalname.substring(0, index);
@@ -55,13 +57,16 @@ function uploadBook(req, res) {
     var size = myFile.size;
     var mimetype = myFile.mimetype;
     // console.log("uploadbook1");
-    var book= { "url":'/public/uploads/' + filename,
+    var book= {
+        "image":'/uploads/' + filename,
         "_publisher": userId,
         "title": title,
-        "image" : image,
+        "subTitle":subTitle,
         "isbn13": isbn13,
         "price":price,
         "author":author,
+        "publisher":publisher,
+        "new":true
     };
 
     userModel.createBookForUser(userId,book)
@@ -266,4 +271,15 @@ function findBookByISBN(req,res) {
         },function (err) {
             res.json(err);
         })
+}
+
+function findAllNewBooks(req,res){
+    bookModel.findAllNewBooks()
+        .then(function (books) {
+            res.json(books)
+
+        },function (err) {
+            res.json(err);
+
+        });
 }

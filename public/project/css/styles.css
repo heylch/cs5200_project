@@ -200,6 +200,7 @@ article {
 
 .row {
     display: flex;
+
 }
 
 li:hover {
@@ -342,7 +343,7 @@ label.musician-detail-label {
 }
 
 .row {
-    margin: 5px;
+    padding-bottom: 50px;
 }
 
 
@@ -389,6 +390,9 @@ label.musician-detail-label {
 
 .transaction-operator-buyer:hover {
     font-size: 35px;
+}
+.glyphicon{
+    color: white;
 }
 
 .glyphicon.glyphicon-ok {

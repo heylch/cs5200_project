@@ -14,7 +14,7 @@
                         <a href="#!/publisher/{{book._publisher._id}}"
                            class="song-name">{{book._publisher.username}}</a>
                     </div>
-                    <div ng-hide="book._publisher">
+                    <div ng-show="book._publisher">
                         <label class="explore-label">Author:</label>
                         {{book.author}}
                     </div>

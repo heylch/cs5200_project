@@ -4,7 +4,7 @@ var booklistModel = require("../model/booklist.model.server");
 var bookModel = require("../model/book.model.server");
 var bcrypt = require("bcrypt-nodejs");
 var multer = require('multer'); // npm install multer --save
-var upload = multer({dest: __dirname + '/../../public/avatar/upload'});
+var upload = multer({dest: __dirname + '/../../public/project/avatar/upload'});
 var fs = require('fs');
 var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
@@ -77,11 +77,11 @@ function uploadAvatar(req, res) {
     var destination = myFile.destination;  // folder where file is saved to
     var size = myFile.size;
     var mimetype = myFile.mimetype;
-
+    console.log(userId);
     var avatarUrl = '/avatar/upload/' + filename;
     userModel.updateUserAvatar(userId, avatarUrl)
         .then(function () {
-            var callbackUrl = "/project/#!/profile";
+            var callbackUrl = "/#!/profile";
             res.redirect(callbackUrl);
         })
 }

@@ -6,22 +6,23 @@
     function exploreController(bookService,user, booklistService, reviewService,$location, userService) {
         var model = this;
         model.user = user;
-        model.getAllBooks = getAllBooks;
+        // model.getAllBooks = getAllBooks;
         model.getAllReviews = getAllReviews;
         model.getBooklist = getBooklist;
         model.logout = logout;
         model.getAllBooksFromBooklist = getAllBooksFromBooklist;
+        model.getAllNewBooks = getAllNewBooks;
 
         function init() {
-            getAllBooks();
+            getAllNewBooks();
             getBooklist();
             getAllReviews();
         }
         init();
 
 
-        function getAllBooks() {
-            bookService.findAllBooks()
+        function getAllNewBooks() {
+            bookService.findAllNewBooks()
                 .then(function (response) {
                     // console.log(response.data);
                     return model.books = response.data;
@@ -43,29 +44,6 @@
                 })
         }
 
-        // function addSongToBooklist() {
-        //     booklistService.addSongToBooklist(model.booklistId, model.song._id)
-        //         .then(function (response) {
-        //             $location.url('/explore');
-        //         })
-        // }
-        //
-        // function favouriteSong(song) {
-        //     model.favourite = "like";
-        //     model.song = song;
-        //     // console.log("song");
-        //     // console.log(model.song);
-        //
-        // }
-        //
-        // function getSongCreator() {
-        //     songService.getSongCreator(model.song._id)
-        //         .then(function (response) {
-        //             // console.log(response.data);
-        //             return model.creator = response.data;
-        //         })
-        // }
-        //
         function getBooklist() {
             booklistService.findAllSharedBooklists()
                 .then(function (response) {

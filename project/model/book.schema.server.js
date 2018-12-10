@@ -13,8 +13,9 @@ var bookSchema = mongoose.Schema({
     publisher: String,
     price: {
         type: Number,
-        default: 0,
+        default: 0
     },
+    new:{type: Boolean,default:false}
 
 }, {collection: "book"});
 module.exports = bookSchema;

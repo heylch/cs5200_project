@@ -368,7 +368,7 @@
                 "title": book.title,
                 "author": book.author,
                 "image": book.image,
-                "subtitle":book.subtitle,
+                "subTitle":book.subtitle,
                 "publisher":book.publisher,
                 "price": Number(book.price.split("$")[1]),
                 "isbn13" : book.isbn13
@@ -455,9 +455,9 @@
                 .addBookToUser(user._id,bookId,user.type)
                 .then(function(response){
                     if(user.type === 'BOOKSTORE')
-                        alert("add book to bookstore success!");
+                        alert("add book to Bookstore success!");
                     if(user.type === 'PUBLISHER')
-                        alert("add book to bookstore success!");
+                        alert("add book to Publisher success!");
                 })
         }
 
