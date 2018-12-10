@@ -135,12 +135,12 @@ function updateBook(req, res){
 function deleteBook(req, res) {
     var bookId = req.params.bookId;
     var userId = req.params.userId;
-    bookModel.findBookById(bookId)
-        .then(function (book) {
-            var filePath = __dirname + '/../../';
-            filePath += book.url;
-            fs.unlinkSync(filePath);
-        });
+    // bookModel.findBookById(bookId)
+    //     .then(function (book) {
+    //         var filePath = __dirname + '/../../';
+    //         filePath += book.url;
+    //         fs.unlinkSync(filePath);
+    //     });
     userModel
         .deleteBook(userId, bookId)
         .then(function (book) {

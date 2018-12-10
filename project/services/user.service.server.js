@@ -131,13 +131,37 @@ function findUser(req,res) {
 function updateUser(req,res) {
     var userId = req.params.userId;
     var user = req.body;
-    userModel
-        .updateUser(userId,user)
-        .then(function (user) {
-            res.json(user);
-        }, function (err) {
-            res.sendStatus(404).send(err);
-        });
+    userModel.findUserById(userId)
+    .then(function (temp) {
+        if ((temp.password !== user.password)) {
+            console.log('hhhhh');
+            user.password = bcrypt.hashSync(user.password);
+            return    userModel
+                .updateUser(userId,user)
+                .then(function (user) {
+                    res.json(user);
+                }, function (err) {
+                    res.sendStatus(404).send(err);
+                });
+        }
+        else{
+            userModel
+                .updateUser(userId,user)
+                .then(function (user) {
+                    res.json(user);
+                }, function (err) {
+                    res.sendStatus(404).send(err);
+                });
+        }
+    })
+
+    // userModel
+    //     .updateUser(userId,user)
+    //     .then(function (user) {
+    //         res.json(user);
+    //     }, function (err) {
+    //         res.sendStatus(404).send(err);
+    //     });
 
 }
 

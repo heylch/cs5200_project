@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: cs5200_fall2018_final
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: cjrjh
+Implementation-Vendor-Id: edu.northeastern.cs5200
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/cs5200_fall2018_final
+Created-By: Maven Integration for Eclipse
+
