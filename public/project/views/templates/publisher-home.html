@@ -23,7 +23,7 @@
                 <li class="list-group-item"><a ng-click="model.changeRightPanel('create-booklist')" href="">
                     <span class="glyphicon glyphicon-plus pull-right"></span>
                 </a>Create Categories</li >
-                <div class = "my-playlist" >
+                <div class = "my-booklist" >
                     <div ng-show= "model.booklists" ng-repeat="booklist in model.booklists" class="list-group">
                         <li class="list-group-item">
                             <a ng-click="model.getAllBooksFromBooklist(booklist._id)" href="">{{booklist.name}}</a>

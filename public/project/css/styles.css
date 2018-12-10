@@ -107,12 +107,12 @@ h2 {
     margin-bottom: 0px;
 }
 
-.navbar-nav.play-btn{
+.navbar-nav.wan-btn{
     /*float: right;*/
     margin-left: 40%;
 }
 
-.foorter-mobile .play-btn{
+.foorter-mobile .wan-btn{
     margin-left: 0;
 }
 
@@ -120,7 +120,7 @@ h2 {
     background-color: black;
     color: white;
 }
-.mysidebar .list-menu .my-playlist{
+.mysidebar .list-menu .my-booklist{
     max-height: 400px;
     overflow: auto;
 }
