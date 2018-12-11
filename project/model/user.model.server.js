@@ -57,8 +57,6 @@ function updateUserAvatar(userId, avatarUrl) {
 }
 
 function createUser(user) {
-    // var promise = playlistModel.findPlaylistById("88888");
-    //     // var promise2 = songModel.findSongById("88888");
     return userModel.create(user);
 }
 
@@ -97,7 +95,6 @@ function removeBook(userId, bookId) {
             console.log(bookId);
             user._books.splice(index, 1);
             return user.save();
-            // return playlistModel.removeSongFromAllPlaylists(songId);
         })
 }
 
@@ -246,10 +243,6 @@ function addTransaction(userId, transactionId) {
 
 
 function removeBooklist(userId, booklistId) {
-    // return playlistModel.findById(playlistId)
-    //     .then(function () {
-    //         console.log("gagag");
-    //     })
     return userModel
         .findById(userId)
         .then(function (user) {

@@ -89,7 +89,7 @@ function addBookToBooklist(booklistId,bookId) {
             if(flag === '0') {
                 list._books.push(bookId);
             }
-            return list.save();
+            return booklistModel.updateBooklist(booklistId,list);
         })
 }
 
