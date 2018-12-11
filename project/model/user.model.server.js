@@ -111,7 +111,8 @@ function addBook(userId, bookId) {
                 user._books.push(bookId);
             }
             console.log(user);
-            return user.save();
+            user.save();
+            return user;
         });
 }
 
