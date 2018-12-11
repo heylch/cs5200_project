@@ -95,22 +95,6 @@ function findBookById(req,res) {
         });
 }
 
-function findBookByBookName(req, res) {
-    var bookname = req.query.bookname;
-    bookname += ".mp3";
-    bookModel
-        .findBookByBookName(bookname)
-        .then(function (book) {
-            if (book === null)
-                return res.send("0");
-            else
-                return res.json(book);
-
-        }, function (err) {
-            return res.sendStatus(404).send(err);
-        });
-}
-
 function findAllBooksByUser(req, res) {
     var userId = req.params.userId;
     // console.log(userId);

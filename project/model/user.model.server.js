@@ -292,12 +292,13 @@ function createBookForUser(userId, book) {
         .create(book)
         .then(function (bookDoc) {
             bookTmp = bookDoc;
-            return userModel.addBook(userId, bookTmp._id)
+            userModel.addBook(userId, bookTmp._id)
+                .then(function (userDoc) {
+                    console.log("upload success");
+                    return bookTmp;
+                })
         })
-        .then(function (userDoc) {
-            console.log("upload success");
-            return bookTmp;
-        })
+
 }
 
 function deleteBook(userId, bookId) {
