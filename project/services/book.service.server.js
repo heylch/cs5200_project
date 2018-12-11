@@ -7,7 +7,6 @@ var fs = require('fs');
 var request = require('request');
 
 app.post("/projectapi/user/:userId/book", createBookForUser);
-app.get("/projectapi/book", findBookByBookName);
 app.get("/projectapi/user/:userId/book", findAllBooksByUser);
 app.get("/projectapi/search/book/:bookId", findBookById);
 app.put("/projectapi/book/:bookId", updateBook);
