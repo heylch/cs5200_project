@@ -24,6 +24,7 @@ bookModel.findBookByISBN = findBookByISBN;
 bookModel.setPublisher = setPublisher;
 bookModel.addBookstore = addBookstore;
 bookModel.findAllNewBooks = findAllNewBooks;
+bookModel.createBook = createBook;
 module.exports = bookModel;
 
 function findBookByThridPartyId(thirdPartyId) {
@@ -184,4 +185,8 @@ function findAllNewBooks() {
         .populate('_publisher')
         .exec();
 
+}
+
+function createBook(book) {
+    return bookModel.create(book);
 }

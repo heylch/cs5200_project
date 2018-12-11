@@ -289,7 +289,7 @@ function createBookForUser(userId, book) {
     // book._author = userId;
     var bookTmp = null;
     return bookModel
-        .create(book)
+        .createBook(book)
         .then(function (bookDoc) {
             bookTmp = bookDoc;
             console.log(bookTmp);
