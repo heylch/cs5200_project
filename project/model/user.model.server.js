@@ -101,6 +101,27 @@ function removeBook(userId, bookId) {
         })
 }
 
+
+function addBooklist(userId, booklistId) {
+    return userModel
+        .findById(userId)
+        .then(function (user) {
+            var flag = '0';
+            for(var u in user._booklists) {
+                if(user._booklists[u] === booklistId) {
+                    flag = '1';
+                    break;
+                }
+            }
+            if(flag === '0') {
+                user._booklists.push(booklistId);
+                user.save();
+                console.log("addBooklist");
+                console.log(booklistId);
+            }
+            return user;
+        })
+}
 function addBook(userId, bookId) {
     return userModel
         .findById(userId)
@@ -111,8 +132,9 @@ function addBook(userId, bookId) {
                 user._books.push(bookId);
             }
             console.log(user);
-            user.save();
-            return user;
+
+            // user.save();
+            return userModel.updateUser(userId,user);
         });
 }
 
@@ -221,27 +243,7 @@ function addTransaction(userId, transactionId) {
 }
 
 
-//playlist
-function addBooklist(userId, booklistId) {
-    return userModel
-        .findById(userId)
-        .then(function (user) {
-            var flag = '0';
-            for(var u in user._booklists) {
-                if(user._booklists[u] === booklistId) {
-                    flag = '1';
-                    break;
-                }
-            }
-            if(flag === '0') {
-                user._booklists.push(booklistId);
-                user.save();
-                console.log("addBooklist");
-                console.log(booklistId);
-            }
-            return user;
-        })
-}
+
 
 function removeBooklist(userId, booklistId) {
     // return playlistModel.findById(playlistId)
