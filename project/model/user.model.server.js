@@ -105,6 +105,8 @@ function addBook(userId, bookId) {
     return userModel
         .findById(userId)
         .then(function (user) {
+            console.log("addBook");
+            console.log(user._books.indexOf(bookId));
             if(user._books.indexOf(bookId) <0){
                 user._books.push(bookId);
             }
