@@ -101,11 +101,6 @@ function getBookAuthor(bookId) {
         .findById(bookId)
         .populate('_author')
         .exec();
-    // .then(function (book) {
-    //     return book._creator
-    //         .populate('_creator')
-    //         .exec();
-    // })
 }
 
 
@@ -119,8 +114,7 @@ function addReview(bookId,rId) {
         .then(function (book) {
             book._reviews.push(rId);
             // console.log(book);
-            book.save();
-            return book;
+            return bookModel.updateBook(bookId,book);
         });
 
 
@@ -133,7 +127,7 @@ function removeReview(bookId, reviewId) {
         .then(function (book) {
             var index = book._reviews.indexOf(reviewId);
             book._reviews.splice(index, 1);
-            return book.save();
+            return bookModel.updateBook(bookId,book);
         })
 }
 
@@ -164,7 +158,7 @@ function setPublisher(userId,bookId) {
     return bookModel.findOne({_id: bookId})
         .then(function (book) {
             book._publisher = userId;
-            return book.save();
+            return bookModel.updateBook(bookId,book);
         })
 }
 
@@ -175,8 +169,7 @@ function addBookstore(userId,bookId) {
             console.log(book._bookstore.indexOf(userId));
             if(book._bookstore.indexOf(userId) < 0)
                 book._bookstore.push(userId);
-            console.log(book);
-            return book.save();
+            return bookModel.updateBook(bookId,book);
         })
 }
 

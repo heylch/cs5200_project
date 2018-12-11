@@ -99,7 +99,7 @@ function removeBookFromBooklist(booklistId, bookId) {
         .then(function (list) {
             var index = list._books.indexOf(bookId);
             list._books.splice(index, 1);
-            return list.save();
+            return booklistModel.updateBooklist(booklistId,list);
         })
 }
 
@@ -132,7 +132,7 @@ function addReview(booklistId, reviewId) {
         .findBooklistById(booklistId)
         .then(function (list) {
             list._reviews.push(reviewId);
-            return list.save();
+            return booklistModel.updateBooklist(booklistId,list);
         });
 }
 
@@ -142,7 +142,7 @@ function removeReviewForBooklist(booklistId, reviewId) {
         .then(function (list) {
             var index = list._reviews.indexOf(reviewId);
             list._reviews.splice(index, 1);
-            return list.save();
+            return booklistModel.updateBooklist(booklistId,list);
         })
 }
 

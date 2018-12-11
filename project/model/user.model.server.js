@@ -94,7 +94,7 @@ function removeBook(userId, bookId) {
             console.log("user server");
             console.log(bookId);
             user._books.splice(index, 1);
-            return user.save();
+            return userModel.updateUser(userId,user);
         })
 }
 
@@ -112,11 +112,10 @@ function addBooklist(userId, booklistId) {
             }
             if(flag === '0') {
                 user._booklists.push(booklistId);
-                user.save();
                 console.log("addBooklist");
                 console.log(booklistId);
             }
-            return user;
+            return userModel.updateUser(userId,user);
         })
 }
 function addBook(userId, bookId) {
@@ -203,9 +202,9 @@ function addFollowingByUser(userId, followingId) {
             }
             if(flag === '1') {
                 user._reader._followings.push(followingId);
-                user.save();
+                // user.save();
             }
-            return user;
+            return userModel.updateUser(userId,user);
         })
 }
 
@@ -215,7 +214,7 @@ function addReview(userId, reviewId) {
         .findById(userId)
         .then(function (user) {
             user._reader._reviews.push(reviewId);
-            return user.save();
+            return userModel.updateUser(userId,user);
         });
 }
 
@@ -225,7 +224,7 @@ function removeReview(userId, reviewId) {
         .then(function (user) {
             var index = user._reader._reviews.indexOf(reviewId);
             user._reader._reviews.splice(index, 1);
-            return user.save();
+            return userModel.updateUser(userId,user);
         })
 }
 
@@ -235,7 +234,7 @@ function addTransaction(userId, transactionId) {
         .findById(userId)
         .then(function (user) {
             user._transactions.push(transactionId);
-            return user.save();
+            return userModel.updateUser(userId,user);
         })
 }
 
@@ -248,7 +247,7 @@ function removeBooklist(userId, booklistId) {
         .then(function (user) {
             var index = user._booklists.indexOf(booklistId);
             user._booklists.splice(index, 1);
-            return user.save();
+            return userModel.updateUser(userId,user);
         })
         .then(function (userDoc) {
             return booklistModel.deleteBooklist(booklistId);
@@ -261,7 +260,7 @@ function removeFollowingUser(userId, followingId) {
         .then(function (user) {
             var index = user._reader._followings.indexOf(followingId);
             user._reader._followings.splice(index, 1);
-            return user.save();
+            return userModel.updateUser(userId,user);
         })
 }
 
@@ -280,7 +279,7 @@ function deleteTransaction(userId, transactionId) {
         .then(function (user) {
             var index = user._transactions.indexOf(transactionId);
             user._transactions.splice(index, 1);
-            return user.save();
+            return userModel.updateUser(userId,user);
         })
 }
 
