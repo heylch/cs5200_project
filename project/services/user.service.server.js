@@ -210,7 +210,7 @@ function addBook(req,res) {
     userModel
         .addBook(userId,bookId)
         .then(function (user) {
-            res.send("1");
+            res.send(user);
         }, function (err) {
             res.send("0");
         });
