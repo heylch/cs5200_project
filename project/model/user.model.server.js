@@ -292,6 +292,7 @@ function createBookForUser(userId, book) {
         .create(book)
         .then(function (bookDoc) {
             bookTmp = bookDoc;
+            console.log(bookTmp);
             userModel.addBook(userId, bookTmp._id)
                 .then(function (userDoc) {
                     console.log("upload success");
