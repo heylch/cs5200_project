@@ -8,7 +8,7 @@ var db = require("./database");
 
 reviewModel.createReviewForBook = createReviewForBook;
 reviewModel.createReviewForBooklist = createReviewForBooklist;
-reviewModel.createReviewForAuthor = createReviewForAuthor;
+// reviewModel.createReviewForAuthor = createReviewForAuthor;
 reviewModel.findReviewById = findReviewById;
 reviewModel.findReviewByBookId = findReviewByBookId;
 reviewModel.findReviewByBooklistId = findReviewByBooklistId;
@@ -76,27 +76,15 @@ function createReviewForBooklist(userId, booklistId, review) {
         .create(review)
         .then(function (newreview) {
             reviewTemp = newreview;
-            return booklistModel.addReview(booklistId, newreview._id)
+            booklistModel.addReview(booklistId, newreview._id)
+                .then(function (res) {
+                    return reviewTemp;
+                })
         })
-        .then(function (res) {
-            return reviewTemp;
-        })
+
 }
 
-function createReviewForAuthor(userId, authorId, review) {
-    review._reader = userId;
-    review._author = authorId;
-    var reviewTemp = null;
-    return reviewModel
-        .create(review)
-        .then(function (newreview) {
-            reviewTemp = newreview;
-            return authorId.addReview(authorId, newreview._id)
-        })
-        .then(function (res) {
-            return reviewTemp;
-        })
-}
+
 
 function findReviewById(reviewId) {
     return reviewModel.findOne({_id: reviewId});

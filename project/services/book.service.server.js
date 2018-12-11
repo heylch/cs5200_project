@@ -176,11 +176,12 @@ function addBookPublisher(req, res) {
         .then(function (book) {
             book._publisher = publisherId;
             book.price = priceNum;
-            return bookModel.updateBook(book._id, book);
+            bookModel.updateBook(book._id, book)
+                .then(function (bookDoc) {
+                    res.json(bookDoc);
+                })
         })
-        .then(function (bookDoc) {
-            res.json(bookDoc);
-        })
+
 }
 function addBookBookstore(req, res) {
     var bookId = req.params.bookId;
@@ -190,11 +191,12 @@ function addBookBookstore(req, res) {
         .then(function (book) {
             book._publisher = bookstoreId;
             book.price = priceNum;
-            return bookModel.updateBook(book._id, book);
+            bookModel.updateBook(book._id, book)
+                .then(function (bookDoc) {
+                    res.json(bookDoc);
+                })
         })
-        .then(function (bookDoc) {
-            res.json(bookDoc);
-        })
+
 }
 
 

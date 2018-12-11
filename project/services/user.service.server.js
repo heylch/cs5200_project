@@ -134,7 +134,7 @@ function updateUser(req,res) {
         if ((temp.password !== user.password)) {
             console.log('hhhhh');
             user.password = bcrypt.hashSync(user.password);
-            return    userModel
+            return userModel
                 .updateUser(userId,user)
                 .then(function (user) {
                     res.json(user);
