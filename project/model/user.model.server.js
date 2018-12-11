@@ -110,6 +110,7 @@ function addBook(userId, bookId) {
             if(user._books.indexOf(bookId) <0){
                 user._books.push(bookId);
             }
+            console.log(user);
             return user.save();
         });
 }
