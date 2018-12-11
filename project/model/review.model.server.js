@@ -20,6 +20,7 @@ reviewModel.findAllReviews= findAllReviews;
 
 module.exports = reviewModel;
 
+
 function createReviewForBook(userId, bookId, review) {
     review._reader = userId;
     review._book = bookId;
@@ -32,17 +33,39 @@ function createReviewForBook(userId, bookId, review) {
             // console.log("create review for book in model step1");
             reviewTemp = newreview;
             reviewId = newreview._id;
-            return bookModel.addReview(bookId, newreview._id)
-        })
-        .then(function (res) {
-            // console.log("create review for book in model step2");
-            return userModel.addReview(userId, reviewId);
-        })
-        .then(function (res) {
-            // console.log("create review for book in model step3");
-            return reviewTemp;
-        })
+            bookModel.addReview(bookId, newreview._id)
+                .then(function (res1) {
+                    userModel.addReview(userId, reviewId)
+                        .then(function (res2) {
+                            return reviewTemp;
+                        })
+                })
+        });
 }
+
+// function createReviewForBook(userId, bookId, review) {
+//     review._reader = userId;
+//     review._book = bookId;
+//     review.type = "BOOK";
+//     var reviewId = null;
+//     var reviewTemp = null;
+//     return reviewModel
+//         .create(review)
+//         .then(function (newreview) {
+//             // console.log("create review for book in model step1");
+//             reviewTemp = newreview;
+//             reviewId = newreview._id;
+//             return bookModel.addReview(bookId, newreview._id)
+//         })
+//         .then(function (res) {
+//             // console.log("create review for book in model step2");
+//             return userModel.addReview(userId, reviewId);
+//         })
+//         .then(function (res) {
+//             // console.log("create review for book in model step3");
+//             return reviewTemp;
+//         })
+// }
 
 function createReviewForBooklist(userId, booklistId, review) {
     review._reader = userId;
