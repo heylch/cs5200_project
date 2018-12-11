@@ -67,7 +67,6 @@ function uploadBook(req, res) {
         "publisher":publisher,
         "new":true
     };
-
     userModel.createBookForUser(userId,book)
         .then(function () {
             var callbackUrl = "/#!/home";
