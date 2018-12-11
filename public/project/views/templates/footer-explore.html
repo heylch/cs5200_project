@@ -3,7 +3,7 @@
         <div class="navbar-footer">
             <a class="navbar-brand" href="#!/home">IT Books</a>
         </div>
-        <a ng-hide="model.user.type === 'BOOKSTORE'" id="button-exp" style="float: right;" href="#!/explore" role="button">Explore</a>
+        <a  id="button-exp" style="float: right;" href="#!/explore" role="button">Explore</a>
         <a ng-show="model.user.type === 'READER'" id="button-pub"style="float: right;" href="#!/publisher" role="button">All Publishers</a>
         <a ng-hide="model.user.type === 'BOOKSTORE'" id="button-store" style="float: right;" href="#!/bookstore" role="button">All Bookstores</a>
         <a ng-show="model.user.type === 'BOOKSTORE'" id="button-pub" style="float: right;" href="#!/publisher" role="button">Buy From Publishers</a>
